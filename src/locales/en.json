@@ -1,0 +1,49 @@
+{
+  "welcome": {
+    "title": "Welcome to Saito University College",
+    "subtitle": "Select your preferred language to continue"
+  },
+  "aptitude": {
+    "1": {
+      "title": "Interest",
+      "question": "Which of the following thoughts have the highest connection to you?",
+      "a": "I always want to finish every task. I cannot leave things uncomplete.",
+      "b": "I always think there are better ways to illustrate my ideas than others.",
+      "c": "I'm always alert, physically fit and bold.",
+      "d": "I feel good with smells, tastes and visuals."
+    },
+    "2": {
+      "title": "Responsibility",
+      "question": "If you were to work 24 hours without sleep, which of the following scenario that you are most suited?",
+      "a": "An important medical device is needed at a local hospital. You must ensure that the medical device reaches the hospital earliest possible.",
+      "b": "A delegate of 1000 foreigners are coming to Malaysia next week. You must submit your event proposal and cost estimate to them tomorrow.",
+      "c": "A large fire happens on a large tower. You must ensure that the 2000 occupants are safe and evacuated.",
+      "d": "A major sport event is happening in Malaysia. You must provide 25000 athletes with their meals that meets dietary requirements."
+    },
+    "3": {
+      "title": "Work Life",
+      "question": "Which of the following career would you choose if the salary per month is the same?",
+      "a": "You need to travel overseas 4 times a month and miss your Hari Raya.",
+      "b": "Works from home and able to send your kids to school. You have to work late nights.",
+      "c": "You are required to pass a physical fitness test every year. The people you helped remembers you forever.",
+      "d": "You need to create a new food menu every month and explore other food choices globally. You will get a lot of negative comments on whatever you do."
+    },
+    "4": {
+      "title": "Appearance",
+      "question": "Which of the following attire you like the most?",
+      "a": "https://via.placeholder.com/150/",
+      "b": "https://via.placeholder.com/150/",
+      "c": "https://via.placeholder.com/150/",
+      "d": "https://via.placeholder.com/150/"
+    },
+    "5": {
+      "title": "Accountability",
+      "question": "Which of the following scenario that you think you can save the day?",
+      "a": "Your colleague Angela is supposed to submit a permit application to MOH today. However, Angela did not turn up to work this morning.",
+      "b": "Your colleague Ragethan creates a poster for Malaysian Tourism and you think his design is not acceptable. The poster must be submitted to the Minster in 2 hours.",
+      "c": "Your colleague Ariff is the head to a team of 100 security personnels assigned to protect the Indonesian President who is visiting Malaysia.",
+      "d": "Your colleague Siew Mun is representing your company in the world cooking championship. Siew Mun is hospitalised for cancer."
+    }
+  },
+  "footer": "creating opportunities, transforming lives."
+}
