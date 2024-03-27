@@ -1,5 +1,5 @@
 import { TextField } from "@/components/Form/Field";
-import { Layout } from "@/components/layout";
+import { Layout } from "@/components/Layout";
 import { useUser } from "@/stores/useUser";
 import { Form, Formik } from "formik";
 import Head from "next/head";

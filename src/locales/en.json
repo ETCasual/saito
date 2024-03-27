@@ -4,6 +4,7 @@
     "subtitle": "Select your preferred language to continue"
   },
   "aptitude": {
+    "title": "Aptitude Test",
     "1": {
       "title": "Interest",
       "question": "Which of the following thoughts have the highest connection to you?",
@@ -45,5 +46,7 @@
       "d": "Your colleague Siew Mun is representing your company in the world cooking championship. Siew Mun is hospitalised for cancer."
     }
   },
+
+  "intro": { "title": "Introduction" },
   "footer": "creating opportunities, transforming lives."
 }

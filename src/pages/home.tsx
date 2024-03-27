@@ -1,4 +1,4 @@
-import { Layout } from "@/components/layout";
+import { Layout } from "@/components/Layout";
 import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
