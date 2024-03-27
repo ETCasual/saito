@@ -34,7 +34,7 @@ const Intro = () => {
                 controlsList="nodownload"
               >
                 <source
-                  src={`/assets/video/${selectedCourseVideo}.mp4`}
+                  src={`https://work-temps.s3.ap-southeast-1.amazonaws.com/${selectedCourseVideo}.mp4`}
                   type="video/mp4"
                 />
               </video>
