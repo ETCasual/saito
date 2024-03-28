@@ -1,15 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { useUser } from "@/stores/useUser";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
 import { type ReactNode } from "react";
 import { IoMenu } from "react-icons/io5";
 
 export const Layout = ({ children }: { children?: ReactNode }) => {
   const t = useTranslations();
+  const router = useRouter();
   const { name } = useUser();
   return (
     <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
-      <div className="flex flex-row justify-between px-14 pb-6 pt-10">
+      <div className="fixed top-0 flex w-full flex-row justify-between px-10 pb-2 pt-6">
         <img
           src="/assets/logo.png"
           alt="Logo"
@@ -30,13 +32,18 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           <IoMenu size={50} color="gray" />
         )}
       </div>
-      <div className="px-14">{children}</div>
-      <div className="fixed bottom-0 left-0 flex w-full flex-row items-start">
-        <p className="absolute left-20 mt-5 font-bebas text-[2.25rem] uppercase tracking-wide text-gray-400">
-          {t("footer")}
-        </p>
-        <img src="/assets/bottom_bar.png" alt="bottom-bar" />
-      </div>
+      <div className="px-10">{children}</div>
+      {router.pathname.includes("home") ||
+      router.pathname === "/" ||
+      router.pathname.includes("aptitude") ||
+      router.pathname.includes("intro") ? (
+        <div className="fixed bottom-0 left-0 flex w-full flex-row items-start">
+          <p className="absolute left-20 mt-5 font-bebas text-[2.25rem] uppercase tracking-wide text-gray-400">
+            {t("footer")}
+          </p>
+          <img src="/assets/bottom_bar.png" alt="bottom-bar" />
+        </div>
+      ) : null}
     </main>
   );
 };

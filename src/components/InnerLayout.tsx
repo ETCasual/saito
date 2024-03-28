@@ -12,12 +12,20 @@ const links = [
     path: "/intro",
   },
   {
-    label: "Technical",
-    path: "/technical",
+    label: "Course Program",
+    path: "/course",
+  },
+  {
+    label: "Faculty Members",
+    path: "/faculty",
   },
   {
     label: "Support",
     path: "/support",
+  },
+  {
+    label: "Events / Activities",
+    path: "/events",
   },
   {
     label: "Fees Structure",
@@ -33,10 +41,14 @@ export const InnerLayout = ({ children }: { children?: ReactNode }) => {
   const router = useRouter();
   return (
     <div className="relative flex flex-col items-center justify-center">
-      <div className="fixed left-14 top-1/2 flex -translate-y-3/4 flex-col gap-3">
+      <div className="fixed left-10 top-1/2 flex -translate-y-1/2 flex-col gap-3">
         {links.map((l) => (
           <CategoryIcon
-            onClick={() => router.push(l.path)}
+            onClick={async () => {
+              if (l.path === "/intro")
+                localStorage.setItem("recommended", "false");
+              await router.push(l.path);
+            }}
             label={l.label}
             key={l.label}
             stage={router.pathname === l.path ? "active" : "otw"}

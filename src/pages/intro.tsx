@@ -3,7 +3,7 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const courses = new Array<{ video: string; label: string; image: string }>(
   5,
@@ -17,17 +17,25 @@ const courses = new Array<{ video: string; label: string; image: string }>(
 const Intro = () => {
   const t = useTranslations("intro");
 
+  const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
+
+  useEffect(() => {
+    setHasRecommended(
+      localStorage.getItem("recommended") === null ? true : false,
+    );
+    setTimeout(() => localStorage.removeItem("recommended"));
+  }, []);
 
   return (
     <Layout>
       <InnerLayout>
         <div className="flex w-full flex-col items-center justify-center">
-          <h1 className="pb-6 font-montserrat text-[1.75rem] font-bold text-primary">
+          <h1 className="pb-6 pt-20 font-montserrat text-[1.75rem] font-bold text-primary">
             {t("title")}
           </h1>
           {selectedCourseVideo ? (
-            <div className="relative flex w-full max-w-[1000px] flex-row items-center gap-4">
+            <div className="relative flex w-full max-w-[700px] flex-row items-center gap-4">
               <video
                 className="aspect-video"
                 controls
@@ -43,10 +51,16 @@ const Intro = () => {
             <div className="relative flex h-[55dvh] w-full max-w-[1000px] flex-row items-center gap-4">
               {courses.map((c, i) => (
                 <div
-                  className="relative h-full w-full cursor-pointer"
+                  className="relative flex h-full w-full cursor-pointer flex-col gap-2"
                   onClick={() => setSelectedCourseVideo(c.video)}
                   key={i}
                 >
+                  <div className="relative h-[20px] w-full bg-gray-300">
+                    <div
+                      className="absolute left-0 top-0 z-10 h-full bg-primary"
+                      style={{ width: `${Math.random() * 100}%` }}
+                    />
+                  </div>
                   <div className="relative h-full w-full overflow-hidden rounded-tl-[3rem]">
                     <img
                       className="h-[70%] w-full object-cover object-[55%]"
@@ -57,7 +71,7 @@ const Intro = () => {
                       {c.label}
                     </div>
                   </div>
-                  {i === 1 ? (
+                  {i === 1 && hasRecommended ? (
                     <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat font-bold text-primary">
                       Recommended *
                     </p>
