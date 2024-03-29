@@ -32,7 +32,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           <IoMenu size={50} color="gray" />
         )}
       </div>
-      <div className="px-10">{children}</div>
+      <div className="flex-grow px-10">{children}</div>
       {router.pathname.includes("home") ||
       router.pathname === "/" ||
       router.pathname.includes("aptitude") ||

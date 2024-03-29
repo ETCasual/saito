@@ -30,7 +30,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex min-h-[90vh] flex-grow flex-col items-center justify-center">
           <h1 className="pb-14 font-montserrat text-[1.5rem] font-bold text-primary">
             {t("welcome.title")}
           </h1>

@@ -10,3 +10,13 @@
   -webkit-user-drag: none;
   user-drag: none;
 }
+
+.splide__arrows {
+  width: 100% !important;
+  position: absolute;
+  bottom: 0px !important;
+  transform: translateY(200%);
+}
+.splide__arrow--next {
+  right: 1em !important;
+}

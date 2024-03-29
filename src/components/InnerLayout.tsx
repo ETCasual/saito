@@ -40,7 +40,7 @@ const links = [
 export const InnerLayout = ({ children }: { children?: ReactNode }) => {
   const router = useRouter();
   return (
-    <div className="relative flex flex-col items-center justify-center">
+    <div className="relative flex flex-grow flex-col items-center justify-center">
       <div className="fixed left-10 top-1/2 flex -translate-y-1/2 flex-col gap-3">
         {links.map((l) => (
           <CategoryIcon

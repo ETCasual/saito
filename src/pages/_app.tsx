@@ -3,6 +3,8 @@ import { type AppType } from "next/app";
 import { Montserrat, Bebas_Neue } from "next/font/google";
 
 import "@/styles/globals.css";
+import "@splidejs/splide/css";
+
 import { useRouter } from "next/router";
 
 const montserrat = Montserrat({
