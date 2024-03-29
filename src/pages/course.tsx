@@ -3,7 +3,7 @@ import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
-import { type FunctionComponent, useState } from "react";
+import { useState } from "react";
 
 const Technical = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);

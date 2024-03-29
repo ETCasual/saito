@@ -35,7 +35,7 @@ const Intro = () => {
             {t("title")}
           </h1>
           {selectedCourseVideo ? (
-            <div className="relative flex w-full max-w-[700px] flex-row items-center gap-4">
+            <div className="relative ml-32 mt-12 flex w-full max-w-[700px] flex-row items-center gap-4 xl:ml-0 xl:mt-0">
               <video
                 className="aspect-video"
                 controls
@@ -48,7 +48,7 @@ const Intro = () => {
               </video>
             </div>
           ) : (
-            <div className="relative flex h-[55dvh] w-full max-w-[1000px] flex-row items-center gap-4">
+            <div className="relative ml-32 flex h-[55dvh] w-full max-w-[650px] flex-row items-center gap-4 xl:ml-0">
               {courses.map((c, i) => (
                 <div
                   className="relative flex h-full w-full cursor-pointer flex-col gap-2"
@@ -61,18 +61,18 @@ const Intro = () => {
                       style={{ width: `${Math.random() * 100}%` }}
                     />
                   </div>
-                  <div className="relative h-full w-full overflow-hidden rounded-tl-[3rem]">
+                  <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] xl:rounded-tl-[3rem]">
                     <img
                       className="h-[70%] w-full object-cover object-[55%]"
                       alt={c.image}
                       src={c.image}
                     />
-                    <div className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-70% px-5 py-4 font-montserrat text-xl font-bold text-white transition duration-200 ease-in-out hover:to-primary">
+                    <div className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-70% px-5 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary xl:text-xl">
                       {c.label}
                     </div>
                   </div>
                   {i === 1 && hasRecommended ? (
-                    <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat font-bold text-primary">
+                    <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary xl:text-base">
                       Recommended *
                     </p>
                   ) : null}

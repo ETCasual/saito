@@ -25,7 +25,7 @@ const Aptitude = () => {
           <h1 className="pb-6 pt-20 font-montserrat text-[1.75rem] font-bold text-primary">
             {t("title")}
           </h1>
-          <div className="relative w-full max-w-[600px] flex-row items-center">
+          <div className="relative w-full max-w-[500px] flex-row items-center xl:max-w-[600px]">
             <div className="z-20 flex flex-row items-center justify-between">
               {Object.values(questions).map((d, i) => (
                 <CategoryIcon
@@ -63,7 +63,7 @@ const Aptitude = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-[800px] py-7">
+          <div className="ml-32 w-full max-w-[600px] py-7 xl:ml-0 xl:max-w-[800px]">
             <p className="pb-7 text-center font-montserrat text-lg">
               {t(q[1])}
             </p>
@@ -91,7 +91,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[2]?.src)}
                     alt="A"
-                    className="h-[150px] w-[150px] rounded-full object-cover"
+                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     A
@@ -125,7 +125,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[3]?.src)}
                     alt="B"
-                    className="h-[150px] w-[150px] rounded-full object-cover"
+                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     B
@@ -158,7 +158,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[4]?.src)}
                     alt="C"
-                    className="h-[150px] w-[150px] rounded-full object-cover"
+                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     C
@@ -192,7 +192,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[5]?.src)}
                     alt="D"
-                    className="h-[150px] w-[150px] rounded-full object-cover"
+                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     D
