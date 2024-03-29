@@ -5,14 +5,14 @@ import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { type FunctionComponent, useState } from "react";
 
-const Technical = () => {
-  const [selectedCourse, setSelectedCourse] = useState(false);
+const Fees = () => {
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-col items-center justify-center pb-20 pt-32">
-          {!selectedCourse ? (
+        <div className="flex w-full flex-grow flex-col items-center justify-center pb-20 pt-32">
+          {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
                 onClick={() => setSelectedCourse(true)}
@@ -98,6 +98,73 @@ const Technical = () => {
                 ))}
               </div>
             </div>
+          )} */}
+
+          {!selectedCategory ? (
+            <div className="ml-24 flex flex-col items-center justify-center xl:ml-0">
+              <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+                Fees Structure / Financial Assistance
+              </h1>
+              <div className="flex w-full max-w-[700px] flex-row items-center justify-center gap-1 pt-3">
+                {["Course Fees", "Funding Support", "Job Opportunities"].map(
+                  (title, i) => (
+                    <FeesCategory
+                      onClick={() => setSelectedCategory(title)}
+                      key={i}
+                      title={title}
+                    />
+                  ),
+                )}
+              </div>
+            </div>
+          ) : selectedCategory === "Course Fees" ? (
+            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              <img
+                src="https://via.placeholder.com/600x450"
+                className="w-[600px]"
+                alt=""
+              />
+              <div className="flex flex-row gap-3 xl:flex-col">
+                {[
+                  {
+                    title: "Foundation",
+                    sub: "Foundation in Business Studies",
+                  },
+                  {
+                    title: "Diploma",
+                    sub: "Foundation in Logistics Management",
+                  },
+                  {
+                    title: "Degree",
+                    sub: `Bachelor of Business in Logistics Management & E-Business (Honours)<br/>Bachelor of Business in Logistics & Supply Chain Management (Honours)`,
+                  },
+                ].map((s, i) => (
+                  <CourseLevel
+                    onClick={() => setLevel(s.title.toLowerCase())}
+                    title={s.title}
+                    sub={s.sub}
+                    active={level.toLowerCase() === s.title.toLowerCase()}
+                    key={i}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : selectedCategory === "Funding Support" ? (
+            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              <img
+                src="/assets/funding_support.png"
+                alt="funding"
+                className="mt-20 w-[700px] xl:mt-0"
+              />
+            </div>
+          ) : (
+            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              <img
+                src="/assets/career_opportunities.png"
+                alt="funding"
+                className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
+              />
+            </div>
           )}
         </div>
       </InnerLayout>
@@ -105,7 +172,30 @@ const Technical = () => {
   );
 };
 
-export default Technical;
+interface FeesCategoryProps {
+  title: string;
+  onClick: () => void;
+}
+
+const FeesCategory: FunctionComponent<FeesCategoryProps> = ({
+  title,
+  onClick,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className="group relative transition-all duration-200 ease-in-out"
+    >
+      <img src="https://via.placeholder.com/200x125" alt="" />
+      <p className="absolute bottom-2 left-3 z-10 font-montserrat text-sm font-bold text-primary group-hover:text-white">
+        {title}
+      </p>
+      <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />
+    </button>
+  );
+};
+
+export default Fees;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {

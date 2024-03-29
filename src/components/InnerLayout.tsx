@@ -45,6 +45,7 @@ export const InnerLayout = ({ children }: { children?: ReactNode }) => {
         {links.map((l) => (
           <CategoryIcon
             onClick={async () => {
+              if (router.pathname.includes(l.path)) return router.reload();
               if (l.path === "/intro")
                 localStorage.setItem("recommended", "false");
               await router.push(l.path);
