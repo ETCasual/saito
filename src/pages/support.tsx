@@ -5,8 +5,36 @@ import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { type FunctionComponent, useState } from "react";
 
+const imgKeys: ImageKeys[] = [
+  "Counselling Services",
+  "Student Council Body",
+  "Students' Accomodation",
+  "Students' Hub",
+  "Prayer Room",
+  "Computer Lab",
+  "Library",
+  "Sports & Extracurricular Activities",
+  "Green Screen Studio",
+  "Cafe",
+];
+
+const img = {
+  "Counselling Services": "support_1",
+  "Student Council Body": "support_2",
+  "Students' Accomodation": "support_3",
+  "Students' Hub": "support_4",
+  "Prayer Room": "support_5",
+  "Computer Lab": "support_6",
+  Library: "support_7",
+  "Sports & Extracurricular Activities": "support_8",
+  "Green Screen Studio": "support_9",
+  Cafe: "support_10",
+};
+
+type ImageKeys = keyof typeof img;
+
 const Support = () => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [level, setLevel] = useState("foundation");
   return (
     <Layout>
@@ -99,41 +127,71 @@ const Support = () => {
               </div>
             </div>
           )} */}
-
-          {!selectedCategory ? (
-            <div className="ml-24 flex flex-col items-center justify-center xl:ml-0">
-              <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
-                Fees Structure / Financial Assistance
-              </h1>
-              <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 xl:max-w-[900px] xl:grid-cols-5">
-                {[
-                  "Counselling Services",
-                  "Student Council Body",
-                  "Students' Accomodation",
-                  "Students' Hub",
-                  "Prayer Room",
-                  "Computer Lab",
-                  "Library",
-                  "Sports & Extracurricular Activities",
-                  "Green Screen Studio",
-                  "Cafe",
-                ].map((title, i) => (
-                  <SupportCategory
-                    onClick={() => setSelectedCategory(title)}
-                    key={i}
-                    title={title}
+          <div className="ml-44 flex flex-col items-center justify-center xl:ml-0">
+            <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+              Support
+            </h1>
+            {
+              selectedCategory === null ? (
+                <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 xl:max-w-[900px] xl:grid-cols-5">
+                  {imgKeys.map((title, i) => (
+                    <SupportCategory
+                      onClick={() => setSelectedCategory(i)}
+                      key={i}
+                      title={title}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-40">
+                  <img
+                    src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
+                    className="w-[725px] xl:mt-5 xl:w-[860px]"
+                    alt=""
                   />
-                ))}
-              </div>
-            </div>
-          ) : selectedCategory === "Course Fees" ? (
-            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
-              <img
-                src="https://via.placeholder.com/600x450"
-                className="w-[600px]"
-                alt=""
-              />
-              <div className="flex flex-row gap-3 xl:flex-col">
+                  <div className="flex w-full flex-row items-center justify-between">
+                    <button
+                      disabled={selectedCategory === 0}
+                      className="cursor-pointer rounded-full bg-gray-300 p-2 disabled:opacity-30"
+                      onClick={() =>
+                        setSelectedCategory((prev) =>
+                          prev !== null ? prev - 1 : null,
+                        )
+                      }
+                    >
+                      <svg
+                        className="h-[1.2em] w-[1.2em] rotate-180"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 40 40"
+                        width="40"
+                        height="40"
+                        focusable="false"
+                      >
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
+                      </svg>
+                    </button>
+                    <button
+                      disabled={selectedCategory === 9}
+                      onClick={() =>
+                        setSelectedCategory((prev) =>
+                          prev !== null ? prev + 1 : null,
+                        )
+                      }
+                      className="cursor-pointer rounded-full bg-gray-300 p-2 disabled:opacity-30"
+                    >
+                      <svg
+                        className="h-[1.2em] w-[1.2em]"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 40 40"
+                        width="40"
+                        height="40"
+                        focusable="false"
+                      >
+                        <path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  {/* <div className="flex flex-row gap-3 xl:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -156,25 +214,28 @@ const Support = () => {
                     key={i}
                   />
                 ))}
-              </div>
-            </div>
-          ) : selectedCategory === "Funding Support" ? (
-            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
-              <img
-                src="/assets/funding_support.png"
-                alt="funding"
-                className="mt-20 w-[700px] xl:mt-0"
-              />
-            </div>
-          ) : (
-            <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
-              <img
-                src="/assets/career_opportunities.png"
-                alt="funding"
-                className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
-              />
-            </div>
-          )}
+              </div> */}
+                </div>
+              )
+              //    : selectedCategory === "Funding Support" ? (
+              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //       <img
+              //         src="/assets/funding_support.png"
+              //         alt="funding"
+              //         className="mt-20 w-[700px] xl:mt-0"
+              //       />
+              //     </div>
+              //   ) : (
+              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //       <img
+              //         src="/assets/career_opportunities.png"
+              //         alt="funding"
+              //         className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
+              //       />
+              //     </div>
+              //   )
+            }
+          </div>
         </div>
       </InnerLayout>
     </Layout>
