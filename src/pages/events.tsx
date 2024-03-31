@@ -1,43 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
+import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { Event, events } from "@/data/questions";
 import { type GetStaticProps } from "next";
 import { type FunctionComponent, useState } from "react";
 
-const imgKeys: ImageKeys[] = [
-  "Counselling Services",
-  "Student Council Body",
-  "Students' Accomodation",
-  "Students' Hub",
-  "Prayer Room",
-  "Computer Lab",
-  "Library",
-  "Sports & Extracurricular Activities",
-  "Green Screen Studio",
-  "Cafe",
-];
-
-const img = {
-  "Counselling Services": "support_1",
-  "Student Council Body": "support_2",
-  "Students' Accomodation": "support_3",
-  "Students' Hub": "support_4",
-  "Prayer Room": "support_5",
-  "Computer Lab": "support_6",
-  Library: "support_7",
-  "Sports & Extracurricular Activities": "support_8",
-  "Green Screen Studio": "support_9",
-  Cafe: "support_10",
-};
-
-type ImageKeys = keyof typeof img;
-
-const Support = () => {
+const Events = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedType, setSelectedType] = useState<Event["type"] | null>(null);
+  //   const [level, setLevel] = useState("foundation");
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-grow flex-col items-center justify-center pb-20 pt-32">
+        <div
+          className={`flex w-full flex-grow flex-col items-center justify-center ${selectedCategory !== null ? "xl:pt-16" : ""} pb-20 pt-32`}
+        >
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
@@ -125,25 +103,80 @@ const Support = () => {
               </div>
             </div>
           )} */}
-          <div className="ml-44 flex flex-col items-center justify-center xl:ml-0">
+          <div
+            className={`ml-52 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:ml-0" : "xl:ml-44"}`}
+          >
             <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
-              Support
+              {selectedCategory !== null
+                ? events.filter((e) => e.type === selectedType)[
+                    selectedCategory
+                  ]?.title
+                : "Events / Activities"}
             </h1>
+            {selectedCategory !== null ? (
+              <p className="w-full text-center font-montserrat text-sm text-primary">
+                {
+                  events.filter((e) => e.type === selectedType)[
+                    selectedCategory
+                  ]?.sub
+                }
+              </p>
+            ) : null}
+            {selectedCategory !== null ? (
+              <p className="w-full text-center font-montserrat text-sm text-primary">
+                {
+                  events.filter((e) => e.type === selectedType)[
+                    selectedCategory
+                  ]?.date
+                }
+              </p>
+            ) : null}
             {
               selectedCategory === null ? (
-                <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 xl:max-w-[900px] xl:grid-cols-5">
-                  {imgKeys.map((title, i) => (
-                    <SupportCategory
-                      onClick={() => setSelectedCategory(i)}
-                      key={i}
-                      title={title}
-                    />
-                  ))}
+                <div className="flex max-w-[1200px] flex-row gap-4">
+                  <div className="flex w-full flex-col items-center">
+                    <p className="font-montserrat text-[1rem] font-bold">
+                      Applied Learning Tips
+                    </p>
+                    <div className="grid w-full grid-cols-2 gap-1 pt-3 xl:grid-cols-3">
+                      {events
+                        .filter((a) => a.type === "event")
+                        .map((e, i) => (
+                          <EventsCategory
+                            onClick={() => {
+                              setSelectedType(e.type);
+                              setSelectedCategory(i);
+                            }}
+                            key={i}
+                            img={e.buttonImg}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                  <div className="flex w-full flex-col items-center">
+                    <p className="font-montserrat text-[1rem] font-bold text-primary">
+                      Student Activities & Clubs
+                    </p>
+                    <div className="grid w-full grid-cols-2 gap-1 pt-3 xl:grid-cols-3">
+                      {events
+                        .filter((a) => a.type === "activity")
+                        .map((e, i) => (
+                          <EventsCategory
+                            onClick={() => {
+                              setSelectedType(e.type);
+                              setSelectedCategory(i);
+                            }}
+                            key={i}
+                            img={e.buttonImg}
+                          />
+                        ))}
+                    </div>
+                  </div>
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-40">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0">
                   <img
-                    src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
+                    src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
                     className="w-[725px] xl:mt-5 xl:w-[860px]"
                     alt=""
                   />
@@ -169,7 +202,7 @@ const Support = () => {
                       </svg>
                     </button>
                     <button
-                      disabled={selectedCategory === 9}
+                      disabled={selectedCategory === 8}
                       onClick={() =>
                         setSelectedCategory((prev) =>
                           prev !== null ? prev + 1 : null,
@@ -215,10 +248,10 @@ const Support = () => {
               </div> */}
                 </div>
               )
-              //    : selectedCategory === "Funding Support" ? (
+              //    : selectedCategory === "Funding Events" ? (
               //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               //       <img
-              //         src="/assets/funding_support.png"
+              //         src="/assets/funding_Events.png"
               //         alt="funding"
               //         className="mt-20 w-[700px] xl:mt-0"
               //       />
@@ -240,13 +273,13 @@ const Support = () => {
   );
 };
 
-interface SupportCategoryProps {
-  title: string;
+interface EventsCategoryProps {
   onClick: () => void;
+  img: string;
 }
 
-const SupportCategory: FunctionComponent<SupportCategoryProps> = ({
-  title,
+const EventsCategory: FunctionComponent<EventsCategoryProps> = ({
+  img,
   onClick,
 }) => {
   return (
@@ -254,16 +287,16 @@ const SupportCategory: FunctionComponent<SupportCategoryProps> = ({
       onClick={onClick}
       className="group relative transition-all duration-200 ease-in-out"
     >
-      <img src="https://via.placeholder.com/200x125" alt="" />
-      <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
+      <img src={img} alt="" />
+      {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
         {title}
-      </p>
+      </p> */}
       <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />
     </button>
   );
 };
 
-export default Support;
+export default Events;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {

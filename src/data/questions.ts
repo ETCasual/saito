@@ -56,3 +56,47 @@ export const questions: Record<
   //   d: "5.d",
   // },
 };
+
+export type Event = {
+  title: string;
+  buttonImg: string;
+  sub: string;
+  date: string;
+  contentImg: string;
+  type: "event" | "activity";
+};
+
+export const events: Event[] = [
+  {
+    title: "Selangor Aviation Showcase 2023",
+    buttonImg: "https://via.placeholder.com/200x100",
+    date: "September 2023",
+    sub: "Skypark Regional Aviation Centre",
+    contentImg: "events_1",
+    type: "event",
+  },
+  {
+    title: "Study Trip to Acuity International Sdn Bhd",
+    buttonImg: "https://via.placeholder.com/200x100",
+    date: "July 2022",
+    sub: "Up & Rising Freight Forwarding Company",
+    contentImg: "events_2",
+    type: "event",
+  },
+  {
+    title: "Work Integrated Learning",
+    buttonImg: "https://via.placeholder.com/200x100",
+    date: "May 2022",
+    sub: "Pos Malaysia",
+    contentImg: "events_3",
+    type: "event",
+  },
+  {
+    title: "Applied Learning to Westport Klang",
+    buttonImg: "https://via.placeholder.com/200x100",
+    date: "June 2022",
+    sub: "",
+    contentImg: "events_4",
+    type: "event",
+  },
+];
