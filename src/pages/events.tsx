@@ -106,7 +106,7 @@ const Events = () => {
           <div
             className={`ml-52 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:ml-0" : "xl:ml-44"}`}
           >
-            <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+            <h1 className="text-center font-montserrat text-[1.75rem] font-bold text-primary">
               {selectedCategory !== null
                 ? events.filter((e) => e.type === selectedType)[
                     selectedCategory
@@ -148,7 +148,7 @@ const Events = () => {
                               setSelectedCategory(i);
                             }}
                             key={i}
-                            img={e.buttonImg}
+                            img={`/assets/events/${e.contentImg}.jpg`}
                           />
                         ))}
                     </div>
@@ -167,7 +167,7 @@ const Events = () => {
                               setSelectedCategory(i);
                             }}
                             key={i}
-                            img={e.buttonImg}
+                            img={`/assets/events/${e.contentImg}.jpg`}
                           />
                         ))}
                     </div>
@@ -287,7 +287,11 @@ const EventsCategory: FunctionComponent<EventsCategoryProps> = ({
       onClick={onClick}
       className="group relative transition-all duration-200 ease-in-out"
     >
-      <img src={img} alt="" />
+      <img
+        src={img}
+        alt=""
+        className="h-[100px] w-[200px] object-cover object-center"
+      />
       {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
         {title}
       </p> */}

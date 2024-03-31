@@ -4,6 +4,7 @@ interface TextFieldProps<T> {
   label: string;
   formikKey: keyof T;
   disabled: boolean;
+  type?: HTMLInputElement["type"];
   // as?: string;
   // options?: { label: string; value: string }[];
 }
@@ -11,6 +12,7 @@ interface TextFieldProps<T> {
 export const TextField = <T,>({
   label,
   formikKey,
+  type = "text",
   disabled,
   // as,
   // options,
@@ -22,6 +24,7 @@ export const TextField = <T,>({
         {label}
       </label>
       <Field
+        type={type}
         disabled={disabled}
         name={formikKey}
         className="border border-black bg-gray-300/60 px-1 py-1 focus-within:outline-none"

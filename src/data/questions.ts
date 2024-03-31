@@ -59,7 +59,7 @@ export const questions: Record<
 
 export type Event = {
   title: string;
-  buttonImg: string;
+  // buttonImg: string;
   sub: string;
   date: string;
   contentImg: string;
@@ -69,7 +69,6 @@ export type Event = {
 export const events: Event[] = [
   {
     title: "Selangor Aviation Showcase 2023",
-    buttonImg: "https://via.placeholder.com/200x100",
     date: "September 2023",
     sub: "Skypark Regional Aviation Centre",
     contentImg: "events_1",
@@ -77,7 +76,6 @@ export const events: Event[] = [
   },
   {
     title: "Study Trip to Acuity International Sdn Bhd",
-    buttonImg: "https://via.placeholder.com/200x100",
     date: "July 2022",
     sub: "Up & Rising Freight Forwarding Company",
     contentImg: "events_2",
@@ -85,7 +83,6 @@ export const events: Event[] = [
   },
   {
     title: "Work Integrated Learning",
-    buttonImg: "https://via.placeholder.com/200x100",
     date: "May 2022",
     sub: "Pos Malaysia",
     contentImg: "events_3",
@@ -93,10 +90,107 @@ export const events: Event[] = [
   },
   {
     title: "Applied Learning to Westport Klang",
-    buttonImg: "https://via.placeholder.com/200x100",
     date: "June 2022",
     sub: "",
     contentImg: "events_4",
     type: "event",
+  },
+  {
+    title: "Applied Learning to Johor Port",
+    date: "June 2023",
+    sub: "",
+    contentImg: "events_5",
+    type: "event",
+  },
+  {
+    title: "Work Integrated Learning",
+    date: "June 2023",
+    sub: "Safeguard Oceanic",
+    contentImg: "events_6",
+    type: "event",
+  },
+  {
+    title: "Applied Learning to KLATCC",
+    date: "April 2022",
+    sub: "",
+    contentImg: "events_7",
+    type: "event",
+  },
+  {
+    title: "Applied Learning to Pos Aviation",
+    date: "August 2023",
+    sub: "KLIA",
+    contentImg: "events_8",
+    type: "event",
+  },
+  {
+    title: "Applied Learning to Tiong Nam Logistics",
+    date: "September 2022",
+    sub: "KLIA",
+    contentImg: "events_9",
+    type: "event",
+  },
+  {
+    title: "19th Asian Oil, Gas & Petrochemicals Engineering Exhibition",
+    date: "September 2023",
+    sub: "Kuala Lumpur Convention Centre",
+    contentImg: "activity_1",
+    type: "activity",
+  },
+  {
+    title: "Saito UC Open Day",
+    date: "July 2023",
+    sub: "",
+    contentImg: "activity_2",
+    type: "activity",
+  },
+  {
+    title: "Port Klang Authority Open Day",
+    date: "May 2023",
+    sub: "",
+    contentImg: "activity_3",
+    type: "activity",
+  },
+  {
+    title: "Leadership Camp",
+    date: "August 2023",
+    sub: "Taman Eko Rimba Komanwel, Rawang",
+    contentImg: "activity_4",
+    type: "activity",
+  },
+  {
+    title: "Sports Day",
+    date: "May 2023",
+    sub: "",
+    contentImg: "activity_5",
+    type: "activity",
+  },
+  {
+    title: "Hari Raya Celebration",
+    date: "May 2023",
+    sub: "",
+    contentImg: "activity_6",
+    type: "activity",
+  },
+  {
+    title: "Sambutan Merdeka",
+    date: "August 2023",
+    sub: "",
+    contentImg: "activity_7",
+    type: "activity",
+  },
+  {
+    title: "Saito UC Open Day",
+    date: "July 2023",
+    sub: "",
+    contentImg: "activity_8",
+    type: "activity",
+  },
+  {
+    title: "Askar Wataniah",
+    date: "August 2023",
+    sub: "",
+    contentImg: "activity_9",
+    type: "activity",
   },
 ];
