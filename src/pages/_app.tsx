@@ -7,13 +7,13 @@ import "@splidejs/splide/css";
 
 import { useRouter } from "next/router";
 
-const montserrat = Montserrat({
+export const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-montserrat",
 });
 
-const bebas = Bebas_Neue({
+export const bebas = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
   display: "swap",

@@ -2,12 +2,23 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { type FunctionComponent, useState } from "react";
+import { useRouter } from "next/router";
+import { type FunctionComponent, useEffect, useState } from "react";
 
 const Fees = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
+
+  const router = useRouter();
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
+
   return (
     <Layout>
       <InnerLayout>
@@ -118,7 +129,7 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Course Fees" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0 xl:pl-40">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
               <img
                 src="https://via.placeholder.com/600x450"
                 className="w-[600px]"
@@ -150,7 +161,7 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Funding Support" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0 xl:pl-40">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
               <img
                 src="/assets/funding_support.png"
                 alt="funding"
@@ -158,7 +169,7 @@ const Fees = () => {
               />
             </div>
           ) : (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0 xl:pl-40">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
               <img
                 src="/assets/career_opportunities.png"
                 alt="funding"

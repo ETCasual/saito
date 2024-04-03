@@ -4,10 +4,11 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { questions } from "@/data/questions";
 import { useResult } from "@/stores/useResult";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Aptitude = () => {
   const [questionIndex, setQuestionIndex] = useState<number>(1);
@@ -18,6 +19,14 @@ const Aptitude = () => {
   const q = Object.values(questions[questionIndex]!);
 
   const router = useRouter();
+
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
+
   return (
     <Layout>
       <InnerLayout>

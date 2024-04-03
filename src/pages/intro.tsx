@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const courses = [
@@ -37,6 +39,14 @@ const Intro = () => {
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
+
+  const router = useRouter();
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
 
   useEffect(() => {
     setHasRecommended(

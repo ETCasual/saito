@@ -2,16 +2,25 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Technical = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [level, setLevel] = useState("foundation");
+  const router = useRouter();
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-col items-center justify-center pb-20 pt-20 xl:pt-0">
+        <div className="flex w-full flex-col items-center justify-center pt-20 xl:pt-0">
           {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
@@ -67,13 +76,13 @@ const Technical = () => {
               />
             </div>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly">
+            <div className="flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly xl:pt-20">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[500px] xl:w-[600px] 2xl:w-[700px]"
                 alt=""
               />
-              <div className="flex flex-row gap-3 xl:flex-col">
+              <div className="flex h-full flex-row gap-3 xl:flex-col">
                 {[
                   {
                     title: "Foundation",

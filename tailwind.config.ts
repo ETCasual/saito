@@ -21,5 +21,5 @@ export default {
       lg: "1025px",
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 } satisfies Config;

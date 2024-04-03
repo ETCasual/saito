@@ -16,7 +16,12 @@ export type FormikRegisterForm = {
 
 export default function Register() {
   const router = useRouter();
+  const { name } = useUser();
 
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
   return (
     <>
       <Head>
@@ -27,7 +32,7 @@ export default function Register() {
       <Layout>
         <InnerLayout>
           <div
-            className={`flex w-full flex-grow flex-col items-center justify-center pb-20 pt-32`}
+            className={`flex w-full flex-grow flex-col items-center justify-center pb-20 pt-24`}
           >
             <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
               Registration
@@ -69,7 +74,7 @@ export default function Register() {
               })}
             >
               {({ isSubmitting }) => (
-                <Form className="flex w-full flex-col items-center justify-center gap-2 py-16">
+                <Form className="flex w-full flex-col items-center justify-center gap-2 py-10">
                   <TextField<FormikRegisterForm>
                     disabled={isSubmitting}
                     formikKey="name"

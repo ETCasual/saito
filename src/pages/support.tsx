@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { type FunctionComponent, useState } from "react";
+import { useRouter } from "next/router";
+import { type FunctionComponent, useEffect, useState } from "react";
 
 const imgKeys: ImageKeys[] = [
   "Counselling Services",
@@ -34,6 +36,13 @@ type ImageKeys = keyof typeof img;
 
 const Support = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const router = useRouter();
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>
@@ -141,7 +150,7 @@ const Support = () => {
                   ))}
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0 xl:pl-40">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-40">
                   <img
                     src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
                     className="w-[725px] xl:mt-5 xl:w-[860px]"

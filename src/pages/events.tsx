@@ -1,15 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-import { CourseLevel } from "@/components/CourseLevel";
+// import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { Event, events } from "@/data/questions";
+import { type Event, events } from "@/data/questions";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { type FunctionComponent, useState } from "react";
+import { useRouter } from "next/router";
+import { type FunctionComponent, useEffect, useState } from "react";
 
 const Events = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<Event["type"] | null>(null);
   //   const [level, setLevel] = useState("foundation");
+  const router = useRouter();
+  const { name } = useUser();
+
+  useEffect(() => {
+    if (name) return;
+    void router.push("/");
+  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>
@@ -174,7 +183,7 @@ const Events = () => {
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0 xl:pl-0">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0">
                   <img
                     src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
                     className="w-[725px] xl:mt-5 xl:w-[860px]"
