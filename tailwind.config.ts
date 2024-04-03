@@ -1,6 +1,6 @@
 // import { Bebas_Neue, Montserrat } from "next/font/google";
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import { fontFamily, screens } from "tailwindcss/defaultTheme";
 
 export default {
   content: ["./src/**/*.tsx"],
@@ -14,6 +14,10 @@ export default {
       colors: {
         primary: "#d9272a",
       },
+    },
+    screens: {
+      ...screens,
+      "2xl": "1535px",
     },
   },
   plugins: [],

@@ -10,8 +10,7 @@ const courses = new Array<{ video: string; label: string; image: string }>(
 ).fill({
   video: "logistics-intro",
   label: "The Prime School of Integrated Logistics",
-  image:
-    "https://smekwt.net/wp-content/uploads/2023/10/xlogistic.jpg.pagespeed.ic.C2SRkchLnv.webp",
+  image: "/assets/logistics.png",
 });
 
 const Intro = () => {
@@ -48,7 +47,7 @@ const Intro = () => {
               </video>
             </div>
           ) : (
-            <div className="relative ml-32 flex h-[55dvh] w-full max-w-[650px] flex-row items-center gap-4 xl:ml-0">
+            <div className="relative ml-32 flex h-[55dvh] w-full max-w-[650px] flex-row items-center gap-4 xl:ml-0 2xl:max-w-[900px]">
               {courses.map((c, i) => (
                 <div
                   className="relative flex h-full w-full cursor-pointer flex-col gap-2"
