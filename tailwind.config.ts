@@ -17,7 +17,8 @@ export default {
     },
     screens: {
       ...screens,
-      "2xl": "1535px",
+      "2xl": "1537px",
+      lg: "1025px",
     },
   },
   plugins: [],

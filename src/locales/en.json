@@ -8,29 +8,29 @@
     "1": {
       "title": "Appearance",
       "question": "Which of the following attire you like the most?",
-      "a": { "src": "https://via.placeholder.com/150/", "label": "" },
-      "b": { "src": "https://via.placeholder.com/150/", "label": "" },
-      "c": { "src": "https://via.placeholder.com/150/", "label": "" },
-      "d": { "src": "https://via.placeholder.com/150/", "label": "" }
+      "a": { "src": "/assets/aptitude/q1a.png", "label": "" },
+      "b": { "src": "/assets/aptitude/q1b.png", "label": "" },
+      "c": { "src": "/assets/aptitude/q1c.png", "label": "" },
+      "d": { "src": "/assets/aptitude/q1d.png", "label": "" }
     },
 
     "2": {
       "title": "Area of Interest",
       "question": "Which of the following areas of interest do you like the most?",
       "a": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q2a.png",
         "label": "Technology | Travel"
       },
       "b": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q2b.png",
         "label": "Design | Business"
       },
       "c": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q2c.png",
         "label": "Fitness | Self Defense"
       },
       "d": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q2d.png",
         "label": "Culinary | Tourism"
       }
     },
@@ -38,18 +38,18 @@
       "title": "Work Personality",
       "question": "Which of the following defines your work personality?",
       "a": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q3a.png",
         "label": "Enterprising"
       },
       "b": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q3b.png",
         "label": "Investigative"
       },
       "c": {
-        "src": "https://via.placeholder.com/150/",
+        "src": "/assets/aptitude/q3c.png",
         "label": "Conventional"
       },
-      "d": { "src": "https://via.placeholder.com/150/", "label": "Realistic" }
+      "d": { "src": "/assets/aptitude/q3d.png", "label": "Realistic" }
     }
   },
 

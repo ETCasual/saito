@@ -67,10 +67,10 @@ const Technical = () => {
               />
             </div>
           ) : (
-            <div className="ml-32 flex h-full flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
-                className="w-[600px]"
+                className="w-[500px] xl:w-[600px] 2xl:w-[700px]"
                 alt=""
               />
               <div className="flex flex-row gap-3 xl:flex-col">
@@ -85,7 +85,7 @@ const Technical = () => {
                   },
                   {
                     title: "Degree",
-                    sub: `Bachelor of Business in Logistics Management & E-Business (Honours)<br/>Bachelor of Business in Logistics & Supply Chain Management (Honours)`,
+                    sub: `Bachelor of Business in Logistics Management & E-Business (Honours)<br/><br/>Bachelor of Business in Logistics & Supply Chain Management (Honours)`,
                   },
                 ].map((s, i) => (
                   <CourseLevel

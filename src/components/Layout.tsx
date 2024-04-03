@@ -10,8 +10,8 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
   const router = useRouter();
   const { name } = useUser();
   return (
-    <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
-      <div className="fixed top-0 flex w-full flex-row justify-between px-10 pb-2 pt-6">
+    <main className="flex min-h-screen min-w-[100vw] flex-col bg-[#f3f3f3]">
+      <div className="fixed top-0 flex w-full flex-row justify-between px-7 pb-2 pt-6">
         <img
           src="/assets/logo.png"
           alt="Logo"
@@ -32,7 +32,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           <IoMenu size={50} color="gray" />
         )}
       </div>
-      <div className="flex-grow px-10">{children}</div>
+      <div className="w-full flex-grow px-10">{children}</div>
       {router.pathname.includes("home") ||
       router.pathname === "/" ||
       router.pathname.includes("aptitude") ||

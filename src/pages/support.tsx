@@ -93,7 +93,7 @@ const Support = () => {
               />
             </div>
           ) : (
-            <div className="ml-32 flex h-full flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[600px]"
@@ -125,7 +125,7 @@ const Support = () => {
               </div>
             </div>
           )} */}
-          <div className="ml-44 flex flex-col items-center justify-center xl:ml-0">
+          <div className="ml-44 flex flex-col items-center justify-center xl:pl-0">
             <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
               Support
             </h1>
@@ -141,7 +141,7 @@ const Support = () => {
                   ))}
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-40">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0 xl:pl-40">
                   <img
                     src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
                     className="w-[725px] xl:mt-5 xl:w-[860px]"
@@ -216,7 +216,7 @@ const Support = () => {
                 </div>
               )
               //    : selectedCategory === "Funding Support" ? (
-              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               //       <img
               //         src="/assets/funding_support.png"
               //         alt="funding"
@@ -224,7 +224,7 @@ const Support = () => {
               //       />
               //     </div>
               //   ) : (
-              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               //       <img
               //         src="/assets/career_opportunities.png"
               //         alt="funding"

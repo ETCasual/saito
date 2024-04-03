@@ -71,7 +71,7 @@ const Events = () => {
               />
             </div>
           ) : (
-            <div className="ml-32 flex h-full flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[600px]"
@@ -104,7 +104,7 @@ const Events = () => {
             </div>
           )} */}
           <div
-            className={`ml-52 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:ml-0" : "xl:ml-44"}`}
+            className={`ml-52 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:pl-0" : "xl:ml-44"}`}
           >
             <h1 className="text-center font-montserrat text-[1.75rem] font-bold text-primary">
               {selectedCategory !== null
@@ -174,7 +174,7 @@ const Events = () => {
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0 xl:pl-0">
                   <img
                     src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
                     className="w-[725px] xl:mt-5 xl:w-[860px]"
@@ -249,7 +249,7 @@ const Events = () => {
                 </div>
               )
               //    : selectedCategory === "Funding Events" ? (
-              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               //       <img
               //         src="/assets/funding_Events.png"
               //         alt="funding"
@@ -257,7 +257,7 @@ const Events = () => {
               //       />
               //     </div>
               //   ) : (
-              //     <div className="ml-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:ml-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
               //       <img
               //         src="/assets/career_opportunities.png"
               //         alt="funding"

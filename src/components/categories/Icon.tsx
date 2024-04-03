@@ -16,10 +16,10 @@ export const CategoryIcon: FunctionComponent<CategoryIconProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`relative z-20 border ${first ? "self-start " : ""}${stage === "active" ? "border-primary" : stage === "completed" ? "border-red-400" : "border-black"} bg-white px-5 py-2`}
+      className={`relative z-20 border ${first ? "self-start " : ""}${stage === "active" ? "border-primary" : stage === "completed" ? "border-red-400" : "border-black"} bg-white px-3 py-2 lg:px-5`}
     >
       <p
-        className={`font-montserrat text-sm font-bold capitalize ${stage === "active" ? "text-primary" : stage === "completed" ? "text-red-400" : "text-black"}`}
+        className={`font-montserrat text-[10px] font-bold capitalize lg:text-sm ${stage === "active" ? "text-primary" : stage === "completed" ? "text-red-400" : "text-black"}`}
       >
         {label}
       </p>

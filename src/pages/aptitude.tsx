@@ -63,7 +63,7 @@ const Aptitude = () => {
             </div>
           </div>
 
-          <div className="ml-32 w-full max-w-[600px] py-7 xl:ml-0 xl:max-w-[800px]">
+          <div className="w-full max-w-[600px] py-7 pl-32 xl:max-w-[800px] xl:pl-0">
             <p className="pb-7 text-center font-montserrat text-lg">
               {t(q[1])}
             </p>
@@ -85,13 +85,13 @@ const Aptitude = () => {
                       } else setQuestionIndex((prev) => prev + 1);
                     });
                   }}
-                  className="relative flex flex-col items-start gap-3 outline-none"
+                  className="group relative flex flex-col items-start gap-3 outline-none"
                 >
                   <img
                     // @ts-expect-error ignore for now
                     src={t(q[2]?.src)}
                     alt="A"
-                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
+                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     A
@@ -119,13 +119,13 @@ const Aptitude = () => {
                       } else setQuestionIndex((prev) => prev + 1);
                     });
                   }}
-                  className="relative flex flex-row items-start gap-3 outline-none"
+                  className="group relative flex flex-row items-start gap-3 outline-none"
                 >
                   <img
                     // @ts-expect-error ignore for now
                     src={t(q[3]?.src)}
                     alt="B"
-                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
+                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     B
@@ -152,13 +152,13 @@ const Aptitude = () => {
                       } else setQuestionIndex((prev) => prev + 1);
                     });
                   }}
-                  className="relative flex flex-row items-start gap-3 outline-none"
+                  className="group relative flex flex-row items-start gap-3 outline-none"
                 >
                   <img
                     // @ts-expect-error ignore for now
                     src={t(q[4]?.src)}
                     alt="C"
-                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
+                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     C
@@ -186,13 +186,13 @@ const Aptitude = () => {
                       } else setQuestionIndex((prev) => prev + 1);
                     });
                   }}
-                  className="relative flex flex-row items-start gap-3 outline-none"
+                  className="group relative flex flex-row items-start gap-3 outline-none"
                 >
                   <img
                     // @ts-expect-error ignore for now
                     src={t(q[5]?.src)}
                     alt="D"
-                    className=" rounded-full object-cover xl:h-[150px] xl:w-[150px]"
+                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     D
