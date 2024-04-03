@@ -2,21 +2,13 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Technical = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [level, setLevel] = useState("foundation");
-  const router = useRouter();
-  const { name } = useUser();
 
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>

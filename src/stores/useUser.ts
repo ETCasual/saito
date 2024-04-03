@@ -3,15 +3,18 @@ import { persist } from "zustand/middleware";
 
 type UserState = {
   name: string | null;
-  clear: () => void;
+  clear: () => Promise<void>;
   setUser: (name: string) => Promise<void>;
 };
 
 const createState: StateCreator<UserState> = (set) => ({
   name: null,
-  clear: () =>
-    set({
-      name: null,
+  clear: async () =>
+    await new Promise((resolve) => {
+      set({
+        name: null,
+      });
+      resolve();
     }),
   setUser: async (state) => {
     await new Promise<void>((resolve) => {

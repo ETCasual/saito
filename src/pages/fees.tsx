@@ -2,22 +2,12 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { type FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useState } from "react";
 
 const Fees = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
-
-  const router = useRouter();
-  const { name } = useUser();
-
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
 
   return (
     <Layout>

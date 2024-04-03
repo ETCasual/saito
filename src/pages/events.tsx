@@ -3,22 +3,14 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type Event, events } from "@/data/questions";
-import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { type FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useState } from "react";
 
 const Events = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<Event["type"] | null>(null);
   //   const [level, setLevel] = useState("foundation");
-  const router = useRouter();
-  const { name } = useUser();
 
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>

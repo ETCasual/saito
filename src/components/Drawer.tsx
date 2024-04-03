@@ -7,13 +7,13 @@ import {
   Fragment,
   type SetStateAction,
   type FunctionComponent,
-  useState,
 } from "react";
-import { Dialog, Switch, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import { IoCloseOutline } from "react-icons/io5";
 import { useResult } from "@/stores/useResult";
 import { useUser } from "@/stores/useUser";
 import { bebas, montserrat } from "@/pages/_app";
+import { useRouter } from "next/router";
 
 interface DrawerProps {
   open: boolean;
@@ -41,10 +41,14 @@ export const Drawer: FunctionComponent<DrawerProps> = ({
 }) => {
   const { clear: clearUser } = useUser();
   const { clear: clearResult } = useResult();
+  const router = useRouter();
 
-  const logout = () => {
+  const logout = async () => {
     clearResult();
-    clearUser();
+    await clearUser().then(async () => {
+      await router.push("/");
+      onClose(true);
+    });
   };
 
   return (
@@ -216,8 +220,8 @@ export const Drawer: FunctionComponent<DrawerProps> = ({
                           )}
                         </div> */}
                       <button
-                        onClick={() => {
-                          logout();
+                        onClick={async () => {
+                          await logout();
                         }}
                         className="absolute bottom-0 w-full rounded-md border-2 border-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-black transition hover:border-[1px]"
                       >

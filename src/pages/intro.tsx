@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { useUser } from "@/stores/useUser";
+import { useResult } from "@/stores/useResult";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const courses = [
@@ -40,13 +39,9 @@ const Intro = () => {
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
 
-  const router = useRouter();
-  const { name } = useUser();
+  const res = useResult();
 
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
+  console.log(Object.values(res));
 
   useEffect(() => {
     setHasRecommended(
@@ -76,7 +71,7 @@ const Intro = () => {
               </video>
             </div>
           ) : (
-            <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px]">
+            <div className="relative ml-16 flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px] xl:ml-0">
               {courses.map((c, i) => (
                 <div
                   className="relative flex h-full w-full cursor-pointer flex-col gap-2"

@@ -1,10 +1,7 @@
 import { TextField } from "@/components/Form/Field";
 import { Layout } from "@/components/Layout";
-import { useUser } from "@/stores/useUser";
 import { Form, Formik } from "formik";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import * as Yup from "yup";
 import type { GetStaticProps } from "next";
 import { InnerLayout } from "@/components/InnerLayout";
@@ -15,13 +12,6 @@ export type FormikRegisterForm = {
 };
 
 export default function Register() {
-  const router = useRouter();
-  const { name } = useUser();
-
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
   return (
     <>
       <Head>

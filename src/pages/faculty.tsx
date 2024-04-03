@@ -3,19 +3,8 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { useRouter } from "next/router";
-import { useUser } from "@/stores/useUser";
-import { useEffect } from "react";
 
 const Faculty = () => {
-  const router = useRouter();
-  const { name } = useUser();
-
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
-
   return (
     <Layout>
       <InnerLayout>

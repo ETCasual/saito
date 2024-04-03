@@ -4,28 +4,19 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { questions } from "@/data/questions";
 import { useResult } from "@/stores/useResult";
-import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Aptitude = () => {
   const [questionIndex, setQuestionIndex] = useState<number>(1);
   const t = useTranslations("aptitude");
+  const router = useRouter();
 
   const { personality, interest, appearance, setResult } = useResult();
 
   const q = Object.values(questions[questionIndex]!);
-
-  const router = useRouter();
-
-  const { name } = useUser();
-
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
 
   return (
     <Layout>
@@ -72,7 +63,7 @@ const Aptitude = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-[600px] py-7 pl-32 xl:max-w-[800px] xl:pl-0">
+          <div className="w-full max-w-[900px] py-7 pl-32 xl:max-w-[800px] xl:pl-0">
             <p className="pb-7 text-center font-montserrat text-lg">
               {t(q[1])}
             </p>
@@ -100,7 +91,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[2]?.src)}
                     alt="A"
-                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
+                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     A
@@ -134,7 +125,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[3]?.src)}
                     alt="B"
-                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
+                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     B
@@ -167,7 +158,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[4]?.src)}
                     alt="C"
-                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
+                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     C
@@ -201,7 +192,7 @@ const Aptitude = () => {
                     // @ts-expect-error ignore for now
                     src={t(q[5]?.src)}
                     alt="D"
-                    className="rounded-full border-primary object-cover group-hover:border-2 xl:h-[150px] xl:w-[150px]"
+                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
                   />
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     D

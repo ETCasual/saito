@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { type FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useState } from "react";
 
 const imgKeys: ImageKeys[] = [
   "Counselling Services",
@@ -36,13 +34,7 @@ type ImageKeys = keyof typeof img;
 
 const Support = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-  const router = useRouter();
-  const { name } = useUser();
 
-  useEffect(() => {
-    if (name) return;
-    void router.push("/");
-  }, [name, router]);
   return (
     <Layout>
       <InnerLayout>

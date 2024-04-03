@@ -21,27 +21,30 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           alt="Logo"
           className="h-[40px] object-contain 2xl:h-[50px]"
         />
-        {name ? (
-          <div
-            className="flex flex-row items-center gap-3"
-            onClick={() => name && setDrawerOpen((prev) => !prev)}
-          >
-            <p className="font-montserrat text-xl font-bold text-[#808080]">
-              {name}
-            </p>
-            <img
-              src="/assets/person.png"
-              alt="Person"
-              className="h-[45px] w-[45px] object-contain"
-            />
-          </div>
-        ) : (
-          <IoMenu
-            size={50}
-            color="gray"
-            onClick={() => name && setDrawerOpen((prev) => !prev)}
-          />
-        )}
+        {
+          name && (
+            <div
+              className="flex flex-row items-center gap-3"
+              onClick={() => name && setDrawerOpen((prev) => !prev)}
+            >
+              <p className="font-montserrat text-xl font-bold text-[#808080]">
+                {name}
+              </p>
+              <img
+                src="/assets/person.png"
+                alt="Person"
+                className="h-[45px] w-[45px] object-contain"
+              />
+            </div>
+          )
+          // : (
+          //   <IoMenu
+          //     size={50}
+          //     color="gray"
+          //     onClick={() => name && setDrawerOpen((prev) => !prev)}
+          //   />
+          // )
+        }
       </div>
       <div className="w-full flex-grow px-10">{children}</div>
       {router.pathname.includes("home") ||
