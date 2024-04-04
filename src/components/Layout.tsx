@@ -3,7 +3,6 @@ import { useUser } from "@/stores/useUser";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { useState, type ReactNode } from "react";
-import { IoMenu } from "react-icons/io5";
 import { Drawer } from "./Drawer";
 
 export const Layout = ({ children }: { children?: ReactNode }) => {

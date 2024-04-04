@@ -2,35 +2,50 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { useResult } from "@/stores/useResult";
+import { countValues, getHighestOccurrence } from "@/utils/helper";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import {
+  type Dispatch,
+  type FunctionComponent,
+  type SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
-const courses = [
+const courses: Omit<
+  CourseSelectionProps,
+  "setSelectedCourseVideo" | "hasRecommended"
+>[] = [
   {
     video: "logistics-intro",
     label: "The Prime School of Integrated Logistics",
-    image: "/assets/intro/logistics.png",
+    image: "/assets/intro/logistics.jpg",
+    select: "A",
   },
   {
     video: "design-intro",
     label: "K²\nSchool of Business and Design",
-    image: "/assets/intro/design.png",
+    image: "/assets/intro/design.jpg",
+    select: "B",
   },
   {
     video: "enforcement-intro",
     label: "Saito Law Enforcement and Public Sector Management",
-    image: "/assets/intro/enforcement.png",
+    image: "/assets/intro/enforcement.jpg",
+    select: "C",
   },
   {
     video: "culinary-intro",
     label: "Lé Masters School of Hospitality and Culinary Arts",
-    image: "/assets/intro/culinary.png",
+    image: "/assets/intro/culinary.jpg",
+    select: "D",
   },
   {
     video: "graduate-intro",
     label: "Saito Graduate School",
-    image: "/assets/intro/graduate.png",
+    image: "/assets/intro/graduate.jpg",
+    select: "",
   },
 ];
 const Intro = () => {
@@ -38,10 +53,6 @@ const Intro = () => {
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
-
-  const res = useResult();
-
-  console.log(Object.values(res));
 
   useEffect(() => {
     setHasRecommended(
@@ -73,36 +84,15 @@ const Intro = () => {
           ) : (
             <div className="relative ml-16 flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px] xl:ml-0">
               {courses.map((c, i) => (
-                <div
-                  className="relative flex h-full w-full cursor-pointer flex-col gap-2"
-                  onClick={() => setSelectedCourseVideo(c.video)}
+                <CourseSelection
                   key={i}
-                >
-                  <div className="relative h-[20px] w-full bg-gray-300">
-                    <div
-                      className="absolute left-0 top-0 z-10 h-full bg-primary"
-                      style={{ width: `${Math.random() * 100}%` }}
-                    />
-                  </div>
-                  <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] xl:rounded-tl-[3rem]">
-                    <img
-                      className="h-[70%] w-full object-cover object-[55%]"
-                      alt={c.image}
-                      src={c.image}
-                    />
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: c.label.replaceAll("\n", "<br/>"),
-                      }}
-                      className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-70% px-3 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary xl:text-base"
-                    />
-                  </div>
-                  {i === 1 && hasRecommended ? (
-                    <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary xl:text-base">
-                      Recommended *
-                    </p>
-                  ) : null}
-                </div>
+                  image={c.image}
+                  video={c.video}
+                  label={c.label}
+                  hasRecommended={hasRecommended}
+                  select={c.select}
+                  setSelectedCourseVideo={setSelectedCourseVideo}
+                />
               ))}
             </div>
           )}
@@ -113,6 +103,68 @@ const Intro = () => {
 };
 
 export default Intro;
+
+interface CourseSelectionProps {
+  setSelectedCourseVideo: Dispatch<SetStateAction<string>>;
+  video: string;
+  image: string;
+  label: string;
+  select: "A" | "B" | "C" | "D" | "";
+  hasRecommended: boolean;
+}
+
+const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
+  setSelectedCourseVideo,
+  video,
+  image,
+  select,
+  label,
+  hasRecommended,
+}) => {
+  const { appearance, interest, personality } = useResult();
+
+  const result = countValues({
+    appearance: appearance,
+    interest: interest,
+    personality: personality,
+  });
+
+  const highest = getHighestOccurrence(result);
+  return (
+    <div
+      className="relative flex h-full w-full cursor-pointer flex-col gap-2"
+      onClick={() => setSelectedCourseVideo(video)}
+    >
+      <div className="relative h-[20px] w-full bg-gray-300">
+        <div
+          className="absolute left-0 top-0 z-10 h-full bg-primary"
+          style={{ width: select ? `${(result[select] / 3) * 100}%` : "0px" }}
+        />
+      </div>
+      <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] xl:rounded-tl-[3rem]">
+        <img
+          style={{
+            objectPosition: "60% 0px",
+          }}
+          className="h-[60%] w-full object-cover"
+          alt={image}
+          src={image}
+        />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: label.replaceAll("\n", "<br/>"),
+          }}
+          className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-60% px-3 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary xl:text-base"
+        />
+      </div>
+      {select === highest && hasRecommended ? (
+        <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary xl:text-base">
+          Recommended *
+        </p>
+      ) : null}
+    </div>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {

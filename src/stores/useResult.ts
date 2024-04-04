@@ -1,7 +1,7 @@
 import { create, type StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
 
-type Result = "A" | "B" | "C" | "D";
+export type Result = "A" | "B" | "C" | "D";
 
 type ResultState = {
   interest?: Result | null;
