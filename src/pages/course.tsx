@@ -16,7 +16,10 @@ const Technical = () => {
           {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
-                onClick={() => setSelectedCourse(true)}
+                onClick={() => {
+                  setSelectedCourse(true);
+                  setLevel("foundation");
+                }}
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
@@ -27,7 +30,10 @@ const Technical = () => {
                 </p>
               </button>
               <button
-                onClick={() => setSelectedCourse(true)}
+                onClick={() => {
+                  setSelectedCourse(true);
+                  setLevel("diploma");
+                }}
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
@@ -38,7 +44,10 @@ const Technical = () => {
                 </p>
               </button>
               <button
-                onClick={() => setSelectedCourse(true)}
+                onClick={() => {
+                  setSelectedCourse(true);
+                  setLevel("ba_a");
+                }}
                 className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5 2xl:top-[32.5%]"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
@@ -50,7 +59,10 @@ const Technical = () => {
                 </p>
               </button>
               <button
-                onClick={() => setSelectedCourse(true)}
+                onClick={() => {
+                  setSelectedCourse(true);
+                  setLevel("ba_b");
+                }}
                 className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5 2xl:top-[32.5%]"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
@@ -62,7 +74,10 @@ const Technical = () => {
                 </p>
               </button>
               <button
-                onClick={() => setSelectedCourse(true)}
+                onClick={() => {
+                  setSelectedCourse(true);
+                  setLevel("halal");
+                }}
                 className="absolute right-[0%] top-[32%] flex w-[19.5%] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 2xl:top-[32.5%]"
               >
                 <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
@@ -83,29 +98,43 @@ const Technical = () => {
           ) : (
             <div className="flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly xl:pt-20">
               <img
-                src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
-                className="w-[500px] xl:w-[600px] 2xl:w-[700px]"
+                src={`/assets/${level}.png`}
+                className="max-h-[70vh] w-full max-w-[500px] object-contain xl:max-w-[600px] 2xl:max-w-[700px]"
                 alt=""
               />
               <div className="flex h-full flex-row gap-3 xl:flex-col">
                 {[
                   {
                     title: "Foundation",
-                    sub: "Foundation in Business Studies",
+                    sub: [{ txt: "Foundation in Business Studies", label: "" }],
                   },
                   {
                     title: "Diploma",
-                    sub: "Foundation in Logistics Management",
+                    sub: [
+                      { txt: "Foundation in Logistics Management", label: "" },
+                    ],
                   },
                   {
                     title: "Degree",
-                    sub: `Bachelor of Business in Logistics Management & E-Business (Honours)<br/><br/>Bachelor of Business in Logistics & Supply Chain Management (Honours)`,
+                    sub: [
+                      {
+                        txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
+                        label: "ba_a",
+                        onClick: () => setLevel("ba_a"),
+                      },
+                      {
+                        txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+                        onClick: () => setLevel("ba_b"),
+                        label: "ba_b",
+                      },
+                    ],
                   },
                 ].map((s, i) => (
                   <CourseLevel
                     onClick={() => setLevel(s.title.toLowerCase())}
                     title={s.title}
-                    sub={s.sub}
+                    items={s.sub}
+                    level={level}
                     active={level.toLowerCase() === s.title.toLowerCase()}
                     key={i}
                   />

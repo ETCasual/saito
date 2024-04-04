@@ -143,7 +143,7 @@ const Fees = () => {
                   <CourseLevel
                     onClick={() => setLevel(s.title.toLowerCase())}
                     title={s.title}
-                    sub={s.sub}
+                    items={[{ txt: s.sub }]}
                     active={level.toLowerCase() === s.title.toLowerCase()}
                     key={i}
                   />
