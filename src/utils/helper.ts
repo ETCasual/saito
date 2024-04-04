@@ -1,42 +1,16 @@
-import { type Result } from "@/stores/useResult";
+export function getKeyWithLargestValue(obj: Record<string, number>): string {
+  let largestKey = "";
+  let largestValue: number = Number.MIN_SAFE_INTEGER; // Initialize with smallest possible integer value
 
-export function countValues(
-  dictionary: Record<string, Result | null | undefined>,
-): {
-  A: number;
-  B: number;
-  C: number;
-  D: number;
-} {
-  const counts = { A: 0, B: 0, C: 0, D: 0 };
-  for (const key in dictionary) {
-    if (dictionary.hasOwnProperty(key)) {
-      const value = dictionary[key];
-      if (value === "A") {
-        counts.A++;
-      } else if (value === "B") {
-        counts.B++;
-      } else if (value === "C") {
-        counts.C++;
-      } else if (value === "D") {
-        counts.D++;
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key]!;
+      if (value > largestValue) {
+        largestKey = key;
+        largestValue = value;
       }
     }
   }
-  return counts;
-}
 
-export function getHighestOccurrence(counts: Record<string, number>): string {
-  let highestProperty = "";
-  let highestCount = 0;
-  for (const property in counts) {
-    if (counts.hasOwnProperty(property)) {
-      const count = counts[property];
-      if (count! > highestCount) {
-        highestProperty = property;
-        highestCount = count!;
-      }
-    }
-  }
-  return highestProperty;
+  return largestKey;
 }

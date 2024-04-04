@@ -7,16 +7,29 @@ import { useResult } from "@/stores/useResult";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Aptitude = () => {
   const [questionIndex, setQuestionIndex] = useState<number>(1);
   const t = useTranslations("aptitude");
   const router = useRouter();
 
-  const { personality, interest, appearance, setResult } = useResult();
+  const {
+    setAnswered,
+    setFirst,
+    setSecond,
+    setThird,
+    appearance,
+    interest,
+    personality,
+    clear,
+  } = useResult();
 
   const q = Object.values(questions[questionIndex]!);
+
+  useEffect(() => {
+    clear();
+  }, [clear]);
 
   return (
     <Layout>
@@ -79,11 +92,23 @@ const Aptitude = () => {
                           ? "interest"
                           : "personality";
 
-                    await setResult(key, "A").then(async () => {
-                      if (questionIndex === 3) {
-                        return await router.push("intro");
-                      } else setQuestionIndex((prev) => prev + 1);
-                    });
+                    await setAnswered(key);
+
+                    if (questionIndex === 1) {
+                      await setFirst("logistics").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 2) {
+                      await setSecond("logistics").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 3) {
+                      await setThird("design").then(async () => {
+                        await router.push("/intro");
+                      });
+                    }
                   }}
                   className="group relative flex flex-col items-start gap-3 outline-none"
                 >
@@ -96,9 +121,14 @@ const Aptitude = () => {
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     A
                   </div>
-                  <div className="absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-semibold capitalize">
-                    {/* @ts-expect-error ignore for now */}
-                    {t(q[2]?.label)}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      /* @ts-expect-error ignore for now */
+                      __html: t(q[2]?.label),
+                    }}
+                    className={`absolute bottom-0 w-full translate-y-[150%] ${questionIndex === 3 ? "text-center" : "text-left"} font-montserrat capitalize`}
+                  >
+                    {/* {t(q[2]?.label)} */}
                   </div>
                   {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -113,11 +143,23 @@ const Aptitude = () => {
                           ? "interest"
                           : "personality";
 
-                    await setResult(key, "B").then(async () => {
-                      if (questionIndex === 3) {
-                        return await router.push("intro");
-                      } else setQuestionIndex((prev) => prev + 1);
-                    });
+                    await setAnswered(key);
+
+                    if (questionIndex === 1) {
+                      await setFirst("design").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 2) {
+                      await setSecond("design").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 3) {
+                      await setThird("enforcement").then(async () => {
+                        await router.push("/intro");
+                      });
+                    }
                   }}
                   className="group relative flex flex-row items-start gap-3 outline-none"
                 >
@@ -130,42 +172,14 @@ const Aptitude = () => {
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     B
                   </div>
-                  <div className="absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-semibold capitalize">
-                    {/* @ts-expect-error ignore for now */}
-                    {t(q[3]?.label)}
-                  </div>
-                  {/* <p className="text-left font-montserrat text-base">
-                    {t(q[2])}
-                  </p> */}
-                </button>
-                <button
-                  onClick={async () => {
-                    const key =
-                      questionIndex === 1
-                        ? "appearance"
-                        : questionIndex === 2
-                          ? "interest"
-                          : "personality";
-                    await setResult(key, "C").then(async () => {
-                      if (questionIndex === 3) {
-                        return await router.push("intro");
-                      } else setQuestionIndex((prev) => prev + 1);
-                    });
-                  }}
-                  className="group relative flex flex-row items-start gap-3 outline-none"
-                >
-                  <img
-                    // @ts-expect-error ignore for now
-                    src={t(q[4]?.src)}
-                    alt="C"
-                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
-                  />
-                  <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
-                    C
-                  </div>
-                  <div className="absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-semibold capitalize">
-                    {/* @ts-expect-error ignore for now */}
-                    {t(q[4]?.label)}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      /* @ts-expect-error ignore for now */
+                      __html: t(q[3]?.label),
+                    }}
+                    className={`absolute bottom-0 w-full translate-y-[150%] ${questionIndex === 3 ? "text-center" : "text-left"} font-montserrat capitalize`}
+                  >
+                    {/* {t(q[2]?.label)} */}
                   </div>
                   {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -180,11 +194,74 @@ const Aptitude = () => {
                           ? "interest"
                           : "personality";
 
-                    await setResult(key, "D").then(async () => {
-                      if (questionIndex === 3) {
-                        return await router.push("intro");
-                      } else setQuestionIndex((prev) => prev + 1);
-                    });
+                    await setAnswered(key);
+
+                    if (questionIndex === 1) {
+                      await setFirst("enforcement").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 2) {
+                      await setSecond("enforcement").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 3) {
+                      await setThird("logistics").then(async () => {
+                        await router.push("/intro");
+                      });
+                    }
+                  }}
+                  className="group relative flex flex-row items-start gap-3 outline-none"
+                >
+                  <img
+                    // @ts-expect-error ignore for now
+                    src={t(q[4]?.src)}
+                    alt="C"
+                    className="h-[150px] w-[150px] rounded-full border-primary object-cover group-hover:border-2"
+                  />
+                  <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    C
+                  </div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      /* @ts-expect-error ignore for now */
+                      __html: t(q[4]?.label),
+                    }}
+                    className={`absolute bottom-0 w-full translate-y-[150%] ${questionIndex === 3 ? "text-center" : "text-left"} font-montserrat capitalize`}
+                  >
+                    {/* {t(q[2]?.label)} */}
+                  </div>
+                  {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+                </button>
+                <button
+                  onClick={async () => {
+                    const key =
+                      questionIndex === 1
+                        ? "appearance"
+                        : questionIndex === 2
+                          ? "interest"
+                          : "personality";
+
+                    await setAnswered(key);
+
+                    if (questionIndex === 1) {
+                      await setFirst("culinary").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 2) {
+                      await setSecond("culinary").then(async () => {
+                        setQuestionIndex((prev) => prev + 1);
+                      });
+                    }
+                    if (questionIndex === 3) {
+                      await setThird("culinary").then(async () => {
+                        await router.push("/intro");
+                      });
+                    }
                   }}
                   className="group relative flex flex-row items-start gap-3 outline-none"
                 >
@@ -197,9 +274,14 @@ const Aptitude = () => {
                   <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
                     D
                   </div>
-                  <div className="absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-semibold capitalize">
-                    {/* @ts-expect-error ignore for now */}
-                    {t(q[5]?.label)}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      /* @ts-expect-error ignore for now */
+                      __html: t(q[5]?.label),
+                    }}
+                    className={`absolute bottom-0 w-full translate-y-[150%] ${questionIndex === 3 ? "text-center" : "text-left"} font-montserrat capitalize`}
+                  >
+                    {/* {t(q[2]?.label)} */}
                   </div>
                   {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}

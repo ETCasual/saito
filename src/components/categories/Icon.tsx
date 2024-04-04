@@ -25,7 +25,7 @@ export const CategoryIcon: FunctionComponent<CategoryIconProps> = ({
       </p>
       {stage === "active" && (
         <div
-          className={`absolute left-0 top-1/2 h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full${stage === "active" ? " bg-primary" : ""}`}
+          className={`absolute left-0 top-1/2 h-[13px] w-[13px] -translate-x-1/2 -translate-y-1/2 xl:h-[15px] xl:w-[15px] rounded-full${stage === "active" ? " bg-primary" : ""}`}
         />
       )}
     </button>

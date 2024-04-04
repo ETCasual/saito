@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
-import { useResult } from "@/stores/useResult";
-import { countValues, getHighestOccurrence } from "@/utils/helper";
+import { type ResultState, useResult } from "@/stores/useResult";
+import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
 import {
@@ -21,31 +21,30 @@ const courses: Omit<
     video: "logistics-intro",
     label: "The Prime School of Integrated Logistics",
     image: "/assets/intro/logistics.jpg",
-    select: "A",
+    selector: "logistics",
   },
   {
     video: "design-intro",
     label: "K²\nSchool of Business and Design",
     image: "/assets/intro/design.jpg",
-    select: "B",
+    selector: "design",
   },
   {
     video: "enforcement-intro",
     label: "Saito Law Enforcement and Public Sector Management",
     image: "/assets/intro/enforcement.jpg",
-    select: "C",
+    selector: "enforcement",
   },
   {
     video: "culinary-intro",
     label: "Lé Masters School of Hospitality and Culinary Arts",
     image: "/assets/intro/culinary.jpg",
-    select: "D",
+    selector: "culinary",
   },
   {
     video: "graduate-intro",
     label: "Saito Graduate School",
     image: "/assets/intro/graduate.jpg",
-    select: "",
   },
 ];
 const Intro = () => {
@@ -89,8 +88,8 @@ const Intro = () => {
                   image={c.image}
                   video={c.video}
                   label={c.label}
+                  selector={c.selector}
                   hasRecommended={hasRecommended}
-                  select={c.select}
                   setSelectedCourseVideo={setSelectedCourseVideo}
                 />
               ))}
@@ -109,27 +108,29 @@ interface CourseSelectionProps {
   video: string;
   image: string;
   label: string;
-  select: "A" | "B" | "C" | "D" | "";
   hasRecommended: boolean;
+  selector?: keyof ResultState;
 }
 
 const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
   setSelectedCourseVideo,
   video,
   image,
-  select,
+  selector,
   label,
   hasRecommended,
 }) => {
-  const { appearance, interest, personality } = useResult();
+  const res = useResult();
 
-  const result = countValues({
-    appearance: appearance,
-    interest: interest,
-    personality: personality,
+  // const highest = getHighestOccurrence(result);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const widthPercentage = selector ? Number(res[selector]) : 0;
+  const highest = getKeyWithLargestValue({
+    culinary: res.culinary ?? 0,
+    logistics: res.logistics ?? 0,
+    design: res.design ?? 0,
+    enforcement: res.enforcement ?? 0,
   });
-
-  const highest = getHighestOccurrence(result);
   return (
     <div
       className="relative flex h-full w-full cursor-pointer flex-col gap-2"
@@ -138,7 +139,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
       <div className="relative h-[20px] w-full bg-gray-300">
         <div
           className="absolute left-0 top-0 z-10 h-full bg-primary"
-          style={{ width: select ? `${(result[select] / 3) * 100}%` : "0px" }}
+          style={{ width: `${widthPercentage}%` }}
         />
       </div>
       <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] xl:rounded-tl-[3rem]">
@@ -157,7 +158,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
           className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-60% px-3 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary xl:text-base"
         />
       </div>
-      {select === highest && hasRecommended ? (
+      {selector === highest && hasRecommended ? (
         <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary xl:text-base">
           Recommended *
         </p>

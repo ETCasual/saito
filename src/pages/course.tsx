@@ -39,7 +39,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => setSelectedCourse(true)}
-                className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
+                className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5 2xl:top-[32.5%]"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
                   Bachelor of Business in Logistics Management & E-Business
@@ -51,7 +51,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => setSelectedCourse(true)}
-                className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
+                className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5 2xl:top-[32.5%]"
               >
                 <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
                   Bachelor of Business in Logistics & Supply Chain Management
@@ -60,6 +60,19 @@ const Technical = () => {
                 <p className="font-montserrat text-[8px] font-thin text-white">
                   (MQA/PA17205)
                 </p>
+              </button>
+              <button
+                onClick={() => setSelectedCourse(true)}
+                className="absolute right-[0%] top-[32%] flex w-[19.5%] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 2xl:top-[32.5%]"
+              >
+                <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
+                  Certificate in Halal Logistics Management
+                </p>
+                <img
+                  src="/assets/halal_btn.png"
+                  alt=""
+                  className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
+                />
               </button>
               <img
                 src="/assets/articulation.png"

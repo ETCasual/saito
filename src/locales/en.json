@@ -19,19 +19,19 @@
       "question": "Which of the following areas of interest do you like the most?",
       "a": {
         "src": "/assets/aptitude/q2a.png",
-        "label": "Technology | Travel"
+        "label": "• Technology<br/>• Travel"
       },
       "b": {
         "src": "/assets/aptitude/q2b.png",
-        "label": "Design | Business"
+        "label": "• Design<br/>• Business"
       },
       "c": {
         "src": "/assets/aptitude/q2c.png",
-        "label": "Fitness | Self Defense"
+        "label": "• Fitness<br/>• Self Defense"
       },
       "d": {
         "src": "/assets/aptitude/q2d.png",
-        "label": "Culinary | Tourism"
+        "label": "• Culinary<br/>• Tourism"
       }
     },
     "3": {

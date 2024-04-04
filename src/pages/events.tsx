@@ -105,7 +105,7 @@ const Events = () => {
             </div>
           )} */}
           <div
-            className={`ml-52 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:pl-0" : "xl:ml-44"}`}
+            className={`ml-32 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:pl-0" : "xl:ml-44"}`}
           >
             <h1 className="text-center font-montserrat text-[1.75rem] font-bold text-primary">
               {selectedCategory !== null
@@ -135,12 +135,28 @@ const Events = () => {
             {
               selectedCategory === null ? (
                 <div className="flex max-w-[1200px] flex-row gap-4">
-                  <div className="flex w-full flex-col items-center">
-                    <p className="font-montserrat text-[1rem] font-bold">
+                  <div className="group flex w-full flex-col items-center">
+                    <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
                       Applied Learning Tips
                     </p>
-                    <div className="grid w-full grid-cols-2 gap-1 pt-3 xl:grid-cols-3">
-                      {events
+                    <div
+                      onClick={() => {
+                        setSelectedType("event");
+                        setSelectedCategory(0);
+                      }}
+                      className="relative grid h-[250px] w-[40vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]"
+                    >
+                      <img
+                        src="/assets/events/events.jpg"
+                        alt="events_btn"
+                        className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
+                      />
+                      <img
+                        src="/assets/events/events_hovered.jpg"
+                        alt="events_btn"
+                        className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
+                      />
+                      {/* {events
                         .filter((a) => a.type === "event")
                         .map((e, i) => (
                           <EventsCategory
@@ -151,26 +167,30 @@ const Events = () => {
                             key={i}
                             img={`/assets/events/${e.contentImg}.jpg`}
                           />
-                        ))}
+                        ))} */}
                     </div>
                   </div>
-                  <div className="flex w-full flex-col items-center">
-                    <p className="font-montserrat text-[1rem] font-bold text-primary">
+                  <div
+                    onClick={() => {
+                      setSelectedType("activity");
+                      setSelectedCategory(0);
+                    }}
+                    className="group flex w-full flex-col items-center"
+                  >
+                    <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
                       Student Activities & Clubs
                     </p>
-                    <div className="grid w-full grid-cols-2 gap-1 pt-3 xl:grid-cols-3">
-                      {events
-                        .filter((a) => a.type === "activity")
-                        .map((e, i) => (
-                          <EventsCategory
-                            onClick={() => {
-                              setSelectedType(e.type);
-                              setSelectedCategory(i);
-                            }}
-                            key={i}
-                            img={`/assets/events/${e.contentImg}.jpg`}
-                          />
-                        ))}
+                    <div className="relative grid h-[250px] w-[40vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]">
+                      <img
+                        src="/assets/events/activities.jpg"
+                        alt="activities_btn"
+                        className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
+                      />
+                      <img
+                        src="/assets/events/activities_hovered.jpg"
+                        alt="activities_btn"
+                        className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
+                      />
                     </div>
                   </div>
                 </div>
@@ -274,32 +294,32 @@ const Events = () => {
   );
 };
 
-interface EventsCategoryProps {
-  onClick: () => void;
-  img: string;
-}
+// interface EventsCategoryProps {
+//   onClick: () => void;
+//   img: string;
+// }
 
-const EventsCategory: FunctionComponent<EventsCategoryProps> = ({
-  img,
-  onClick,
-}) => {
-  return (
-    <button
-      onClick={onClick}
-      className="group relative transition-all duration-200 ease-in-out"
-    >
-      <img
-        src={img}
-        alt=""
-        className="h-[100px] w-[200px] object-cover object-center"
-      />
-      {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
-        {title}
-      </p> */}
-      <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />
-    </button>
-  );
-};
+// const EventsCategory: FunctionComponent<EventsCategoryProps> = ({
+//   img,
+//   onClick,
+// }) => {
+//   return (
+//     <button
+//       onClick={onClick}
+//       className="group relative transition-all duration-200 ease-in-out"
+//     >
+//       <img
+//         src={img}
+//         alt=""
+//         className="h-[100px] w-[200px] object-cover object-center"
+//       />
+//       {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
+//         {title}
+//       </p> */}
+//       <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />
+//     </button>
+//   );
+// };
 
 export default Events;
 
