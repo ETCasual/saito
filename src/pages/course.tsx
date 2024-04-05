@@ -96,12 +96,50 @@ const Technical = () => {
               />
             </div>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly xl:pt-20">
-              <img
-                src={`/assets/${level}.png`}
-                className="max-h-[70vh] w-full max-w-[500px] object-contain xl:max-w-[600px] 2xl:max-w-[700px]"
-                alt=""
-              />
+            <div className="relative flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly xl:pt-28">
+              <div className="flex flex-col items-center gap-3">
+                <img
+                  src={`/assets/${level}.png`}
+                  className={`${level === "foundation" ? "max-h-[70vh] max-w-[650px]" : "max-h-[50vh] max-w-[500px] xl:max-h-[65vh]"} w-full object-contain xl:max-w-[600px] 2xl:max-w-[700px]`}
+                  alt=""
+                />
+                {level !== "foundation" && level !== "diploma" && (
+                  <button
+                    onClick={() => {
+                      setSelectedCourse(true);
+                      setLevel("halal");
+                    }}
+                    className="relative hidden w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 lg:flex"
+                  >
+                    <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
+                      Certificate in Halal Logistics Management
+                    </p>
+                    <img
+                      src="/assets/halal_btn.png"
+                      alt=""
+                      className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
+                    />
+                  </button>
+                )}
+              </div>
+              {level !== "foundation" && level !== "diploma" && (
+                <button
+                  onClick={() => {
+                    setSelectedCourse(true);
+                    setLevel("halal");
+                  }}
+                  className="relative flex w-[22%] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 lg:hidden"
+                >
+                  <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
+                    Certificate in Halal Logistics Management
+                  </p>
+                  <img
+                    src="/assets/halal_btn.png"
+                    alt=""
+                    className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
+                  />
+                </button>
+              )}
               <div className="flex h-full flex-row gap-3 xl:flex-col">
                 {[
                   {
