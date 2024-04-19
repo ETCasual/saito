@@ -8,8 +8,8 @@ const Faculty = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex min-h-[90vh] w-full flex-grow flex-col items-center justify-center pb-20 pt-32">
-          <div className="ml-40 flex flex-col items-center justify-center xl:pl-0">
+        <div className="flex w-full flex-grow flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center xl:pl-0">
             <Splide className="w-full max-w-[700px] xl:max-w-[750px]">
               <SplideSlide>
                 <h1 className="w-full text-center font-montserrat text-[1.75rem] font-bold text-primary">

@@ -12,7 +12,7 @@ const Fees = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-grow flex-col items-center justify-center pb-20 pt-32">
+        <div className="flex w-full flex-grow flex-col items-center justify-center">
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
@@ -102,10 +102,10 @@ const Fees = () => {
           )} */}
 
           {!selectedCategory ? (
-            <div className="ml-24 flex flex-col items-center justify-center xl:pl-0">
-              <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+            <div className="flex flex-col items-center justify-center">
+              {/* <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
                 Fees Structure / Financial Assistance
-              </h1>
+              </h1> */}
               <div className="flex w-full max-w-[700px] flex-row items-center justify-center gap-1 pt-3">
                 {["Course Fees", "Funding Support", "Job Opportunities"].map(
                   (title, i) => (
@@ -119,7 +119,7 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Course Fees" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
               <img
                 src="https://via.placeholder.com/600x450"
                 className="w-[600px]"
@@ -151,7 +151,7 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Funding Support" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
               <img
                 src="/assets/funding_support.png"
                 alt="funding"
@@ -159,7 +159,7 @@ const Fees = () => {
               />
             </div>
           ) : (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:justify-around xl:pl-0">
+            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
               <img
                 src="/assets/career_opportunities.png"
                 alt="funding"

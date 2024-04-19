@@ -52,7 +52,11 @@
       "d": { "src": "/assets/aptitude/q3d.png", "label": "Realistic" }
     }
   },
-
+  "support": {
+    "title": "Support"
+  },
+  "fees": { "title": "Fees Structure / Financial Assistance" },
   "intro": { "title": "Introduction" },
+
   "footer": "creating opportunities, transforming lives."
 }

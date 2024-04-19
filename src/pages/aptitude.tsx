@@ -34,11 +34,8 @@ const Aptitude = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-col items-center justify-center">
-          <h1 className="pb-6 pt-20 font-montserrat text-[1.75rem] font-bold text-primary">
-            {t("title")}
-          </h1>
-          <div className="relative w-full max-w-[500px] flex-row items-center xl:max-w-[600px]">
+        <div className="flex h-full w-full max-w-[800px] flex-col items-center justify-center lg:max-w-[900px]">
+          <div className="relative -ml-20 w-full max-w-[500px] flex-row items-center lg:max-w-[700px]">
             <div className="z-20 flex flex-row items-center justify-between">
               {Object.values(questions).map((d, i) => (
                 <CategoryIcon
@@ -72,11 +69,13 @@ const Aptitude = () => {
               className="absolute right-0 top-1/2 flex -translate-y-1/2 translate-x-full cursor-pointer flex-row items-center gap-3"
             >
               <div className={`h-[15px] w-[15px] rounded-full bg-black`} />
-              <p className={`font-montserrat`}>Results</p>
+              <p className={`font-montserrat text-[14px] lg:text-lg`}>
+                Results
+              </p>
             </div>
           </div>
 
-          <div className="w-full max-w-[900px] py-7 pl-32 xl:max-w-[800px] xl:pl-0">
+          <div className="w-full max-w-[900px] py-7 xl:max-w-[800px] xl:pl-0">
             <p className="pb-7 text-center font-montserrat text-lg">
               {t(q[1])}
             </p>

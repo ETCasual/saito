@@ -15,7 +15,7 @@ const Events = () => {
     <Layout>
       <InnerLayout>
         <div
-          className={`flex w-full flex-grow flex-col items-center justify-center ${selectedCategory !== null ? "xl:pt-16" : ""} pb-20 pt-32`}
+          className={`flex w-full flex-grow flex-col items-center justify-center`}
         >
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
@@ -104,9 +104,7 @@ const Events = () => {
               </div>
             </div>
           )} */}
-          <div
-            className={`ml-32 flex flex-col items-center justify-center ${selectedCategory !== null ? "xl:pl-0" : "xl:ml-44"}`}
-          >
+          <div className={`flex flex-col items-center justify-center`}>
             <h1 className="text-center font-montserrat text-[1.75rem] font-bold text-primary">
               {selectedCategory !== null
                 ? events.filter((e) => e.type === selectedType)[

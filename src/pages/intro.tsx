@@ -4,7 +4,7 @@ import { Layout } from "@/components/Layout";
 import { type ResultState, useResult } from "@/stores/useResult";
 import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import {
   type Dispatch,
   type FunctionComponent,
@@ -48,7 +48,7 @@ const courses: Omit<
   },
 ];
 const Intro = () => {
-  const t = useTranslations("intro");
+  // const t = useTranslations("intro");
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
@@ -64,9 +64,9 @@ const Intro = () => {
     <Layout>
       <InnerLayout>
         <div className="flex h-full w-full flex-col items-center justify-center">
-          <h1 className="pb-6 pt-20 font-montserrat text-[1.75rem] font-bold text-primary">
+          {/* <h1 className="pb-6 font-montserrat text-[1.75rem] font-bold text-primary">
             {t("title")}
-          </h1>
+          </h1> */}
           {selectedCourseVideo ? (
             <div className="relative ml-32 mt-12 flex w-full max-w-[700px] flex-row items-center gap-4 xl:ml-0 xl:mt-0">
               <video

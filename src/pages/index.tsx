@@ -15,7 +15,7 @@ export type FormikLoginForm = {
 
 export default function Index() {
   const router = useRouter();
-  const { name, setUser } = useUser();
+  const { name, login } = useUser();
 
   useEffect(() => {
     if (!name) return;
@@ -35,19 +35,7 @@ export default function Index() {
           onSubmit={async (values, action) => {
             action.setSubmitting(true);
             try {
-              const res = await fetch("/api/login", {
-                method: "POST",
-                body: JSON.stringify(values),
-              });
-
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              const response: { loggedIn: boolean; name: string } =
-                await res.json();
-
-              if (res.ok) {
-                await setUser(response.name);
-                void router.push("/home");
-              }
+              await login(values.username, values.password, router);
             } catch (err) {
               console.error(err);
             } finally {
@@ -69,6 +57,7 @@ export default function Index() {
               <TextField<FormikLoginForm>
                 disabled={isSubmitting}
                 formikKey="password"
+                type="password"
                 label="Password"
               />
               <button

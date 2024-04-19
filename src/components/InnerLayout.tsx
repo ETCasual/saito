@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { CategoryIcon } from "./categories/Icon";
 import { useRouter } from "next/router";
+import { useTranslations } from "next-intl";
 
 const links = [
   {
@@ -37,26 +38,50 @@ const links = [
   },
 ];
 
-export const InnerLayout = ({ children }: { children?: ReactNode }) => {
+export const InnerLayout = ({
+  children,
+  sidelinkDisable,
+}: {
+  children?: ReactNode;
+  sidelinkDisable?: boolean;
+}) => {
   const router = useRouter();
+  const t = useTranslations();
+
+  const titleKey = router.asPath.split("/").splice(-1)[0];
+
   return (
-    <div className="relative flex flex-grow flex-col items-center justify-center lg:min-h-[unset]">
-      <div className="fixed left-7 top-1/2 z-[100] flex -translate-y-1/2 flex-col gap-3">
-        {links.map((l) => (
-          <CategoryIcon
-            onClick={async () => {
-              if (router.pathname.includes(l.path)) return router.reload();
-              if (l.path === "/intro")
-                localStorage.setItem("recommended", "false");
-              await router.push(l.path);
-            }}
-            label={l.label}
-            key={l.label}
-            stage={router.pathname === l.path ? "active" : "otw"}
-          />
-        ))}
+    <div className="relative flex h-full min-h-screen flex-row justify-center gap-5">
+      {!sidelinkDisable ? (
+        <div className="sticky left-7 top-1/2 z-[100] flex h-full min-w-[125px] -translate-y-1/2 flex-col gap-3 lg:min-w-[175px]">
+          {links.map((l) => (
+            <CategoryIcon
+              onClick={async () => {
+                if (router.pathname.includes(l.path)) return router.reload();
+                if (l.path === "/intro")
+                  localStorage.setItem("recommended", "false");
+                await router.push(l.path);
+              }}
+              label={l.label}
+              key={l.label}
+              stage={router.pathname === l.path ? "active" : "otw"}
+            />
+          ))}
+        </div>
+      ) : null}
+
+      <div className="flex h-full w-full flex-col items-center justify-center">
+        {titleKey !== "course" &&
+        titleKey !== "events" &&
+        titleKey !== "faculty" ? (
+          <h1 className="pb-6 pt-28 text-center font-montserrat text-[1.75rem] font-bold text-primary">
+            {t(`${titleKey}.title`)}
+          </h1>
+        ) : (
+          <div className="pt-28" />
+        )}
+        {children}
       </div>
-      {children}
     </div>
   );
 };

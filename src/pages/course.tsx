@@ -11,10 +11,12 @@ const Technical = () => {
 
   return (
     <Layout>
-      <InnerLayout>
-        <div className="flex w-full flex-col items-center justify-center pt-20 xl:pt-0">
+      <InnerLayout sidelinkDisable={!!selectedCourse}>
+        <div
+          className={`${!selectedCourse ? "-ml-52 lg:-ml-0" : ""} -mt-5 flex w-full flex-col items-center justify-center`}
+        >
           {!selectedCourse ? (
-            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
+            <div className="relative translate-x-[15%] overflow-auto">
               <button
                 onClick={() => {
                   setSelectedCourse(true);
@@ -96,11 +98,72 @@ const Technical = () => {
               />
             </div>
           ) : (
-            <div className="relative flex h-full flex-col items-center justify-center gap-5 pl-32 xl:w-full xl:flex-row xl:items-center xl:justify-evenly xl:pt-28">
-              <div className="flex flex-col items-center gap-3">
+            <div className="relative flex h-full flex-row gap-5 self-start lg:gap-20 xl:w-full xl:flex-row">
+              <div className="flex min-h-[70vh] flex-grow flex-col justify-between">
+                <div className="flex h-full flex-grow flex-col gap-3">
+                  {[
+                    {
+                      title: "Foundation",
+                      sub: [
+                        { txt: "Foundation in Business Studies", label: "" },
+                      ],
+                    },
+                    {
+                      title: "Diploma",
+                      sub: [
+                        {
+                          txt: "Foundation in Logistics Management",
+                          label: "",
+                        },
+                      ],
+                    },
+                    {
+                      title: "Degree",
+                      sub: [
+                        {
+                          txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
+                          label: "ba_a",
+                          onClick: () => setLevel("ba_a"),
+                        },
+                        {
+                          txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+                          onClick: () => setLevel("ba_b"),
+                          label: "ba_b",
+                        },
+                      ],
+                    },
+                  ].map((s, i) => (
+                    <CourseLevel
+                      onClick={() =>
+                        setLevel(
+                          s.title === "Degree" ? "ba_a" : s.title.toLowerCase(),
+                        )
+                      }
+                      title={s.title}
+                      items={s.sub}
+                      level={level}
+                      active={
+                        (level.startsWith("ba") && s.title === "Degree") ||
+                        level.toLowerCase() === s.title.toLowerCase()
+                      }
+                      key={i}
+                    />
+                  ))}
+                </div>
+                <p
+                  className="cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
+                  onClick={() => {
+                    setLevel("foundation");
+                    setSelectedCourse(false);
+                  }}
+                >
+                  Back
+                </p>
+              </div>
+              <div className="flex w-full flex-row items-start justify-normal gap-5 lg:gap-20">
                 <img
                   src={`/assets/${level}.png`}
-                  className={`${level === "foundation" ? "max-h-[70vh] max-w-[650px]" : "max-h-[50vh] max-w-[500px] xl:max-h-[65vh]"} w-full object-contain xl:max-w-[600px] 2xl:max-w-[700px]`}
+                  className={`h-full max-h-[550px] object-contain`}
                   alt=""
                 />
                 {level !== "foundation" && level !== "diploma" && (
@@ -109,7 +172,7 @@ const Technical = () => {
                       setSelectedCourse(true);
                       setLevel("halal");
                     }}
-                    className="relative hidden w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 lg:flex"
+                    className="relative mt-2.5 flex w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
                   >
                     <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
                       Certificate in Halal Logistics Management
@@ -121,62 +184,6 @@ const Technical = () => {
                     />
                   </button>
                 )}
-              </div>
-              {level !== "foundation" && level !== "diploma" && (
-                <button
-                  onClick={() => {
-                    setSelectedCourse(true);
-                    setLevel("halal");
-                  }}
-                  className="relative flex w-[22%] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3 lg:hidden"
-                >
-                  <p className="z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white 2xl:text-[2.3]">
-                    Certificate in Halal Logistics Management
-                  </p>
-                  <img
-                    src="/assets/halal_btn.png"
-                    alt=""
-                    className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
-                  />
-                </button>
-              )}
-              <div className="flex h-full flex-row gap-3 xl:flex-col">
-                {[
-                  {
-                    title: "Foundation",
-                    sub: [{ txt: "Foundation in Business Studies", label: "" }],
-                  },
-                  {
-                    title: "Diploma",
-                    sub: [
-                      { txt: "Foundation in Logistics Management", label: "" },
-                    ],
-                  },
-                  {
-                    title: "Degree",
-                    sub: [
-                      {
-                        txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
-                        label: "ba_a",
-                        onClick: () => setLevel("ba_a"),
-                      },
-                      {
-                        txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
-                        onClick: () => setLevel("ba_b"),
-                        label: "ba_b",
-                      },
-                    ],
-                  },
-                ].map((s, i) => (
-                  <CourseLevel
-                    onClick={() => setLevel(s.title.toLowerCase())}
-                    title={s.title}
-                    items={s.sub}
-                    level={level}
-                    active={level.toLowerCase() === s.title.toLowerCase()}
-                    key={i}
-                  />
-                ))}
               </div>
             </div>
           )}

@@ -38,7 +38,7 @@ const Support = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex w-full flex-grow flex-col items-center justify-center pb-20 pt-32">
+        <div className="flex w-full flex-grow flex-col items-center justify-center">
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
@@ -126,10 +126,10 @@ const Support = () => {
               </div>
             </div>
           )} */}
-          <div className="ml-44 flex flex-col items-center justify-center xl:pl-0">
-            <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+          <div className="flex flex-col items-center justify-center xl:pl-0">
+            {/* <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
               Support
-            </h1>
+            </h1> */}
             {
               selectedCategory === null ? (
                 <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 xl:max-w-[900px] xl:grid-cols-5">
@@ -138,14 +138,15 @@ const Support = () => {
                       onClick={() => setSelectedCategory(i)}
                       key={i}
                       title={title}
+                      link={String(i + 1)}
                     />
                   ))}
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-40">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around">
                   <img
                     src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
-                    className="w-[725px] xl:mt-5 xl:w-[860px]"
+                    className="w-[725px] xl:w-[860px]"
                     alt=""
                   />
                   <div className="flex w-full flex-row items-center justify-between">
@@ -244,18 +245,20 @@ const Support = () => {
 interface SupportCategoryProps {
   title: string;
   onClick: () => void;
+  link: string;
 }
 
 const SupportCategory: FunctionComponent<SupportCategoryProps> = ({
   title,
   onClick,
+  link,
 }) => {
   return (
     <button
       onClick={onClick}
       className="group relative transition-all duration-200 ease-in-out"
     >
-      <img src="https://via.placeholder.com/200x125" alt="" />
+      <img src={`/assets/support_thumb_${link}.jpg`} alt="" />
       <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
         {title}
       </p>
