@@ -11,7 +11,10 @@ const Fees = () => {
 
   return (
     <Layout>
-      <InnerLayout>
+      <InnerLayout
+        hideTitle={!!selectedCategory}
+        sidelinkDisable={!!selectedCategory}
+      >
         <div className="flex w-full flex-grow flex-col items-center justify-center">
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
@@ -107,64 +110,128 @@ const Fees = () => {
                 Fees Structure / Financial Assistance
               </h1> */}
               <div className="flex w-full max-w-[700px] flex-row items-center justify-center gap-1 pt-3">
-                {["Course Fees", "Funding Support", "Job Opportunities"].map(
-                  (title, i) => (
-                    <FeesCategory
-                      onClick={() => setSelectedCategory(title)}
-                      key={i}
-                      title={title}
-                    />
-                  ),
-                )}
-              </div>
-            </div>
-          ) : selectedCategory === "Course Fees" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
-              <img
-                src="https://via.placeholder.com/600x450"
-                className="w-[600px]"
-                alt=""
-              />
-              <div className="flex flex-row gap-3 xl:flex-col">
                 {[
+                  { title: "Course Fees", image: "/assets/fees_thumb_1.jpg" },
                   {
-                    title: "Foundation",
-                    sub: "Foundation in Business Studies",
+                    title: "Funding Support",
+                    image: "/assets/fees_thumb_2.jpg",
                   },
                   {
-                    title: "Diploma",
-                    sub: "Foundation in Logistics Management",
+                    title: "Job Opportunities",
+                    image: "/assets/fees_thumb_3.jpg",
                   },
-                  {
-                    title: "Degree",
-                    sub: `Bachelor of Business in Logistics Management & E-Business (Honours)<br/>Bachelor of Business in Logistics & Supply Chain Management (Honours)`,
-                  },
-                ].map((s, i) => (
-                  <CourseLevel
-                    onClick={() => setLevel(s.title.toLowerCase())}
-                    title={s.title}
-                    items={[{ txt: s.sub }]}
-                    active={level.toLowerCase() === s.title.toLowerCase()}
+                ].map((fee, i) => (
+                  <FeesCategory
+                    onClick={() => setSelectedCategory(fee.title)}
                     key={i}
+                    title={fee.title}
+                    image={fee.image}
                   />
                 ))}
               </div>
             </div>
+          ) : selectedCategory === "Course Fees" ? (
+            <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+              <div className="flex min-h-[70vh] flex-grow flex-col justify-between">
+                <div className="flex flex-col gap-3">
+                  {[
+                    {
+                      title: "Foundation",
+                      sub: [
+                        { txt: "Foundation in Business Studies", label: "" },
+                      ],
+                    },
+                    {
+                      title: "Diploma",
+                      sub: [
+                        {
+                          txt: "Foundation in Logistics Management",
+                          label: "",
+                        },
+                      ],
+                    },
+                    {
+                      title: "Degree",
+                      sub: [
+                        {
+                          txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
+                          label: "ba_a",
+                          onClick: () => setLevel("ba_a"),
+                        },
+                        {
+                          txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+                          onClick: () => setLevel("ba_b"),
+                          label: "ba_b",
+                        },
+                      ],
+                    },
+                  ].map((s, i) => (
+                    <CourseLevel
+                      onClick={() =>
+                        setLevel(
+                          s.title === "Degree" ? "ba_a" : s.title.toLowerCase(),
+                        )
+                      }
+                      title={s.title}
+                      items={s.sub}
+                      level={level}
+                      active={
+                        (level.startsWith("ba") && s.title === "Degree") ||
+                        level.toLowerCase() === s.title.toLowerCase()
+                      }
+                      key={i}
+                    />
+                  ))}
+                </div>
+                <p
+                  className="cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
+                  onClick={() => {
+                    setLevel("foundation");
+                    setSelectedCategory("");
+                  }}
+                >
+                  Back
+                </p>
+              </div>
+              <img
+                src={`/assets/fees_${level === "ba_b" ? "ba_a" : level}.jpg`}
+                className="max-h-[75vh] w-[600px] object-contain"
+                alt=""
+              />
+            </div>
           ) : selectedCategory === "Funding Support" ? (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
               <img
                 src="/assets/funding_support.png"
                 alt="funding"
-                className="mt-20 w-[700px] xl:mt-0"
+                className="mt-20 w-[800px] lg:w-[1000px] xl:mt-0"
               />
+              <p
+                className="absolute -bottom-14 -left-14 z-10 cursor-pointer font-montserrat text-lg font-bold hover:text-primary lg:bottom-0 lg:left-0"
+                onClick={() => {
+                  setLevel("foundation");
+                  setSelectedCategory("");
+                }}
+              >
+                Back
+              </p>
             </div>
           ) : (
-            <div className="flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
               <img
                 src="/assets/career_opportunities.png"
                 alt="funding"
-                className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
+                className="mt-20 w-[800px] lg:w-[1000px] xl:mt-0"
               />
+              <p
+                className="absolute -bottom-14 -left-14 z-10 cursor-pointer font-montserrat text-lg font-bold hover:text-primary lg:bottom-0 lg:left-0"
+                onClick={() => {
+                  setLevel("foundation");
+                  setSelectedCategory("");
+                }}
+              >
+                Back
+              </p>
             </div>
           )}
         </div>
@@ -176,18 +243,21 @@ const Fees = () => {
 interface FeesCategoryProps {
   title: string;
   onClick: () => void;
+  image: string;
 }
 
 const FeesCategory: FunctionComponent<FeesCategoryProps> = ({
   title,
   onClick,
+  image,
 }) => {
   return (
     <button
       onClick={onClick}
       className="group relative transition-all duration-200 ease-in-out"
     >
-      <img src="https://via.placeholder.com/200x125" alt="" />
+      {/* https://via.placeholder.com/200x125 */}
+      <img src={image} alt="" />
       <p className="absolute bottom-2 left-3 z-10 font-montserrat text-sm font-bold text-primary group-hover:text-white">
         {title}
       </p>

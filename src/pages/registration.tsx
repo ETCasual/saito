@@ -22,11 +22,11 @@ export default function Register() {
       <Layout>
         <InnerLayout>
           <div
-            className={`flex w-full flex-grow flex-col items-center justify-center pb-20 pt-24`}
+            className={`flex w-full flex-grow flex-col items-center justify-center`}
           >
-            <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
+            {/* <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
               Registration
-            </h1>
+            </h1> */}
             <Formik<FormikRegisterForm>
               initialValues={{ name: "", phone: "" }}
               onSubmit={async (values, action) => {
@@ -64,7 +64,7 @@ export default function Register() {
               })}
             >
               {({ isSubmitting }) => (
-                <Form className="flex w-full flex-col items-center justify-center gap-2 py-10">
+                <Form className="flex w-full flex-col items-center justify-center gap-2">
                   <TextField<FormikRegisterForm>
                     disabled={isSubmitting}
                     formikKey="name"

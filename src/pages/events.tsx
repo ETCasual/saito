@@ -14,9 +14,7 @@ const Events = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div
-          className={`flex w-full flex-grow flex-col items-center justify-center`}
-        >
+        <div className={`flex w-full flex-col items-center justify-center`}>
           {/* {!selectedCourse ? (
             <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
               <button
@@ -142,7 +140,7 @@ const Events = () => {
                         setSelectedType("event");
                         setSelectedCategory(0);
                       }}
-                      className="relative grid h-[250px] w-[40vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]"
+                      className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]"
                     >
                       <img
                         src="/assets/events/events.jpg"
@@ -178,7 +176,7 @@ const Events = () => {
                     <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
                       Student Activities & Clubs
                     </p>
-                    <div className="relative grid h-[250px] w-[40vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]">
+                    <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]">
                       <img
                         src="/assets/events/activities.jpg"
                         alt="activities_btn"

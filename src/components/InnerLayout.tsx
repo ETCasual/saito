@@ -41,9 +41,11 @@ const links = [
 export const InnerLayout = ({
   children,
   sidelinkDisable,
+  hideTitle,
 }: {
   children?: ReactNode;
   sidelinkDisable?: boolean;
+  hideTitle?: boolean;
 }) => {
   const router = useRouter();
   const t = useTranslations();
@@ -71,9 +73,11 @@ export const InnerLayout = ({
       ) : null}
 
       <div className="flex h-full w-full flex-col items-center justify-center">
-        {titleKey !== "course" &&
-        titleKey !== "events" &&
-        titleKey !== "faculty" ? (
+        {hideTitle ? (
+          <div className="pt-28" />
+        ) : titleKey !== "course" &&
+          titleKey !== "events" &&
+          titleKey !== "faculty" ? (
           <h1 className="pb-6 pt-28 text-center font-montserrat text-[1.75rem] font-bold text-primary">
             {t(`${titleKey}.title`)}
           </h1>
