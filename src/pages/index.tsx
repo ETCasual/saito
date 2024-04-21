@@ -4,9 +4,10 @@ import { useUser } from "@/stores/useUser";
 import { Form, Formik } from "formik";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import type { GetStaticProps } from "next";
+import { Oval } from "react-loader-spinner";
 
 export type FormikLoginForm = {
   username: string;
@@ -16,11 +17,16 @@ export type FormikLoginForm = {
 export default function Index() {
   const router = useRouter();
   const { name, login } = useUser();
+  const [status, setStatus] = useState<
+    "none" | "loading" | "success" | "failed"
+  >("none");
 
   useEffect(() => {
     if (!name) return;
     void router.push("/home");
   }, [name, router]);
+
+  // console.log(loading);
 
   return (
     <>
@@ -34,8 +40,15 @@ export default function Index() {
           initialValues={{ password: "", username: "" }}
           onSubmit={async (values, action) => {
             action.setSubmitting(true);
+            setStatus("loading");
             try {
-              await login(values.username, values.password, router);
+              await login(values.username, values.password, router, (type) => {
+                setStatus("failed");
+                if (type === 403)
+                  action.setFieldError("password", "Invalid Credentials.");
+                if (type === 500)
+                  action.setFieldError("password", "Server Error Occured.");
+              });
             } catch (err) {
               console.error(err);
             } finally {
@@ -50,21 +63,35 @@ export default function Index() {
           {({ isSubmitting }) => (
             <Form className="flex min-h-[90vh] w-full flex-col items-center justify-center gap-2 py-16">
               <TextField<FormikLoginForm>
-                disabled={isSubmitting}
+                disabled={isSubmitting || status === "loading"}
                 formikKey="username"
                 label="Username"
               />
               <TextField<FormikLoginForm>
-                disabled={isSubmitting}
+                disabled={isSubmitting || status === "loading"}
                 formikKey="password"
                 type="password"
                 label="Password"
               />
               <button
+                disabled={isSubmitting || status === "loading"}
                 type="submit"
-                className="w-full max-w-[400px] rounded-full bg-black py-1.5 font-montserrat uppercase text-white"
+                className="flex w-full max-w-[400px] flex-row items-center justify-center rounded-full bg-black py-1.5 font-montserrat uppercase text-white"
               >
-                Login
+                {status === "loading" ? (
+                  <Oval
+                    visible={true}
+                    height="20"
+                    width="20"
+                    strokeWidth={5}
+                    color="white"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  "Login"
+                )}
               </button>
             </Form>
           )}

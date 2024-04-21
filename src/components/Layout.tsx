@@ -13,9 +13,11 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
   const name = useStore(useUser, (state) => state.name);
 
   useEffect(() => {
+    // console.log(hydrated);
     if (!hydrated) return;
     if (!name) void router.push("/");
-  }, [name, router, hydrated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, hydrated]);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
