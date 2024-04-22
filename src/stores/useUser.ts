@@ -14,12 +14,20 @@ type UserState = {
   loading: "loading" | "success" | "error";
   _hasHydrated: boolean;
   setHasHydrated: (state: boolean) => void;
+  selectedCourse: string;
+  setSelectedCourse: (state: string) => void;
 };
 
 const createState: StateCreator<UserState> = (set) => ({
   loading: "loading",
   name: null,
   _hasHydrated: false,
+  selectedCourse: "",
+  setSelectedCourse: (state) => {
+    set({
+      selectedCourse: state,
+    });
+  },
   setHasHydrated: (state) => {
     set({
       _hasHydrated: state,

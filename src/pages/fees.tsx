@@ -17,12 +17,12 @@ const Fees = () => {
       >
         <div className="flex w-full flex-grow flex-col items-center justify-center">
           {/* {!selectedCourse ? (
-            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
+            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2lg:translate-y-[7%]">
               <button
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Foundation in Business Studies
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -33,7 +33,7 @@ const Fees = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Diploma in Logicstic Management
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -44,7 +44,7 @@ const Fees = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics Management & E-Business
                   (Honours)
                 </p>
@@ -56,7 +56,7 @@ const Fees = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics & Supply Chain Management
                   (Honours)
                 </p>
@@ -67,17 +67,17 @@ const Fees = () => {
               <img
                 src="/assets/articulation.png"
                 alt="Courses"
-                className="max-h-[530px] object-scale-down 2xl:max-h-[600px]"
+                className="max-h-[530px] object-scale-down 2lg:max-h-[600px]"
               />
             </div>
           ) : (
-            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[600px]"
                 alt=""
               />
-              <div className="flex flex-row gap-3 xl:flex-col">
+              <div className="flex flex-row gap-3 lg:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -131,7 +131,7 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Course Fees" ? (
-            <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+            <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <div className="flex max-h-[70vh] min-h-[70vh] flex-grow flex-col justify-between">
                 <div className="flex flex-col gap-3">
                   {[
@@ -184,7 +184,7 @@ const Fees = () => {
                   ))}
                 </div>
                 <p
-                  className="cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
+                  className="z-20 cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
                   onClick={() => {
                     setLevel("foundation");
                     setSelectedCategory("");
@@ -207,11 +207,11 @@ const Fees = () => {
               </div>
             </div>
           ) : selectedCategory === "Funding Support" ? (
-            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <img
                 src="/assets/funding_support.png"
                 alt="funding"
-                className="mt-20 w-[800px] lg:w-[1000px] xl:mt-0"
+                className="mt-20 w-[800px] lg:mt-0 lg:w-[1000px]"
               />
               <p
                 className="absolute -bottom-14 -left-14 z-10 cursor-pointer font-montserrat text-lg font-bold hover:text-primary lg:bottom-0 lg:left-0"
@@ -224,11 +224,11 @@ const Fees = () => {
               </p>
             </div>
           ) : (
-            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
+            <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <img
                 src="/assets/career_opportunities.png"
                 alt="funding"
-                className="mt-20 w-[800px] lg:w-[1000px] xl:mt-0"
+                className="mt-20 w-[800px] lg:mt-0 lg:w-[1000px]"
               />
               <p
                 className="absolute -bottom-14 -left-14 z-10 cursor-pointer font-montserrat text-lg font-bold hover:text-primary lg:bottom-0 lg:left-0"

@@ -2,6 +2,7 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type ResultState, useResult } from "@/stores/useResult";
+import { useUser } from "@/stores/useUser";
 import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
 // import { useTranslations } from "next-intl";
@@ -45,6 +46,7 @@ const courses: Omit<
     video: "graduate-intro",
     label: "Saito Graduate School",
     image: "/assets/intro/graduate.jpg",
+    selector: "graduate",
   },
 ];
 const Intro = () => {
@@ -68,7 +70,7 @@ const Intro = () => {
             {t("title")}
           </h1> */}
           {selectedCourseVideo ? (
-            <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 xl:ml-0 xl:mt-0">
+            <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 lg:ml-0 lg:mt-0">
               <video
                 className="aspect-video"
                 controls
@@ -81,7 +83,7 @@ const Intro = () => {
               </video>
             </div>
           ) : (
-            <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px] xl:ml-0">
+            <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:ml-0 lg:max-w-[900px]">
               {courses.map((c, i) => (
                 <CourseSelection
                   key={i}
@@ -131,10 +133,14 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
     design: res.design ?? 0,
     enforcement: res.enforcement ?? 0,
   });
+  const { setSelectedCourse } = useUser();
   return (
     <div
       className="relative flex h-full w-full cursor-pointer flex-col gap-2"
-      onClick={() => setSelectedCourseVideo(video)}
+      onClick={() => {
+        setSelectedCourse(String(selector));
+        setSelectedCourseVideo(video);
+      }}
     >
       <div className="relative h-[20px] w-full bg-gray-300">
         <div
@@ -142,7 +148,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
           style={{ width: `${widthPercentage}%` }}
         />
       </div>
-      <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] xl:rounded-tl-[3rem]">
+      <div className="relative h-full w-full overflow-hidden rounded-tl-[2rem] lg:rounded-tl-[3rem]">
         <img
           style={{
             objectPosition: "60% 0px",
@@ -155,11 +161,11 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
           dangerouslySetInnerHTML={{
             __html: label.replaceAll("\n", "<br/>"),
           }}
-          className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-60% px-3 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary xl:text-base"
+          className="absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-gradient-to-b from-[#00000000] from-30% to-[#000] to-60% px-3 py-4 font-montserrat text-sm font-bold text-white transition duration-200 ease-in-out hover:to-primary lg:text-base"
         />
       </div>
       {selector === highest && hasRecommended ? (
-        <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary xl:text-base">
+        <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary lg:text-base">
           Recommended *
         </p>
       ) : null}

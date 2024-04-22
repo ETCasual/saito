@@ -16,12 +16,12 @@ const Events = () => {
       <InnerLayout>
         <div className={`flex w-full flex-col items-center justify-center`}>
           {/* {!selectedCourse ? (
-            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
+            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2lg:translate-y-[7%]">
               <button
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Foundation in Business Studies
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -32,7 +32,7 @@ const Events = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Diploma in Logicstic Management
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -43,7 +43,7 @@ const Events = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics Management & E-Business
                   (Honours)
                 </p>
@@ -55,7 +55,7 @@ const Events = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics & Supply Chain Management
                   (Honours)
                 </p>
@@ -66,17 +66,17 @@ const Events = () => {
               <img
                 src="/assets/articulation.png"
                 alt="Courses"
-                className="max-h-[530px] object-scale-down 2xl:max-h-[600px]"
+                className="max-h-[530px] object-scale-down 2lg:max-h-[600px]"
               />
             </div>
           ) : (
-            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[600px]"
                 alt=""
               />
-              <div className="flex flex-row gap-3 xl:flex-col">
+              <div className="flex flex-row gap-3 lg:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -110,7 +110,9 @@ const Events = () => {
                   ]?.title
                 : "Events / Activities"}
             </h1>
-            {selectedCategory !== null ? (
+            {selectedCategory !== null &&
+            events.filter((e) => e.type === selectedType)[selectedCategory]
+              ?.sub ? (
               <p className="w-full text-center font-montserrat text-sm text-primary">
                 {
                   events.filter((e) => e.type === selectedType)[
@@ -118,8 +120,9 @@ const Events = () => {
                   ]?.sub
                 }
               </p>
-            ) : null}
-            {selectedCategory !== null ? (
+            ) : selectedCategory !== null &&
+              events.filter((e) => e.type === selectedType)[selectedCategory]
+                ?.date ? (
               <p className="w-full text-center font-montserrat text-sm text-primary">
                 {
                   events.filter((e) => e.type === selectedType)[
@@ -127,7 +130,24 @@ const Events = () => {
                   ]?.date
                 }
               </p>
-            ) : null}
+            ) : (
+              <div className="min-h-[20px]" />
+            )}
+            {selectedCategory !== null &&
+            events.filter((e) => e.type === selectedType)[selectedCategory]
+              ?.sub &&
+            events.filter((e) => e.type === selectedType)[selectedCategory]
+              ?.date ? (
+              <p className="w-full text-center font-montserrat text-sm text-primary">
+                {
+                  events.filter((e) => e.type === selectedType)[
+                    selectedCategory
+                  ]?.date
+                }
+              </p>
+            ) : (
+              <div className="min-h-[20px]" />
+            )}
             {
               selectedCategory === null ? (
                 <div className="flex max-w-[1200px] flex-row gap-4">
@@ -140,7 +160,7 @@ const Events = () => {
                         setSelectedType("event");
                         setSelectedCategory(0);
                       }}
-                      className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]"
+                      className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]"
                     >
                       <img
                         src="/assets/events/events.jpg"
@@ -176,7 +196,7 @@ const Events = () => {
                     <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
                       Student Activities & Clubs
                     </p>
-                    <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 xl:h-[300px] xl:w-[30vw]">
+                    <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]">
                       <img
                         src="/assets/events/activities.jpg"
                         alt="activities_btn"
@@ -191,12 +211,14 @@ const Events = () => {
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around xl:pl-0">
-                  <img
-                    src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
-                    className="w-[725px] xl:mt-5 xl:w-[860px]"
-                    alt=""
-                  />
+                <div className="flex h-full min-h-[55vh] flex-grow flex-col items-start justify-center gap-5 lg:max-h-[55vh] lg:justify-around lg:pl-0">
+                  <div className="flex max-h-[390px] min-h-[390px] w-[725px] flex-col lg:mt-5 lg:w-[860px]">
+                    <img
+                      src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
+                      className="overflow-hidden object-cover"
+                      alt=""
+                    />
+                  </div>
                   <div className="flex w-full flex-row items-center justify-between">
                     <button
                       disabled={selectedCategory === 0}
@@ -239,7 +261,7 @@ const Events = () => {
                       </svg>
                     </button>
                   </div>
-                  {/* <div className="flex flex-row gap-3 xl:flex-col">
+                  {/* <div className="flex flex-row gap-3 lg:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -266,19 +288,19 @@ const Events = () => {
                 </div>
               )
               //    : selectedCategory === "Funding Events" ? (
-              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               //       <img
               //         src="/assets/funding_Events.png"
               //         alt="funding"
-              //         className="mt-20 w-[700px] xl:mt-0"
+              //         className="mt-20 w-[700px] lg:mt-0"
               //       />
               //     </div>
               //   ) : (
-              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               //       <img
               //         src="/assets/career_opportunities.png"
               //         alt="funding"
-              //         className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
+              //         className="mt-20 w-[700px] lg:mt-0 lg:w-[900px] 2lg:w-[1000px]"
               //       />
               //     </div>
               //   )
@@ -309,7 +331,7 @@ const Events = () => {
 //         alt=""
 //         className="h-[100px] w-[200px] object-cover object-center"
 //       />
-//       {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
+//       {/* <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white lg:text-sm">
 //         {title}
 //       </p> */}
 //       <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />

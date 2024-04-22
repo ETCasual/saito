@@ -75,7 +75,7 @@ const Aptitude = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-[900px] py-7 xl:max-w-[800px] xl:pl-0">
+          <div className="w-full max-w-[900px] py-7 lg:max-w-[800px] lg:pl-0">
             <p className="pb-7 text-center font-montserrat text-lg">
               {t(q[1])}
             </p>

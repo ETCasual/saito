@@ -40,12 +40,12 @@ const Support = () => {
       <InnerLayout>
         <div className="flex w-full flex-grow flex-col items-center justify-center">
           {/* {!selectedCourse ? (
-            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2xl:translate-y-[7%]">
+            <div className="relative translate-x-[15%] translate-y-[6%] overflow-auto 2lg:translate-y-[7%]">
               <button
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Foundation in Business Studies
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -56,7 +56,7 @@ const Support = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Diploma in Logicstic Management
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
@@ -67,7 +67,7 @@ const Support = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics Management & E-Business
                   (Honours)
                 </p>
@@ -79,7 +79,7 @@ const Support = () => {
                 onClick={() => setSelectedCourse(true)}
                 className="absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
               >
-                <p className="text-left font-montserrat text-xs font-semibold text-white 2xl:text-[2.3]">
+                <p className="text-left font-montserrat text-xs font-semibold text-white 2lg:text-[2.3]">
                   Bachelor of Business in Logistics & Supply Chain Management
                   (Honours)
                 </p>
@@ -90,17 +90,17 @@ const Support = () => {
               <img
                 src="/assets/articulation.png"
                 alt="Courses"
-                className="max-h-[530px] object-scale-down 2xl:max-h-[600px]"
+                className="max-h-[530px] object-scale-down 2lg:max-h-[600px]"
               />
             </div>
           ) : (
-            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+            <div className="pl-32 flex h-full flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               <img
                 src={`/assets/${level === "foundation" ? "foundation_business" : "diploma"}.png`}
                 className="w-[600px]"
                 alt=""
               />
-              <div className="flex flex-row gap-3 xl:flex-col">
+              <div className="flex flex-row gap-3 lg:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -126,13 +126,13 @@ const Support = () => {
               </div>
             </div>
           )} */}
-          <div className="flex flex-col items-center justify-center xl:pl-0">
+          <div className="flex flex-col items-center justify-center lg:pl-0">
             {/* <h1 className="font-montserrat text-[1.75rem] font-bold text-primary">
               Support
             </h1> */}
             {
               selectedCategory === null ? (
-                <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 xl:max-w-[900px] xl:grid-cols-5">
+                <div className="grid w-full max-w-[650px] grid-cols-3 gap-1 pt-3 lg:max-w-[900px] lg:grid-cols-5">
                   {imgKeys.map((title, i) => (
                     <SupportCategory
                       onClick={() => setSelectedCategory(i)}
@@ -143,10 +143,10 @@ const Support = () => {
                   ))}
                 </div>
               ) : (
-                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 xl:max-h-[60vh] xl:min-h-[60vh] xl:w-full xl:justify-around">
+                <div className="flex h-full min-h-[60vh] flex-grow flex-col items-start justify-center gap-5 lg:max-h-[60vh] lg:min-h-[60vh] lg:w-full lg:justify-around">
                   <img
                     src={`/assets/${img[imgKeys[selectedCategory]!]}.jpg`}
-                    className="w-[725px] xl:w-[860px]"
+                    className="w-[725px] lg:w-[860px]"
                     alt=""
                   />
                   <div className="flex w-full flex-row items-center justify-between">
@@ -191,7 +191,7 @@ const Support = () => {
                       </svg>
                     </button>
                   </div>
-                  {/* <div className="flex flex-row gap-3 xl:flex-col">
+                  {/* <div className="flex flex-row gap-3 lg:flex-col">
                 {[
                   {
                     title: "Foundation",
@@ -218,19 +218,19 @@ const Support = () => {
                 </div>
               )
               //    : selectedCategory === "Funding Support" ? (
-              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               //       <img
               //         src="/assets/funding_support.png"
               //         alt="funding"
-              //         className="mt-20 w-[700px] xl:mt-0"
+              //         className="mt-20 w-[700px] lg:mt-0"
               //       />
               //     </div>
               //   ) : (
-              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 xl:pl-0 xl:w-full xl:flex-row xl:justify-around xl:pl-40">
+              //     <div className="pl-32 flex h-full flex-grow flex-col items-start justify-center gap-5 lg:pl-0 lg:w-full lg:flex-row lg:justify-around lg:pl-40">
               //       <img
               //         src="/assets/career_opportunities.png"
               //         alt="funding"
-              //         className="mt-20 w-[700px] xl:mt-0 xl:w-[900px] 2xl:w-[1000px]"
+              //         className="mt-20 w-[700px] lg:mt-0 lg:w-[900px] 2lg:w-[1000px]"
               //       />
               //     </div>
               //   )
@@ -259,7 +259,7 @@ const SupportCategory: FunctionComponent<SupportCategoryProps> = ({
       className="group relative transition-all duration-200 ease-in-out"
     >
       <img src={`/assets/support_thumb_${link}.jpg`} alt="" />
-      <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white xl:text-sm">
+      <p className="absolute bottom-2 left-3 z-10 text-left font-montserrat text-xs font-bold text-primary group-hover:text-white lg:text-sm">
         {title}
       </p>
       <div className="absolute left-0 top-0 h-full w-full bg-primary opacity-0 group-hover:opacity-50" />

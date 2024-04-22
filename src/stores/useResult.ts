@@ -11,6 +11,7 @@ export type ResultState = {
   design: Result | null;
   enforcement: Result | null;
   culinary: Result | null;
+  graduate: Result | null;
   clear: () => void;
   setAnswered: (
     key: "appearance" | "interest" | "personality",
@@ -64,6 +65,7 @@ const createState: StateCreator<ResultState> = (set, get) => ({
   appearance: false,
   interest: false,
   personality: false,
+  graduate: null,
   clear: () =>
     set({
       logistics: null,
