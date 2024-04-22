@@ -66,7 +66,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           router.pathname.includes("registration") ||
           router.pathname.includes("intro") ? (
             <div className="fixed bottom-0 left-0 flex w-full flex-row items-start">
-              <p className="absolute left-12 mt-2 font-bebas text-2xl uppercase tracking-wide text-gray-400 xl:left-20 xl:mt-5 xl:text-[2.25rem]">
+              <p className="absolute left-12 font-bebas text-2xl uppercase tracking-wide text-gray-400 xl:left-20">
                 {t("footer")}
               </p>
               <img src="/assets/bottom_bar.png" alt="bottom-bar" />

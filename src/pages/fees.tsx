@@ -132,7 +132,7 @@ const Fees = () => {
             </div>
           ) : selectedCategory === "Course Fees" ? (
             <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">
-              <div className="flex min-h-[70vh] flex-grow flex-col justify-between">
+              <div className="flex max-h-[70vh] min-h-[70vh] flex-grow flex-col justify-between">
                 <div className="flex flex-col gap-3">
                   {[
                     {
@@ -193,11 +193,18 @@ const Fees = () => {
                   Back
                 </p>
               </div>
-              <img
-                src={`/assets/fees_${level === "ba_b" ? "ba_a" : level}.jpg`}
-                className="max-h-[75vh] w-[600px] object-contain"
-                alt=""
-              />
+              {/* <div className="hidden block w-[600px]" /> */}
+              <div className="z-10 flex w-full flex-row items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:min-h-screen lg:w-screen">
+                <img
+                  src={
+                    level === "ba_b"
+                      ? "https://via.placeholder.com/600"
+                      : `/assets/fees_${level}.jpg`
+                  }
+                  className="max-h-[75vh] w-[600px] object-contain lg:max-h-screen"
+                  alt=""
+                />
+              </div>
             </div>
           ) : selectedCategory === "Funding Support" ? (
             <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 xl:w-full xl:flex-row xl:justify-around">

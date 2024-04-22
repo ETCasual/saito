@@ -68,7 +68,7 @@ const Intro = () => {
             {t("title")}
           </h1> */}
           {selectedCourseVideo ? (
-            <div className="relative ml-32 mt-12 flex w-full max-w-[700px] flex-row items-center gap-4 xl:ml-0 xl:mt-0">
+            <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 xl:ml-0 xl:mt-0">
               <video
                 className="aspect-video"
                 controls
@@ -81,7 +81,7 @@ const Intro = () => {
               </video>
             </div>
           ) : (
-            <div className="relative ml-16 flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px] xl:ml-0">
+            <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:max-w-[900px] xl:ml-0">
               {courses.map((c, i) => (
                 <CourseSelection
                   key={i}
