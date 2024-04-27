@@ -5,6 +5,10 @@ import Head from "next/head";
 import * as Yup from "yup";
 import type { GetStaticProps } from "next";
 import { InnerLayout } from "@/components/InnerLayout";
+import { useUser } from "@/stores/useUser";
+import { useResult } from "@/stores/useResult";
+import { useState } from "react";
+import { Oval } from "react-loader-spinner";
 
 export type FormikRegisterForm = {
   name: string;
@@ -12,6 +16,13 @@ export type FormikRegisterForm = {
 };
 
 export default function Register() {
+  const { name } = useUser();
+  const { logistics, enforcement, design, graduate, culinary } = useResult();
+
+  const [status, setStatus] = useState<
+    "none" | "loading" | "success" | "failed"
+  >("none");
+
   return (
     <>
       <Head>
@@ -31,20 +42,30 @@ export default function Register() {
               initialValues={{ name: "", phone: "" }}
               onSubmit={async (values, action) => {
                 action.setSubmitting(true);
+
+                setStatus("loading");
                 try {
                   const res = await fetch("/api/register", {
                     method: "POST",
-                    body: JSON.stringify(values),
+                    body: JSON.stringify({
+                      ...values,
+                      consultedBy: name,
+                      logistics,
+                      enforcement,
+                      culinary,
+                      graduate,
+                      design,
+                    }),
                   });
 
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  const response: { result: string } = await res.json();
+                  await res.json();
 
-                  console.info(response);
                   if (res.ok) {
                     alert("Registered!");
                     action.resetForm();
                   } else {
+                    setStatus("failed");
                     alert("An Error Occurred.");
                   }
                 } catch (err) {
@@ -66,21 +87,35 @@ export default function Register() {
               {({ isSubmitting }) => (
                 <Form className="flex w-full flex-col items-center justify-center gap-2">
                   <TextField<FormikRegisterForm>
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || status === "loading"}
                     formikKey="name"
                     label="Name"
                   />
                   <TextField<FormikRegisterForm>
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || status === "loading"}
                     type="tel"
                     formikKey="phone"
                     label="Phone no."
                   />
                   <button
                     type="submit"
+                    disabled={isSubmitting || status === "loading"}
                     className="w-full max-w-[400px] rounded-full bg-black py-1.5 font-montserrat uppercase text-white"
                   >
-                    Register
+                    {status === "loading" ? (
+                      <Oval
+                        visible={true}
+                        height="20"
+                        width="20"
+                        strokeWidth={5}
+                        color="white"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      "Register"
+                    )}
                   </button>
                 </Form>
               )}

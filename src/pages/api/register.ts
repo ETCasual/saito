@@ -1,11 +1,30 @@
 import type { NextApiHandler } from "next";
 import { google } from "googleapis";
 import { type FormikRegisterForm } from "../registration";
+import { type Result } from "@/stores/useResult";
 
 const handler: NextApiHandler = async (req, res) => {
   if ((req.method = "POST")) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const { name, phone } = JSON.parse(req.body) as FormikRegisterForm;
+    const {
+      name,
+      phone,
+      consultedBy,
+      logistics,
+      design,
+      enforcement,
+      culinary,
+      graduate,
+    } = JSON.parse(
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      req.body,
+    ) as FormikRegisterForm & {
+      consultedBy: string;
+      logistics: Result;
+      design: Result;
+      culinary: Result;
+      enforcement: Result;
+      graduate: Result;
+    };
     try {
       const auth = new google.auth.GoogleAuth({
         credentials: {
@@ -28,10 +47,22 @@ const handler: NextApiHandler = async (req, res) => {
 
       const response = await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SPREADSHEET_ID,
-        range: "Responses!A:C",
+        range: "Responses!A:H",
         valueInputOption: "USER_ENTERED",
         requestBody: {
-          values: [[`=EPOCHTODATE(${now},2)`, name, phone]],
+          values: [
+            [
+              `=EPOCHTODATE(${now},2)`,
+              name,
+              phone,
+              logistics ?? 0,
+              design ?? 0,
+              enforcement ?? 0,
+              culinary ?? 0,
+              graduate ?? 0,
+              consultedBy,
+            ],
+          ],
         },
       });
 
