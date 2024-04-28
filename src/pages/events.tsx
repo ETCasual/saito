@@ -4,12 +4,14 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type Event, events } from "@/data/questions";
 import { type GetStaticProps } from "next";
-import { type FunctionComponent, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 const Events = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<Event["type"] | null>(null);
   //   const [level, setLevel] = useState("foundation");
+  const t = useTranslations();
 
   return (
     <Layout>
@@ -108,7 +110,7 @@ const Events = () => {
                 ? events.filter((e) => e.type === selectedType)[
                     selectedCategory
                   ]?.title
-                : "Events / Activities"}
+                : t("events.title")}
             </h1>
             {selectedCategory !== null &&
             events.filter((e) => e.type === selectedType)[selectedCategory]
@@ -153,7 +155,7 @@ const Events = () => {
                 <div className="flex max-w-[1200px] flex-row gap-4">
                   <div className="group flex w-full flex-col items-center">
                     <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
-                      Applied Learning Tips
+                      {t("events.applied_learning_tips")}
                     </p>
                     <div
                       onClick={() => {
@@ -194,7 +196,7 @@ const Events = () => {
                     className="group flex w-full flex-col items-center"
                   >
                     <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
-                      Student Activities & Clubs
+                      {t("events.student_activities_and_clubs")}
                     </p>
                     <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]">
                       <img

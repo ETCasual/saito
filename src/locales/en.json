@@ -1,10 +1,21 @@
 {
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "button": "Login",
+    "required": "Required.",
+    "error": {
+      "invalid_credentials": "Invalid Credentials.",
+      "server_error_occured": "Server Error Occured."
+    }
+  },
   "welcome": {
     "title": "Welcome to Saito University College",
     "subtitle": "Select your preferred language to continue"
   },
   "aptitude": {
     "title": "Aptitude Test",
+    "results": "Results",
     "1": {
       "title": "Appearance",
       "question": "Which of the following attire you like the most?",
@@ -53,11 +64,82 @@
     }
   },
   "support": {
-    "title": "Support"
+    "title": "Support",
+    "counselling_service": "Counselling Service",
+    "student_council_body": "Student Council Body",
+    "student_accomodation": "Students' Accomodation",
+    "student_hub": "Student's Hub",
+    "prayer_room": "Prayer Room",
+    "computer_lab": "Computer Lab",
+    "library": "Library",
+    "sports_and_extracurricular_activities": "Sports & Extracurricular Activities",
+    "green_screen_studio": "Green Screen Studio",
+    "cafe": "Cafe"
   },
-  "registration": { "title": "Registration" },
-  "fees": { "title": "Fees Structure / Financial Assistance" },
-  "intro": { "title": "Introduction" },
-
+  "registration": {
+    "title": "Registration",
+    "required": "Required.",
+    "invalid_format": "Invalid Format",
+    "register_success": "Registered Successfully!",
+    "name": "Name",
+    "phone_no": "Phone no.",
+    "btn": "Register",
+    "error": {
+      "server_error_occured": "Server Error Occured."
+    }
+  },
+  "fees": {
+    "title": "Fees Structure / Financial Assistance",
+    "course_fees": "Course_Fees",
+    "funding_support": "Funding Support",
+    "job_opportunities": "Job Opportunities"
+  },
+  "intro": {
+    "title": "Introduction",
+    "recommended": "Recommended"
+  },
+  "course": {
+    "base_articulation_image": "/assets/articulation.png",
+    "first": {
+      "type": "Foundation",
+      "btn": "Foundation in Business Studies",
+      "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+    },
+    "second": {
+      "type": "Diploma",
+      "btn": "Diploma in Logistics Management",
+      "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
+    },
+    "third": {
+      "type": "Degree",
+      "btn": "Bachelor of Business in Logistics Management & E-Business (Honours)",
+      "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
+    },
+    "forth": {
+      "type": "Degree",
+      "btn": "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+      "course_id": "(MQA/PA17205)"
+    },
+    "halal": {
+      "btn": "Certificate in Halal Logistics Management"
+    }
+  },
+  "faculty": {
+    "first": {
+      "title": "Industry Partners"
+    },
+    "second": {
+      "title": "Industry Experts as Lecturers"
+    },
+    "third": {
+      "title": "Academic Team"
+    }
+  },
+  "events": {
+    "title": "Events / Activities",
+    "applied_learning_tips": "Applied Learning Tips",
+    "student_activities_and_clubs": "Student Activities & Clubs"
+  },
+  "back_nav": "Back",
   "footer": "creating opportunities, transforming lives."
 }

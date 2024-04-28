@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import type { GetStaticProps } from "next";
 import { Oval } from "react-loader-spinner";
+import { useTranslations } from "next-intl";
 
 export type FormikLoginForm = {
   username: string;
@@ -28,6 +29,8 @@ export default function Index() {
 
   // console.log(loading);
 
+  const t = useTranslations();
+
   return (
     <>
       <Head>
@@ -45,9 +48,15 @@ export default function Index() {
               await login(values.username, values.password, router, (type) => {
                 setStatus("failed");
                 if (type === 403)
-                  action.setFieldError("password", "Invalid Credentials.");
+                  action.setFieldError(
+                    "password",
+                    t("login.error.invalid_credentials"),
+                  );
                 if (type === 500)
-                  action.setFieldError("password", "Server Error Occured.");
+                  action.setFieldError(
+                    "password",
+                    t("login.error.server_error_occured"),
+                  );
               });
             } catch (err) {
               console.error(err);
@@ -56,8 +65,8 @@ export default function Index() {
             }
           }}
           validationSchema={Yup.object().shape({
-            username: Yup.string().required("Required."),
-            password: Yup.string().required("Required."),
+            username: Yup.string().required(t("login.required")),
+            password: Yup.string().required(t("login.required")),
           })}
         >
           {({ isSubmitting }) => (
@@ -65,13 +74,13 @@ export default function Index() {
               <TextField<FormikLoginForm>
                 disabled={isSubmitting || status === "loading"}
                 formikKey="username"
-                label="Username"
+                label={t("login.username")}
               />
               <TextField<FormikLoginForm>
                 disabled={isSubmitting || status === "loading"}
                 formikKey="password"
                 type="password"
-                label="Password"
+                label={t("login.password")}
               />
               <button
                 disabled={isSubmitting || status === "loading"}
@@ -90,7 +99,7 @@ export default function Index() {
                     wrapperClass=""
                   />
                 ) : (
-                  "Login"
+                  t("login.button")
                 )}
               </button>
             </Form>

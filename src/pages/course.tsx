@@ -3,11 +3,13 @@ import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 const Technical = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [level, setLevel] = useState("foundation");
+  const t = useTranslations();
 
   return (
     <Layout>
@@ -25,10 +27,10 @@ const Technical = () => {
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
-                  Foundation in Business Studies
+                  {t("course.first.btn")}
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
-                  R/340/3/0777 (12/27) MQA/FA8545
+                  {t("course.first.course_id")}
                 </p>
               </button>
               <button
@@ -39,10 +41,10 @@ const Technical = () => {
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
-                  Diploma in Logicstic Management
+                  {t("course.second.btn")}
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
-                  JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)
+                  {t("course.second.course_id")}
                 </p>
               </button>
               <button
@@ -53,11 +55,10 @@ const Technical = () => {
                 className="2lg:top-[32.5%] absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
-                  Bachelor of Business in Logistics Management & E-Business
-                  (Honours)
+                  {t("course.third.btn")}
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
-                  JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)
+                  {t("course.third.course_id")}
                 </p>
               </button>
               <button
@@ -68,11 +69,10 @@ const Technical = () => {
                 className="2lg:top-[32.5%] absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
-                  Bachelor of Business in Logistics & Supply Chain Management
-                  (Honours)
+                  {t("course.forth.btn")}
                 </p>
                 <p className="font-montserrat text-[8px] font-thin text-white">
-                  (MQA/PA17205)
+                  {t("course.forth.course_id")}
                 </p>
               </button>
               <button
@@ -83,7 +83,7 @@ const Technical = () => {
                 className="2lg:top-[32.5%] absolute right-[0%] top-[32%] flex w-[19.5%] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
               >
                 <p className="2lg:text-[2.3] z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
-                  Certificate in Halal Logistics Management
+                  {t("course.halal.btn")}
                 </p>
                 <img
                   src="/assets/halal_btn.png"
@@ -92,7 +92,7 @@ const Technical = () => {
                 />
               </button>
               <img
-                src="/assets/articulation.png"
+                src={t("course.base_articulation_image")}
                 alt="Courses"
                 className="2lg:max-h-[600px] max-h-[530px] object-scale-down"
               />
@@ -103,30 +103,28 @@ const Technical = () => {
                 <div className="flex h-full flex-grow flex-col gap-3">
                   {[
                     {
-                      title: "Foundation",
-                      sub: [
-                        { txt: "Foundation in Business Studies", label: "" },
-                      ],
+                      title: t("course.first.type"),
+                      sub: [{ txt: t("course.first.btn"), label: "" }],
                     },
                     {
-                      title: "Diploma",
+                      title: t("course.second.type"),
                       sub: [
                         {
-                          txt: "Foundation in Logistics Management",
+                          txt: t("course.second.btn"),
                           label: "",
                         },
                       ],
                     },
                     {
-                      title: "Degree",
+                      title: t("course.third.type"),
                       sub: [
                         {
-                          txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
+                          txt: t("course.third.btn"),
                           label: "ba_a",
                           onClick: () => setLevel("ba_a"),
                         },
                         {
-                          txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+                          txt: t("course.forth.btn"),
                           onClick: () => setLevel("ba_b"),
                           label: "ba_b",
                         },
@@ -157,7 +155,7 @@ const Technical = () => {
                     setSelectedCourse(false);
                   }}
                 >
-                  Back
+                  {t("back_nav")}
                 </p>
               </div>
               <div className="flex w-full flex-row items-start justify-normal gap-5 lg:gap-20">
@@ -175,7 +173,7 @@ const Technical = () => {
                     className="relative mt-2.5 flex w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
                   >
                     <p className="2lg:text-[2.3] z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
-                      Certificate in Halal Logistics Management
+                      {t("course.halal.btn")}
                     </p>
                     <img
                       src="/assets/halal_btn.png"

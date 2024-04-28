@@ -5,6 +5,7 @@ import { type ResultState, useResult } from "@/stores/useResult";
 import { useUser } from "@/stores/useUser";
 import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
+import { useTranslations } from "next-intl";
 // import { useTranslations } from "next-intl";
 import {
   type Dispatch,
@@ -19,38 +20,38 @@ const courses: Omit<
   "setSelectedCourseVideo" | "hasRecommended"
 >[] = [
   {
-    video: "logistics-intro",
+    video: "logistics_intro",
     label: "The Prime School of Integrated Logistics",
     image: "/assets/intro/logistics.jpg",
     selector: "logistics",
   },
   {
-    video: "design-intro",
+    video: "design_intro",
     label: "K²\nSchool of Business and Design",
     image: "/assets/intro/design.jpg",
     selector: "design",
   },
   {
-    video: "enforcement-intro",
+    video: "enforcement_intro",
     label: "Saito Law Enforcement and Public Sector Management",
     image: "/assets/intro/enforcement.jpg",
     selector: "enforcement",
   },
   {
-    video: "culinary-intro",
+    video: "culinary_intro",
     label: "Lé Masters School of Hospitality and Culinary Arts",
     image: "/assets/intro/culinary.jpg",
     selector: "culinary",
   },
   {
-    video: "graduate-intro",
+    video: "graduate_intro",
     label: "Saito Graduate School",
     image: "/assets/intro/graduate.jpg",
     selector: "graduate",
   },
 ];
 const Intro = () => {
-  // const t = useTranslations("intro");
+  const t = useTranslations("intro");
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
@@ -134,6 +135,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
     enforcement: res.enforcement ?? 0,
   });
   const { setSelectedCourse } = useUser();
+  const t = useTranslations();
   return (
     <div
       className="relative flex h-full w-full cursor-pointer flex-col gap-2"
@@ -166,7 +168,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
       </div>
       {selector === highest && hasRecommended ? (
         <p className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 translate-y-[150%] text-center font-montserrat text-xs font-bold text-primary lg:text-base">
-          Recommended *
+          {t("intro.recommended")} *
         </p>
       ) : null}
     </div>

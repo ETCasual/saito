@@ -2,38 +2,40 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
+import { useTranslations } from "next-intl";
 import { type FunctionComponent, useState } from "react";
 
-const imgKeys: ImageKeys[] = [
-  "Counselling Services",
-  "Student Council Body",
-  "Students' Accomodation",
-  "Students' Hub",
-  "Prayer Room",
-  "Computer Lab",
-  "Library",
-  "Sports & Extracurricular Activities",
-  "Green Screen Studio",
-  "Cafe",
-];
-
-const img = {
-  "Counselling Services": "support_1",
-  "Student Council Body": "support_2",
-  "Students' Accomodation": "support_3",
-  "Students' Hub": "support_4",
-  "Prayer Room": "support_5",
-  "Computer Lab": "support_6",
-  Library: "support_7",
-  "Sports & Extracurricular Activities": "support_8",
-  "Green Screen Studio": "support_9",
-  Cafe: "support_10",
-};
-
-type ImageKeys = keyof typeof img;
-
 const Support = () => {
+  type ImageKeys = keyof typeof img;
+
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const t = useTranslations();
+
+  const imgKeys: ImageKeys[] = [
+    "counselling_service",
+    "student_council_body",
+    "student_accomodation",
+    "student_hub",
+    "prayer_room",
+    "computer_lab",
+    "library",
+    "sports_and_extracurricular_activities",
+    "green_screen_studio",
+    "cafe",
+  ];
+
+  const img = {
+    counselling_service: "support_1",
+    student_council_body: "support_2",
+    student_accomodation: "support_3",
+    student_hub: "support_4",
+    prayer_room: "support_5",
+    computer_lab: "support_6",
+    library: "support_7",
+    sports_and_extracurricular_activities: "support_8",
+    green_screen_studio: "support_9",
+    cafe: "support_10",
+  };
 
   return (
     <Layout>
@@ -137,7 +139,7 @@ const Support = () => {
                     <SupportCategory
                       onClick={() => setSelectedCategory(i)}
                       key={i}
-                      title={title}
+                      title={t(`support.${title}`)}
                       link={String(i + 1)}
                     />
                   ))}

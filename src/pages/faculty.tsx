@@ -3,8 +3,10 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { useTranslations } from "next-intl";
 
 const Faculty = () => {
+  const t = useTranslations();
   return (
     <Layout>
       <InnerLayout>
@@ -13,7 +15,7 @@ const Faculty = () => {
             <Splide className="w-full max-w-[700px] lg:max-w-[750px]">
               <SplideSlide>
                 <h1 className="w-full text-center font-montserrat text-[1.75rem] font-bold text-primary">
-                  Industry Partners
+                  {t("faculty.first.title")}
                 </h1>
                 <div className="flex w-full flex-row items-center justify-center gap-1 pt-3">
                   <img
@@ -25,7 +27,7 @@ const Faculty = () => {
               </SplideSlide>
               <SplideSlide>
                 <h1 className="w-full text-center font-montserrat text-[1.75rem] font-bold text-primary">
-                  Industry Experts as Lecturers
+                  {t("faculty.second.title")}
                 </h1>
                 <div className="flex w-full flex-row items-center justify-center gap-1 pt-3">
                   <img
@@ -37,7 +39,7 @@ const Faculty = () => {
               </SplideSlide>
               <SplideSlide>
                 <h1 className="w-full text-center font-montserrat text-[1.75rem] font-bold text-primary">
-                  Academic Team
+                  {t("faculty.third.title")}
                 </h1>
                 <div className="flex w-full flex-row items-center justify-center gap-1 pt-3">
                   <img

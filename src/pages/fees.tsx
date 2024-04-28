@@ -3,11 +3,13 @@ import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
+import { useTranslations } from "next-intl";
 import { type FunctionComponent, useState } from "react";
 
 const Fees = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
+  const t = useTranslations();
 
   return (
     <Layout>
@@ -111,55 +113,56 @@ const Fees = () => {
               </h1> */}
               <div className="flex w-full max-w-[700px] flex-row items-center justify-center gap-1 pt-3">
                 {[
-                  { title: "Course Fees", image: "/assets/fees_thumb_1.jpg" },
                   {
-                    title: "Funding Support",
+                    title: "fees.course_fees",
+                    image: "/assets/fees_thumb_1.jpg",
+                  },
+                  {
+                    title: "fees.funding_support",
                     image: "/assets/fees_thumb_2.jpg",
                   },
                   {
-                    title: "Job Opportunities",
+                    title: "fees.job_opportunities",
                     image: "/assets/fees_thumb_3.jpg",
                   },
                 ].map((fee, i) => (
                   <FeesCategory
                     onClick={() => setSelectedCategory(fee.title)}
                     key={i}
-                    title={fee.title}
+                    title={t(fee.title)}
                     image={fee.image}
                   />
                 ))}
               </div>
             </div>
-          ) : selectedCategory === "Course Fees" ? (
+          ) : selectedCategory === "fees.course_fees" ? (
             <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <div className="flex max-h-[70vh] min-h-[70vh] flex-grow flex-col justify-between">
                 <div className="flex flex-col gap-3">
                   {[
                     {
-                      title: "Foundation",
-                      sub: [
-                        { txt: "Foundation in Business Studies", label: "" },
-                      ],
+                      title: t("course.first.type"),
+                      sub: [{ txt: t("course.first.btn"), label: "" }],
                     },
                     {
-                      title: "Diploma",
+                      title: t("course.second.type"),
                       sub: [
                         {
-                          txt: "Foundation in Logistics Management",
+                          txt: t("course.second.btn"),
                           label: "",
                         },
                       ],
                     },
                     {
-                      title: "Degree",
+                      title: t("course.third.type"),
                       sub: [
                         {
-                          txt: "Bachelor of Business in Logistics Management & E-Business (Honours)",
+                          txt: t("course.third.btn"),
                           label: "ba_a",
                           onClick: () => setLevel("ba_a"),
                         },
                         {
-                          txt: "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
+                          txt: t("course.forth.btn"),
                           onClick: () => setLevel("ba_b"),
                           label: "ba_b",
                         },
@@ -190,7 +193,7 @@ const Fees = () => {
                     setSelectedCategory("");
                   }}
                 >
-                  Back
+                  {t("back_nav")}
                 </p>
               </div>
               {/* <div className="hidden block w-[600px]" /> */}
@@ -206,7 +209,7 @@ const Fees = () => {
                 />
               </div>
             </div>
-          ) : selectedCategory === "Funding Support" ? (
+          ) : selectedCategory === "fees.funding_support" ? (
             <div className="relative flex h-full flex-grow flex-col items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <img
                 src="/assets/funding_support.png"

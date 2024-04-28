@@ -70,7 +70,7 @@ const Aptitude = () => {
             >
               <div className={`h-[15px] w-[15px] rounded-full bg-black`} />
               <p className={`font-montserrat text-[14px] lg:text-lg`}>
-                Results
+                {t("results")}
               </p>
             </div>
           </div>
