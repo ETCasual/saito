@@ -162,7 +162,7 @@ const Technical = () => {
               </div>
               <div className="flex w-full flex-row items-start justify-normal gap-5 lg:gap-20">
                 <img
-                  src={`/assets/${level}.png`}
+                  src={`/assets/course_${level}.png`}
                   className={`h-full max-h-[550px] object-contain`}
                   alt=""
                 />
