@@ -18,8 +18,8 @@ import { useRouter } from "next/router";
 interface DrawerProps {
   open: boolean;
   onClose: Dispatch<SetStateAction<boolean>>;
-    installPrompt?: Event;
-    setInstallPrompt: Dispatch<SetStateAction<Event | undefined>>;
+  installPrompt?: Event;
+  setInstallPrompt: Dispatch<SetStateAction<Event | undefined>>;
   //   registration?: ServiceWorkerRegistration;
   // setRegistration: Dispatch<
   //   SetStateAction<ServiceWorkerRegistration | undefined>
@@ -32,8 +32,8 @@ interface DrawerProps {
 export const Drawer: FunctionComponent<DrawerProps> = ({
   open,
   onClose,
-    installPrompt,
-    setInstallPrompt,
+  installPrompt,
+  setInstallPrompt,
   // subscription,
   // registration,
   // setSubscription,
@@ -190,31 +190,29 @@ export const Drawer: FunctionComponent<DrawerProps> = ({
                          
                           )}
                         </div> */}
-                         {installPrompt && 
-                            <button
-                              style={{
-                                boxShadow: "#000 0 0 10px 1px",
-                              }}
-                              className="absolute bottom-0 w-full rounded-md border-2 border-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-black transition hover:border-[1px]"
-                              onClick={async () => {
-                                //@ts-ignore
-                                const res = await installPrompt.prompt();
-                                if (res.outcome !== "dismissed")
-                                  setInstallPrompt(undefined);
-  
-                     
-                              }}
-                            >
-                              Download as App
-                            </button>}
-                      <button
-                        onClick={async () => {
-                          await logout();
-                        }}
-                        className="absolute bottom-0 w-full rounded-md border-2 border-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-black transition hover:border-[1px]"
-                      >
-                        Log Out
-                      </button>
+                      <div className="absolute bottom-0 flex w-full flex-col gap-2">
+                        {installPrompt && (
+                          <button
+                            className="w-full rounded-md border-2 border-black bg-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-white transition"
+                            onClick={async () => {
+                              //@ts-ignore
+                              const res = await installPrompt.prompt();
+                              if (res.outcome !== "dismissed")
+                                setInstallPrompt(undefined);
+                            }}
+                          >
+                            Download as App
+                          </button>
+                        )}
+                        <button
+                          onClick={async () => {
+                            await logout();
+                          }}
+                          className="w-full rounded-md border-2 border-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-black transition"
+                        >
+                          Log Out
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>
