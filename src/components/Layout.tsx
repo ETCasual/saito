@@ -13,6 +13,25 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
   const name = useStore(useUser, (state) => state.name);
   const selectedCourse = useStore(useUser, (state) => state.selectedCourse);
 
+  const [mounted, setMounted] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState<Event>();
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    });
+    () =>
+      window.removeEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        setInstallPrompt(e);
+      });
+  }, [mounted]);
+
   useEffect(() => {
     // console.log(hydrated);
     if (!hydrated) return;
@@ -24,7 +43,12 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
 
   return (
     <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
-      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <Drawer
+        setInstallPrompt={setInstallPrompt}
+        installPrompt={installPrompt}
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      />
       {(router.pathname.includes("intro") ||
         router.pathname.includes("course")) &&
         selectedCourse === "logistics" && (

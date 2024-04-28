@@ -18,8 +18,8 @@ import { useRouter } from "next/router";
 interface DrawerProps {
   open: boolean;
   onClose: Dispatch<SetStateAction<boolean>>;
-  //   installPrompt?: Event;
-  //   setInstallPrompt: Dispatch<SetStateAction<Event | undefined>>;
+    installPrompt?: Event;
+    setInstallPrompt: Dispatch<SetStateAction<Event | undefined>>;
   //   registration?: ServiceWorkerRegistration;
   // setRegistration: Dispatch<
   //   SetStateAction<ServiceWorkerRegistration | undefined>
@@ -32,8 +32,8 @@ interface DrawerProps {
 export const Drawer: FunctionComponent<DrawerProps> = ({
   open,
   onClose,
-  //   installPrompt,
-  //   setInstallPrompt,
+    installPrompt,
+    setInstallPrompt,
   // subscription,
   // registration,
   // setSubscription,
@@ -187,38 +187,26 @@ export const Drawer: FunctionComponent<DrawerProps> = ({
                               />
                             </Switch>
                           </div>
-                          {installPrompt && (
+                         
+                          )}
+                        </div> */}
+                         {installPrompt && 
                             <button
                               style={{
-                                boxShadow: "#8bda02 0 0 10px 1px",
+                                boxShadow: "#000 0 0 10px 1px",
                               }}
-                              className="w-full rounded-md bg-[#8bda02] bg-opacity-100 px-5 py-2 font-sans font-bold transition hover:bg-opacity-70 hover:shadow-none"
+                              className="absolute bottom-0 w-full rounded-md border-2 border-black px-5 py-2 text-center font-montserrat text-lg font-bold uppercase text-black transition hover:border-[1px]"
                               onClick={async () => {
                                 //@ts-ignore
                                 const res = await installPrompt.prompt();
                                 if (res.outcome !== "dismissed")
                                   setInstallPrompt(undefined);
   
-                                // await fetch("/api/notification", {
-                                //   method: "POST",
-                                //   headers: {
-                                //     "Content-Type": "application/json",
-                                //   },
-                                //   body: JSON.stringify({
-                                //     subscription: subscription,
-                                //     data: {
-                                //       title: "Hi",
-                                //       message: "Hello",
-                                //       url: "/connect-camp",
-                                //     },
-                                //   }),
-                                // });
+                     
                               }}
                             >
                               Download as App
-                            </button>
-                          )}
-                        </div> */}
+                            </button>}
                       <button
                         onClick={async () => {
                           await logout();
