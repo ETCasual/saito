@@ -51,7 +51,7 @@ const courses: Omit<
   },
 ];
 const Intro = () => {
-  const t = useTranslations("intro");
+  // const t = useTranslations("intro");
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");

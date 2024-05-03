@@ -61,6 +61,10 @@ export default function Register() {
                   if (res.ok) {
                     setStatus("success");
                     alert(t("registration.register_success"));
+                    window.open(
+                      "https://markettingapp.safeguards-erp.com/#/account",
+                      "_blank",
+                    );
                     action.resetForm();
                   } else {
                     setStatus("failed");
