@@ -8,8 +8,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        montserrat: ["var(--font-montserrat)"],
-        bebas: ["var(--font-bebas)"],
+        montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
+        bebas: ["var(--font-bebas)", ...fontFamily.sans],
       },
       colors: {
         primary: "#d9272a",

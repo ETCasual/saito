@@ -2,9 +2,9 @@
 import { useUser } from "@/stores/useUser";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
-import { useEffect, useState, type ReactNode } from "react";
-import { Drawer } from "./Drawer";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import useStore from "@/stores/useGeneral";
+import { IoMdDownload, IoMdLogOut } from "react-icons/io";
 
 export const Layout = ({ children }: { children?: ReactNode }) => {
   const t = useTranslations();
@@ -12,9 +12,11 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
   const hydrated = useStore(useUser, (state) => state._hasHydrated);
   const name = useStore(useUser, (state) => state.name);
   const selectedCourse = useStore(useUser, (state) => state.selectedCourse);
+  const { clear } = useUser();
 
   const [mounted, setMounted] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<Event>();
+  const downloadRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -39,21 +41,13 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, hydrated]);
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
   return (
     <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
-      <Drawer
-        setInstallPrompt={setInstallPrompt}
-        installPrompt={installPrompt}
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      />
       {(router.pathname.includes("intro") ||
         router.pathname.includes("course")) &&
         selectedCourse === "logistics" && (
           <img
-            className="fixed -bottom-10 -right-32 w-[550px] object-contain opacity-75 lg:-right-20"
+            className="fixed -bottom-10 -right-32 w-[550px] object-contain opacity-75 mix-blend-darken lg:-right-20"
             src="/assets/intro_bg.png"
             alt="prime_bg"
           />
@@ -63,7 +57,7 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           <img
             src="/assets/logo.png"
             alt="Logo"
-            className="h-[40px] object-contain"
+            className="object-conltain h-[40px]"
           />
           {(router.pathname.includes("intro") ||
             router.pathname.includes("course")) &&
@@ -77,17 +71,35 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
         </div>
         {
           name && (
-            <div
-              className="flex cursor-pointer flex-row items-center gap-3"
-              onClick={() => name && setDrawerOpen((prev) => !prev)}
-            >
+            <div className="flex cursor-pointer flex-row items-center gap-3">
               <p className="font-montserrat text-xl font-bold text-[#808080]">
                 {name}
               </p>
               <img
                 src="/assets/person.png"
                 alt="Person"
-                className="h-[45px] w-[45px] object-contain"
+                className="h-[35px] w-[35px] object-contain"
+              />
+
+              <IoMdDownload
+                size={35}
+                className="text-[#808080]"
+                onClick={async () => {
+                  downloadRef.current?.click();
+                }}
+              />
+              <a
+                href="https://work-temps.s3.ap-southeast-1.amazonaws.com/logistics_intro.mp4"
+                className="hidden"
+                download="true"
+                target="_blank"
+                ref={downloadRef}
+              />
+
+              <IoMdLogOut
+                size={35}
+                className="text-[#808080]"
+                onClick={() => clear()}
               />
             </div>
           )

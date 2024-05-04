@@ -138,7 +138,7 @@ export const events: Event[] = [
     type: "activity",
   },
   {
-    title: "Saito UC Open Day",
+    title: "The LogiSym Conference 2023",
     date: "July 2023",
     sub: "",
     contentImg: "activity_2",

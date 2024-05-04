@@ -242,7 +242,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         messages={pageProps.messages}
       >
-        <main className={`font-sans ${montserrat.variable} ${bebas.variable}`}>
+        <main className={`${montserrat.variable} ${bebas.variable}`}>
           <Component {...pageProps} />
         </main>
       </NextIntlClientProvider>

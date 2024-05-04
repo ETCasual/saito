@@ -14,6 +14,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import YouTube from "react-youtube";
 
 const courses: Omit<
   CourseSelectionProps,
@@ -72,7 +73,7 @@ const Intro = () => {
           </h1> */}
           {selectedCourseVideo ? (
             <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 lg:ml-0 lg:mt-0">
-              <video
+              {/* <video
                 className="aspect-video"
                 controls
                 controlsList="nodownload"
@@ -81,7 +82,8 @@ const Intro = () => {
                   src={`https://work-temps.s3.ap-southeast-1.amazonaws.com/${selectedCourseVideo}.mp4`}
                   type="video/mp4"
                 />
-              </video>
+              </video> */}
+              <YouTube className="aspect-video w-full" videoId="kTpxziymlj0" />
             </div>
           ) : (
             <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:ml-0 lg:max-w-[900px]">

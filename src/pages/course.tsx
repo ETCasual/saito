@@ -164,24 +164,26 @@ const Technical = () => {
                   className={`h-full max-h-[550px] object-contain`}
                   alt=""
                 />
-                {level !== "foundation" && level !== "diploma" && (
-                  <button
-                    onClick={() => {
-                      setSelectedCourse(true);
-                      setLevel("halal");
-                    }}
-                    className="relative mt-2.5 flex w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
-                  >
-                    <p className="2lg:text-[2.3] z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
-                      {t("course.halal.btn")}
-                    </p>
-                    <img
-                      src="/assets/halal_btn.png"
-                      alt=""
-                      className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
-                    />
-                  </button>
-                )}
+                {level !== "foundation" &&
+                  level !== "diploma" &&
+                  level !== "halal" && (
+                    <button
+                      onClick={() => {
+                        setSelectedCourse(true);
+                        setLevel("halal");
+                      }}
+                      className="relative mt-2.5 flex w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
+                    >
+                      <p className="2lg:text-[2.3] z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
+                        {t("course.halal.btn")}
+                      </p>
+                      <img
+                        src="/assets/halal_btn.png"
+                        alt=""
+                        className="absolute left-0 top-1/2 z-10 w-full -translate-y-1/2"
+                      />
+                    </button>
+                  )}
               </div>
             </div>
           )}
