@@ -35,7 +35,7 @@ export default function Index() {
     <>
       <Head>
         <title>Saito Sales Kit</title>
-        <meta name="description" content="Saito" />
+        <meta name="description" content="Saito Consultation" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>

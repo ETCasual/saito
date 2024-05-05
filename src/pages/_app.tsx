@@ -28,7 +28,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Saito</title>
+        <title>Saito Sales Kit</title>
         <meta name="description" content="Saito Consultation" />
         <link rel="shortcut icon" href="/assets/favicons/icon-192x192.png" />
         <meta name="theme-color" content="#d9272a" />
