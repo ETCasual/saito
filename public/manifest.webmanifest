@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Saito",
-  "short_name": "saito",
+  "name": "Saito Sales Kit",
+  "short_name": "Saito",
   "icons": [
     {
       "src": "/assets/favicons/icon-192x192.png",
