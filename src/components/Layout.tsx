@@ -2,7 +2,7 @@
 import { useUser } from "@/stores/useUser";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import useStore from "@/stores/useGeneral";
 import { IoMdDownload, IoMdLogOut } from "react-icons/io";
 
@@ -16,7 +16,6 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
 
   const [mounted, setMounted] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<Event>();
-  const downloadRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -85,15 +84,11 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
                 size={35}
                 className="text-[#808080]"
                 onClick={async () => {
-                  downloadRef.current?.click();
+                  window.open(
+                    "https://drive.google.com/file/d/1pUdze7TODrXJPl7br8UcK5ueLTBjVLIW/view?usp=sharing",
+                    "_blank",
+                  );
                 }}
-              />
-              <a
-                href="https://work-temps.s3.ap-southeast-1.amazonaws.com/logistics_intro.mp4"
-                className="hidden"
-                download="true"
-                target="_blank"
-                ref={downloadRef}
               />
 
               <IoMdLogOut
