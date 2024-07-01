@@ -47,7 +47,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       const response = await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SPREADSHEET_ID,
-        range: "Responses!A:H",
+        range: "Responses!A:I",
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: [

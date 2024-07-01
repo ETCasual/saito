@@ -1,7 +1,146 @@
 {
-  "welcome": {
-    "title": "欢迎来到 Saito University College",
-    "subtitle": "请选择您的首选语言继续"
+  "login": {
+    "username": "用户名",
+    "password": "密码",
+    "button": "登录",
+    "required": "必填。",
+    "error": {
+      "invalid_credentials": "凭据无效。",
+      "server_error_occured": "服务器发生错误。"
+    }
   },
-  "footer": "创造机遇，改变生活."
+  "welcome": {
+    "title": "欢迎来到 Saito 大学学院",
+    "subtitle": "选择您的首选语言以继续"
+  },
+  "aptitude": {
+    "title": "能力倾向测验",
+    "results": "结果",
+    "1": {
+      "title": "外观",
+      "question": "您最喜欢以下哪种服装？",
+      "a": { "src": "/assets/aptitude/q1a.png", "label": "" },
+      "b": { "src": "/assets/aptitude/q1b.png", "label": "" },
+      "c": { "src": "/assets/aptitude/q1c.png", "label": "" },
+      "d": { "src": "/assets/aptitude/q1d.png", "label": "" }
+    },
+    "2": {
+      "title": "兴趣领域",
+      "question": "您最喜欢以下哪种兴趣领域？",
+      "a": {
+        "src": "/assets/aptitude/q2a.png",
+        "label": "• 技术<br/>• 旅游"
+      },
+      "b": {
+        "src": "/assets/aptitude/q2b.png",
+        "label": "• 设计<br/>• 商业"
+      },
+      "c": {
+        "src": "/assets/aptitude/q2c.png",
+        "label": "• 健身<br/>• 自卫"
+      },
+      "d": {
+        "src": "/assets/aptitude/q2d.png",
+        "label": "• 烹饪<br/>• 旅游"
+      }
+    },
+    "3": {
+      "title": "职业性格",
+      "question": "以下哪一项定义了您的职业性格？",
+      "a": {
+        "src": "/assets/aptitude/q3a.png",
+        "label": "进取"
+      },
+      "b": {
+        "src": "/assets/aptitude/q3b.png",
+        "label": "调研"
+      },
+      "c": {
+        "src": "/assets/aptitude/q3c.png",
+        "label": "常规"
+      },
+      "d": { "src": "/assets/aptitude/q3d.png", "label": "现实" }
+    }
+  },
+  "support": {
+    "title": "支持",
+    "counselling_service": "咨询服务",
+    "student_council_body": "学生会",
+    "student_accomodation": "学生宿舍",
+    "student_hub": "学生中心",
+    "prayer_room": "祈祷室",
+    "computer_lab": "电脑室",
+    "library": "图书馆",
+    "sports_and_extracurricular_activities": "体育和课外活动",
+    "green_screen_studio": "绿幕工作室",
+    "cafe": "咖啡厅"
+  },
+  "registration": {
+    "title": "注册",
+    "required": "必填。",
+    "invalid_format": "格式无效",
+    "register_success": "注册成功！",
+    "name": "姓名",
+    "phone_no": "电话号码",
+    "btn": "注册",
+    "error": {
+      "server_error_occured": "服务器发生错误。"
+    }
+  },
+  "fees": {
+    "title": "学费/财务援助",
+    "course_fees": "课程费用",
+    "funding_support": "资助支持",
+    "job_opportunities": "就业机会"
+  },
+  "intro": {
+    "title": "课程简介",
+    "recommended": "推荐"
+  },
+  "course": {
+    "title": "课程计划",
+    "base_articulation_image": "/assets/articulation.png",
+    "first": {
+      "type": "基础",
+      "btn": "商业研究基础",
+      "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+    },
+    "second": {
+      "type": "文凭",
+      "btn": "物流管理文凭",
+      "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
+    },
+    "third": {
+      "type": "学位",
+      "btn": "物流管理与电子商务商业学士（荣誉）",
+      "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
+    },
+    "forth": {
+      "type": "学位",
+      "btn": "物流与供应链管理商业学士（荣誉）",
+      "course_id": "(MQA/PA17205)"
+    },
+    "halal": {
+      "btn": "清真物流管理证书"
+    }
+  },
+  "faculty": {
+    "title": "教师团队",
+    "first": {
+      "title": "行业合作伙伴"
+    },
+    "second": {
+      "title": "行业专家讲师"
+    },
+    "third": {
+      "title": "学术团队"
+    }
+  },
+  "events": {
+    "title": "活动",
+    "applied_learning_tips": "实践学习技巧",
+    "student_activities_and_clubs": "学生社团与活动"
+  },
+  "back_nav": "返回",
+  "footer": "创造机会，改变生活。"
 }

@@ -1,7 +1,145 @@
 {
+  "login": {
+    "username": "Nama Pengguna",
+    "password": "Kata Laluan",
+    "button": "Log Masuk",
+    "required": "Diperlukan.",
+    "error": {
+      "invalid_credentials": "Kelayakan Tidak Sah.",
+      "server_error_occured": "Ralat Server Berlaku."
+    }
+  },
   "welcome": {
     "title": "Selamat Datang ke Kolej Universiti Saito",
-    "subtitle": "Pilih bahasa pilihan anda untuk teruskan"
+    "subtitle": "Pilih bahasa pilihan anda untuk meneruskan"
   },
-  "footer": "Mencipta peluang, mengubah hidup."
+  "aptitude": {
+    "title": "Ujian Kebolehan",
+    "results": "Keputusan",
+    "1": {
+      "title": "Penampilan",
+      "question": "Pakaian yang manakah anda paling gemar?",
+      "a": { "src": "/assets/aptitude/q1a.png", "label": "" },
+      "b": { "src": "/assets/aptitude/q1b.png", "label": "" },
+      "c": { "src": "/assets/aptitude/q1c.png", "label": "" },
+      "d": { "src": "/assets/aptitude/q1d.png", "label": "" }
+    },
+
+    "2": {
+      "title": "Bidang Minat",
+      "question": "Bidang minat yang manakah anda paling tertarik?",
+      "a": {
+        "src": "/assets/aptitude/q2a.png",
+        "label": "• Teknologi<br/>• Melancong"
+      },
+      "b": {
+        "src": "/assets/aptitude/q2b.png",
+        "label": "• Reka Bentuk<br/>• Perniagaan"
+      },
+      "c": {
+        "src": "/assets/aptitude/q2c.png",
+        "label": "• Kecergasan<br/>• Pertahanan Diri"
+      },
+      "d": {
+        "src": "/assets/aptitude/q2d.png",
+        "label": "• Kulinari<br/>• Pelancongan"
+      }
+    },
+    "3": {
+      "title": "Personaliti Pekerjaan",
+      "question": "Yang manakah berikut menerangkan personaliti pekerjaan anda?",
+      "a": {
+        "src": "/assets/aptitude/q3a.png",
+        "label": "Berpangkalan Keusahawanan"
+      },
+      "b": {
+        "src": "/assets/aptitude/q3b.png",
+        "label": "Penyiasatan"
+      },
+      "c": {
+        "src": "/assets/aptitude/q3c.png",
+        "label": "Konvensional"
+      },
+      "d": { "src": "/assets/aptitude/q3d.png", "label": "Realistik" }
+    }
+  },
+  "support": {
+    "title": "Sokongan",
+    "counselling_service": "Perkhidmatan Kaunseling",
+    "student_council_body": "Badan Majlis Pelajar",
+    "student_accomodation": "Penginapan Pelajar",
+    "student_hub": "Pusat Pelajar",
+    "prayer_room": "Bilik Solat",
+    "computer_lab": "Makmal Komputer",
+    "library": "Perpustakaan",
+    "sports_and_extracurricular_activities": "Sukan & Aktiviti Kokurikulum",
+    "green_screen_studio": "Studio Layar Hijau",
+    "cafe": "Kafe"
+  },
+  "registration": {
+    "title": "Pendaftaran",
+    "required": "Diperlukan.",
+    "invalid_format": "Format Tidak Sah",
+    "register_success": "Berjaya didaftarkan!",
+    "name": "Nama",
+    "phone_no": "Nombor Telefon",
+    "btn": "Daftar",
+    "error": {
+      "server_error_occured": "Ralat Server Berlaku."
+    }
+  },
+  "fees": {
+    "title": "Struktur Yuran / Bantuan Kewangan",
+    "course_fees": "Yuran Kursus",
+    "funding_support": "Sokongan Kewangan",
+    "job_opportunities": "Peluang Pekerjaan"
+  },
+  "intro": {
+    "title": "Pengenalan",
+    "recommended": "Disyorkan"
+  },
+  "course": {
+    "base_articulation_image": "/assets/articulation.png",
+    "first": {
+      "type": "Asas",
+      "btn": "Asas dalam Pengajian Perniagaan",
+      "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+    },
+    "second": {
+      "type": "Diploma",
+      "btn": "Diploma dalam Pengurusan Logistik",
+      "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
+    },
+    "third": {
+      "type": "Ijazah",
+      "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & E-Perniagaan (Kehormatan)",
+      "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
+    },
+    "forth": {
+      "type": "Ijazah",
+      "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & Rantai Bekalan (Kehormatan)",
+      "course_id": "(MQA/PA17205)"
+    },
+    "halal": {
+      "btn": "Sijil dalam Pengurusan Logistik Halal"
+    }
+  },
+  "faculty": {
+    "first": {
+      "title": "Rakan Industri"
+    },
+    "second": {
+      "title": "Pakar Industri sebagai Pensyarah"
+    },
+    "third": {
+      "title": "Pasukan Akademik"
+    }
+  },
+  "events": {
+    "title": "Acara / Aktiviti",
+    "applied_learning_tips": "Petua Pembelajaran Terapan",
+    "student_activities_and_clubs": "Aktiviti & Kelab Pelajar"
+  },
+  "back_nav": "Kembali",
+  "footer": "mencipta peluang, mengubah hidup."
 }

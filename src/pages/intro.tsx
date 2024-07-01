@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { InnerLayout } from "@/components/InnerLayout";
+import { IntroSlides } from "@/components/IntroSlides";
 import { Layout } from "@/components/Layout";
 import { type ResultState, useResult } from "@/stores/useResult";
 import { useUser } from "@/stores/useUser";
@@ -14,6 +15,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { IoClose } from "react-icons/io5";
 import YouTube from "react-youtube";
 
 const courses: Omit<
@@ -56,11 +58,15 @@ const Intro = () => {
 
   const [hasRecommended, setHasRecommended] = useState(true);
   const [selectedCourseVideo, setSelectedCourseVideo] = useState("");
+  const [variant, setVariant] = useState<string>("");
+  const [selection, setSelection] = useState<string>("");
+  const [slide, setSlide] = useState(1);
 
   useEffect(() => {
     setHasRecommended(
       localStorage.getItem("recommended") === null ? true : false,
     );
+    localStorage.removeItem("saito-school");
     setTimeout(() => localStorage.removeItem("recommended"));
   }, []);
 
@@ -71,7 +77,7 @@ const Intro = () => {
           {/* <h1 className="pb-6 font-montserrat text-[1.75rem] font-bold text-primary">
             {t("title")}
           </h1> */}
-          {selectedCourseVideo ? (
+          {selectedCourseVideo === "logistics_intro" ? (
             <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 lg:ml-0 lg:mt-0">
               {/* <video
                 className="aspect-video"
@@ -85,6 +91,149 @@ const Intro = () => {
               </video> */}
               <YouTube className="aspect-video w-full" videoId="kTpxziymlj0" />
             </div>
+          ) : selectedCourseVideo === "design_intro" && variant === "" ? (
+            <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
+              <button
+                onClick={async () => {
+                  setVariant("design");
+                }}
+                className="group relative flex flex-row items-start gap-3 outline-none"
+              >
+                <img
+                  src={"/assets/intro/k2/design.png"}
+                  alt="Design"
+                  className="h-[200px] w-[200px] rounded-full border-primary object-cover group-hover:border-2"
+                />
+                {/* <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    Design
+                  </div> */}
+                <div
+                  className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
+                >
+                  Design
+                </div>
+                {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+              </button>
+              <button
+                onClick={async () => {
+                  setVariant("business");
+                }}
+                className="group relative flex flex-row items-start gap-3 outline-none"
+              >
+                <img
+                  src={"/assets/intro/k2/business.png"}
+                  alt="Business"
+                  className="h-[200px] w-[200px] rounded-full border-primary object-cover group-hover:border-2"
+                />
+                {/* <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    Design
+                  </div> */}
+                <div
+                  className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
+                >
+                  Business
+                </div>
+                {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+              </button>
+              <button
+                onClick={async () => {
+                  setVariant("hr");
+                }}
+                className="group relative flex flex-row items-start gap-3 outline-none"
+              >
+                <img
+                  src={"/assets/intro/k2/hr.png"}
+                  alt="HR"
+                  className="h-[200px] w-[200px] rounded-full border-primary object-cover group-hover:border-2"
+                />
+                {/* <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    Design
+                  </div> */}
+                <div
+                  className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
+                >
+                  Human Resource
+                </div>
+                {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+              </button>
+            </div>
+          ) : selectedCourseVideo === "design_intro" &&
+            variant !== "" &&
+            selection === "" ? (
+            <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
+              <button
+                onClick={async () => {
+                  setSelection("video");
+                }}
+                className="group relative flex flex-row items-start gap-3 outline-none"
+              >
+                <img
+                  src={"/assets/intro/k2/video.png"}
+                  alt="HR"
+                  className="h-[200px] w-[200px] rounded-full border-primary object-cover group-hover:border-2"
+                />
+                {/* <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    Design
+                  </div> */}
+                <div
+                  className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
+                >
+                  Video
+                </div>
+                {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+              </button>
+              <button
+                onClick={async () => {
+                  setSelection("prospectus");
+                }}
+                className="group relative flex flex-row items-start gap-3 outline-none"
+              >
+                <img
+                  src={"/assets/intro/k2/prospectus.png"}
+                  alt="HR"
+                  className="h-[200px] w-[200px] rounded-full border-primary object-cover group-hover:border-2"
+                />
+                {/* <div className="absolute left-0 top-0 flex min-h-[27px] min-w-[27px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-black font-montserrat font-bold text-white">
+                    Design
+                  </div> */}
+                <div
+                  className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
+                >
+                  Prospectus
+                </div>
+                {/* <p className="text-left font-montserrat text-base">
+                    {t(q[2])}
+                  </p> */}
+              </button>
+            </div>
+          ) : selectedCourseVideo === "design_intro" &&
+            variant === "design" &&
+            selection === "video" ? (
+            <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
+              Nothing Yet
+            </div>
+          ) : selectedCourseVideo === "design_intro" &&
+            variant === "design" &&
+            selection === "prospectus" ? (
+            <IntroSlides
+              max={variant === "design" && selection === "prospectus" ? 26 : 1}
+              onClose={() => {
+                setSelection("");
+                setSlide(1);
+              }}
+              selection={selection}
+              setSlide={setSlide}
+              slide={slide}
+              variant={variant}
+            />
           ) : (
             <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:ml-0 lg:max-w-[900px]">
               {courses.map((c, i) => (
@@ -144,6 +293,7 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
       onClick={() => {
         setSelectedCourse(String(selector));
         setSelectedCourseVideo(video);
+        localStorage.setItem("saito-school", String(selector));
       }}
     >
       <div className="relative h-[20px] w-full bg-gray-300">

@@ -4,12 +4,16 @@ import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Technical = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [level, setLevel] = useState("foundation");
   const t = useTranslations();
+  const [school, setSchool] = useState("");
+  // console.log(school);
+
+  useEffect(() => setSchool(String(localStorage.getItem("saito-school"))), []);
 
   return (
     <Layout>
@@ -17,7 +21,7 @@ const Technical = () => {
         <div
           className={`-mt-5 flex w-full flex-col items-center justify-center`}
         >
-          {!selectedCourse ? (
+          {!selectedCourse && school === "logistics" ? (
             <div className="relative overflow-auto">
               <button
                 onClick={() => {
@@ -52,7 +56,7 @@ const Technical = () => {
                   setSelectedCourse(true);
                   setLevel("ba_a");
                 }}
-                className="2lg:top-[32.5%] absolute top-[31.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
+                className="2lg:top-[32.5%] absolute top-[31.5%] flex h-[12%] w-[36.5%] flex-col bg-primary px-3 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
                   {t("course.third.btn")}
@@ -66,7 +70,7 @@ const Technical = () => {
                   setSelectedCourse(true);
                   setLevel("ba_b");
                 }}
-                className="2lg:top-[32.5%] absolute right-[23.5%] top-[31.5%] flex w-[36.5%] flex-col bg-primary px-2 py-2.5"
+                className="2lg:top-[32.5%] absolute right-[23.5%] top-[31.5%] flex h-[12%] w-[36.5%] flex-col bg-primary px-2 py-2.5"
               >
                 <p className="2lg:text-[2.3] text-left font-montserrat text-xs font-semibold text-white">
                   {t("course.forth.btn")}
@@ -80,9 +84,9 @@ const Technical = () => {
                   setSelectedCourse(true);
                   setLevel("halal");
                 }}
-                className="2lg:top-[32.5%] absolute right-[0%] top-[32%] flex w-[19.5%] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
+                className="2lg:top-[32.5%] absolute right-[0%] top-[32%] flex h-[12%] w-[19.5%] flex-col justify-center overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
               >
-                <p className="2lg:text-[2.3] z-20 text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
+                <p className="2lg:text-[2.3] z-20 w-full text-center font-montserrat text-xs font-semibold leading-[12.5px] text-white">
                   {t("course.halal.btn")}
                 </p>
                 <img
@@ -93,6 +97,14 @@ const Technical = () => {
               </button>
               <img
                 src={t("course.base_articulation_image")}
+                alt="Courses"
+                className="2lg:max-h-[600px] max-h-[530px] object-scale-down"
+              />
+            </div>
+          ) : !selectedCourse && school === "design" ? (
+            <div className="relative overflow-auto">
+              <img
+                src="/assets/course/design/articulation.png"
                 alt="Courses"
                 className="2lg:max-h-[600px] max-h-[530px] object-scale-down"
               />
