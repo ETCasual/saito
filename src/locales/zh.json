@@ -99,29 +99,31 @@
   },
   "course": {
     "title": "课程计划",
-    "base_articulation_image": "/assets/articulation.png",
-    "first": {
-      "type": "基础",
-      "btn": "商业研究基础",
-      "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
-    },
-    "second": {
-      "type": "文凭",
-      "btn": "物流管理文凭",
-      "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
-    },
-    "third": {
-      "type": "学位",
-      "btn": "物流管理与电子商务商业学士（荣誉）",
-      "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
-    },
-    "forth": {
-      "type": "学位",
-      "btn": "物流与供应链管理商业学士（荣誉）",
-      "course_id": "(MQA/PA17205)"
-    },
-    "halal": {
-      "btn": "清真物流管理证书"
+    "logistics": {
+      "base_articulation_image": "/assets/articulation.png",
+      "first": {
+        "type": "基础",
+        "btn": "商业研究基础",
+        "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+      },
+      "second": {
+        "type": "文凭",
+        "btn": "物流管理文凭",
+        "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
+      },
+      "third": {
+        "type": "学位",
+        "btn": "物流管理与电子商务商业学士（荣誉）",
+        "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
+      },
+      "forth": {
+        "type": "学位",
+        "btn": "物流与供应链管理商业学士（荣誉）",
+        "course_id": "(MQA/PA17205)"
+      },
+      "halal": {
+        "btn": "清真物流管理证书"
+      }
     }
   },
   "faculty": {

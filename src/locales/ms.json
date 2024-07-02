@@ -99,29 +99,31 @@
     "recommended": "Disyorkan"
   },
   "course": {
-    "base_articulation_image": "/assets/articulation.png",
-    "first": {
-      "type": "Asas",
-      "btn": "Asas dalam Pengajian Perniagaan",
-      "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
-    },
-    "second": {
-      "type": "Diploma",
-      "btn": "Diploma dalam Pengurusan Logistik",
-      "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
-    },
-    "third": {
-      "type": "Ijazah",
-      "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & E-Perniagaan (Kehormatan)",
-      "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
-    },
-    "forth": {
-      "type": "Ijazah",
-      "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & Rantai Bekalan (Kehormatan)",
-      "course_id": "(MQA/PA17205)"
-    },
-    "halal": {
-      "btn": "Sijil dalam Pengurusan Logistik Halal"
+    "logistics": {
+      "base_articulation_image": "/assets/articulation.png",
+      "first": {
+        "type": "Asas",
+        "btn": "Asas dalam Pengajian Perniagaan",
+        "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+      },
+      "second": {
+        "type": "Diploma",
+        "btn": "Diploma dalam Pengurusan Logistik",
+        "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
+      },
+      "third": {
+        "type": "Ijazah",
+        "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & E-Perniagaan (Kehormatan)",
+        "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
+      },
+      "forth": {
+        "type": "Ijazah",
+        "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & Rantai Bekalan (Kehormatan)",
+        "course_id": "(MQA/PA17205)"
+      },
+      "halal": {
+        "btn": "Sijil dalam Pengurusan Logistik Halal"
+      }
     }
   },
   "faculty": {

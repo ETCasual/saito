@@ -44,10 +44,10 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
     <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
       {(router.pathname.includes("intro") ||
         router.pathname.includes("course")) &&
-        selectedCourse === "logistics" && (
+        selectedCourse && (
           <img
             className="fixed -bottom-10 -right-32 w-[550px] object-contain opacity-75 mix-blend-darken lg:-right-20"
-            src="/assets/intro_bg.png"
+            src={`/assets/${selectedCourse}_bg.png`}
             alt="prime_bg"
           />
         )}
@@ -56,14 +56,15 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
           <img
             src="/assets/logo.png"
             alt="Logo"
-            className="object-conltain h-[40px]"
+            className="h-[40px] cursor-pointer object-contain"
+            onClick={() => router.push("/")}
           />
           {(router.pathname.includes("intro") ||
             router.pathname.includes("course")) &&
-            selectedCourse === "logistics" && (
+            selectedCourse && (
               <img
-                src="/assets/the_prime_logo.png"
-                alt="Prime_Logo"
+                src={`/assets/${selectedCourse}_logo.png`}
+                alt={`${selectedCourse} logo`}
                 className="h-[40px] object-contain"
               />
             )}
