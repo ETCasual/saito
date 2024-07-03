@@ -2,8 +2,8 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { IntroSlides } from "@/components/IntroSlides";
 import { Layout } from "@/components/Layout";
-import { type ResultState, useResult } from "@/stores/useResult";
-import { useUser } from "@/stores/useUser";
+import { useResult } from "@/stores/useResult";
+import { type Courses, useUser } from "@/stores/useUser";
 import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
@@ -15,7 +15,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { IoClose } from "react-icons/io5";
 import YouTube from "react-youtube";
 
 const courses: Omit<
@@ -61,12 +60,13 @@ const Intro = () => {
   const [variant, setVariant] = useState<string>("");
   const [selection, setSelection] = useState<string>("");
   const [slide, setSlide] = useState(1);
+  const t = useTranslations();
 
   useEffect(() => {
     setHasRecommended(
       localStorage.getItem("recommended") === null ? true : false,
     );
-    localStorage.removeItem("saito-school");
+    localStorage.removeItem("preferred-variant");
     setTimeout(() => localStorage.removeItem("recommended"));
   }, []);
 
@@ -96,6 +96,7 @@ const Intro = () => {
               <button
                 onClick={async () => {
                   setVariant("design");
+                  localStorage.setItem("preferred-variant", "design_design");
                 }}
                 className="group relative flex flex-row items-start gap-3 outline-none"
               >
@@ -110,7 +111,7 @@ const Intro = () => {
                 <div
                   className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
                 >
-                  Design
+                  {t("intro.design")}
                 </div>
                 {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -119,6 +120,7 @@ const Intro = () => {
               <button
                 onClick={async () => {
                   setVariant("business");
+                  localStorage.setItem("preferred-variant", "design_business");
                 }}
                 className="group relative flex flex-row items-start gap-3 outline-none"
               >
@@ -133,7 +135,7 @@ const Intro = () => {
                 <div
                   className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
                 >
-                  Business
+                  {t("intro.business")}
                 </div>
                 {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -142,6 +144,7 @@ const Intro = () => {
               <button
                 onClick={async () => {
                   setVariant("hr");
+                  localStorage.setItem("preferred-variant", "design_hr");
                 }}
                 className="group relative flex flex-row items-start gap-3 outline-none"
               >
@@ -156,7 +159,7 @@ const Intro = () => {
                 <div
                   className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
                 >
-                  Human Resource
+                  {t("intro.hr")}
                 </div>
                 {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -184,7 +187,7 @@ const Intro = () => {
                 <div
                   className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
                 >
-                  Video
+                  {t("intro.video")}
                 </div>
                 {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -207,7 +210,7 @@ const Intro = () => {
                 <div
                   className={`absolute bottom-0 w-full translate-y-[150%] text-center font-montserrat font-bold capitalize`}
                 >
-                  Prospectus
+                  {t("intro.prospectus")}
                 </div>
                 {/* <p className="text-left font-montserrat text-base">
                     {t(q[2])}
@@ -263,7 +266,7 @@ interface CourseSelectionProps {
   image: string;
   label: string;
   hasRecommended: boolean;
-  selector?: keyof ResultState;
+  selector: Courses;
 }
 
 const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
@@ -291,9 +294,8 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
     <div
       className="relative flex h-full w-full cursor-pointer flex-col gap-2"
       onClick={() => {
-        setSelectedCourse(String(selector));
+        setSelectedCourse(selector);
         setSelectedCourseVideo(video);
-        localStorage.setItem("saito-school", String(selector));
       }}
     >
       <div className="relative h-[20px] w-full bg-gray-300">

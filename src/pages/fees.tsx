@@ -2,6 +2,7 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
 import { type FunctionComponent, useState } from "react";
@@ -9,6 +10,9 @@ import { type FunctionComponent, useState } from "react";
 const Fees = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
+  const [variant, setVariant] = useState("");
+  const { selectedCourse } = useUser();
+
   const t = useTranslations();
 
   return (
@@ -170,6 +174,7 @@ const Fees = () => {
                     },
                   ].map((s, i) => (
                     <CourseLevel
+                      school={selectedCourse!}
                       onClick={() =>
                         setLevel(
                           s.title === "Degree" ? "ba_a" : s.title.toLowerCase(),

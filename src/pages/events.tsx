@@ -3,15 +3,23 @@
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
 import { type Event, events } from "@/data/questions";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Events = () => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedType, setSelectedType] = useState<Event["type"] | null>(null);
+  const [variant, setVariant] = useState("");
   //   const [level, setLevel] = useState("foundation");
+  const { selectedCourse } = useUser();
   const t = useTranslations();
+
+  useEffect(
+    () => setVariant(String(localStorage.getItem("preferred-variant"))),
+    [],
+  );
 
   return (
     <Layout>
@@ -107,44 +115,62 @@ const Events = () => {
           <div className={`flex flex-col items-center justify-center`}>
             <h1 className="text-center font-montserrat text-[1.75rem] font-bold text-primary">
               {selectedCategory !== null
-                ? events.filter((e) => e.type === selectedType)[
-                    selectedCategory
-                  ]?.title
+                ? events[selectedCourse!].filter((e) =>
+                    selectedCourse === "design"
+                      ? e.type === selectedType && e.variant === variant
+                      : e.type === selectedType,
+                  )[selectedCategory]?.title
                 : t("events.title")}
             </h1>
             {selectedCategory !== null &&
-            events.filter((e) => e.type === selectedType)[selectedCategory]
-              ?.sub ? (
+            events[selectedCourse!].filter((e) =>
+              selectedCourse === "design"
+                ? e.type === selectedType && e.variant === variant
+                : e.type === selectedType,
+            )[selectedCategory]?.sub ? (
               <p className="w-full text-center font-montserrat text-sm text-primary">
                 {
-                  events.filter((e) => e.type === selectedType)[
-                    selectedCategory
-                  ]?.sub
+                  events[selectedCourse!].filter(
+                    (e) => e.type === selectedType,
+                  )[selectedCategory]?.sub
                 }
               </p>
             ) : selectedCategory !== null &&
-              events.filter((e) => e.type === selectedType)[selectedCategory]
-                ?.date ? (
+              events[selectedCourse!].filter((e) =>
+                selectedCourse === "design"
+                  ? e.type === selectedType && e.variant === variant
+                  : e.type === selectedType,
+              )[selectedCategory]?.date ? (
               <p className="w-full text-center font-montserrat text-sm text-primary">
                 {
-                  events.filter((e) => e.type === selectedType)[
-                    selectedCategory
-                  ]?.date
+                  events[selectedCourse!].filter((e) =>
+                    selectedCourse === "design"
+                      ? e.type === selectedType && e.variant === variant
+                      : e.type === selectedType,
+                  )[selectedCategory]?.date
                 }
               </p>
             ) : (
               <div className="min-h-[20px]" />
             )}
             {selectedCategory !== null &&
-            events.filter((e) => e.type === selectedType)[selectedCategory]
-              ?.sub &&
-            events.filter((e) => e.type === selectedType)[selectedCategory]
-              ?.date ? (
+            events[selectedCourse!].filter((e) =>
+              selectedCourse === "design"
+                ? e.type === selectedType && e.variant === variant
+                : e.type === selectedType,
+            )[selectedCategory]?.sub &&
+            events[selectedCourse!].filter((e) =>
+              selectedCourse === "design"
+                ? e.type === selectedType && e.variant === variant
+                : e.type === selectedType,
+            )[selectedCategory]?.date ? (
               <p className="w-full text-center font-montserrat text-sm text-primary">
                 {
-                  events.filter((e) => e.type === selectedType)[
-                    selectedCategory
-                  ]?.date
+                  events[selectedCourse!].filter((e) =>
+                    selectedCourse === "design"
+                      ? e.type === selectedType && e.variant === variant
+                      : e.type === selectedType,
+                  )[selectedCategory]?.date
                 }
               </p>
             ) : (
@@ -153,70 +179,99 @@ const Events = () => {
             {
               selectedCategory === null ? (
                 <div className="flex max-w-[1200px] flex-row gap-4">
-                  <div className="group flex w-full flex-col items-center">
-                    <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
-                      {t("events.applied_learning_tips")}
-                    </p>
+                  {selectedCourse === "logistics" ? (
+                    <>
+                      <div className="group flex w-full flex-col items-center">
+                        <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
+                          {t("events.applied_learning_tips")}
+                        </p>
+                        <div
+                          onClick={() => {
+                            setSelectedType("event");
+                            setSelectedCategory(0);
+                          }}
+                          className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]"
+                        >
+                          <img
+                            src="/assets/events/logistics/events.jpg"
+                            alt="events_btn"
+                            className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
+                          />
+                          <img
+                            src="/assets/events/logistics/events_hovered.jpg"
+                            alt="events_btn"
+                            className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        onClick={() => {
+                          setSelectedType("activity");
+                          setSelectedCategory(0);
+                        }}
+                        className="group flex w-full flex-col items-center"
+                      >
+                        <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
+                          {t("events.student_activities_and_clubs")}
+                        </p>
+                        <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]">
+                          <img
+                            src="/assets/events/logistics/activities.jpg"
+                            alt="activities_btn"
+                            className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
+                          />
+                          <img
+                            src="/assets/events/logistics/activities_hovered.jpg"
+                            alt="activities_btn"
+                            className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  ) : selectedCourse === "design" ? (
                     <div
                       onClick={() => {
                         setSelectedType("event");
                         setSelectedCategory(0);
                       }}
-                      className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]"
+                      className="group flex w-full flex-col items-center"
                     >
-                      <img
-                        src="/assets/events/events.jpg"
-                        alt="events_btn"
-                        className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
-                      />
-                      <img
-                        src="/assets/events/events_hovered.jpg"
-                        alt="events_btn"
-                        className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
-                      />
-                      {/* {events
-                        .filter((a) => a.type === "event")
-                        .map((e, i) => (
-                          <EventsCategory
-                            onClick={() => {
-                              setSelectedType(e.type);
-                              setSelectedCategory(i);
-                            }}
-                            key={i}
-                            img={`/assets/events/${e.contentImg}.jpg`}
-                          />
-                        ))} */}
+                      <div className="relative grid h-[320px] w-[45vw] cursor-pointer pt-3 lg:h-[400px] lg:w-[70vw]">
+                        <img
+                          src="/assets/events/design/events.jpg"
+                          alt="activities_btn"
+                          className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
+                        />
+                        <img
+                          src="/assets/events/design/events_hovered.jpg"
+                          alt="activities_btn"
+                          className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    onClick={() => {
-                      setSelectedType("activity");
-                      setSelectedCategory(0);
-                    }}
-                    className="group flex w-full flex-col items-center"
-                  >
-                    <p className="font-montserrat text-[1rem] font-bold group-hover:text-primary">
-                      {t("events.student_activities_and_clubs")}
-                    </p>
-                    <div className="relative grid h-[220px] w-[35vw] cursor-pointer pt-3 lg:h-[300px] lg:w-[30vw]">
-                      <img
-                        src="/assets/events/activities.jpg"
-                        alt="activities_btn"
-                        className="visible absolute left-0 top-0 h-full w-full object-cover group-hover:invisible"
-                      />
-                      <img
-                        src="/assets/events/activities_hovered.jpg"
-                        alt="activities_btn"
-                        className="invisible absolute left-0 top-0 h-full w-full object-cover group-hover:visible"
-                      />
-                    </div>
-                  </div>
+                  ) : null}
                 </div>
               ) : (
                 <div className="flex h-full min-h-[55vh] flex-grow flex-col items-start justify-center gap-5 lg:max-h-[55vh] lg:justify-around lg:pl-0">
                   <div className="flex max-h-[390px] min-h-[390px] w-[725px] flex-col lg:mt-5 lg:w-[860px]">
                     <img
-                      src={`/assets/events/${events.filter((a) => a.type === selectedType)[selectedCategory]?.contentImg}.jpg`}
+                      src={`/assets/events/${selectedCourse}/${
+                        events[selectedCourse!].filter((e) =>
+                          selectedCourse === "design"
+                            ? e.type === selectedType && e.variant === variant
+                            : e.type === selectedType,
+                        )[selectedCategory]?.contentImg
+                      }${
+                        events[selectedCourse!]
+                          .filter((e) =>
+                            selectedCourse === "design"
+                              ? e.type === selectedType && e.variant === variant
+                              : e.type === selectedType,
+                          )
+                          [selectedCategory]?.contentImg.endsWith("png")
+                          ? ""
+                          : ".jpg"
+                      }`}
                       className="overflow-hidden object-cover"
                       alt=""
                     />
@@ -243,7 +298,16 @@ const Events = () => {
                       </svg>
                     </button>
                     <button
-                      disabled={selectedCategory === 8}
+                      disabled={
+                        (selectedCourse === "logistics" &&
+                          selectedCategory === 8) ||
+                        (selectedCourse === "design" &&
+                          variant === "design_business" &&
+                          selectedCategory === 6) ||
+                        (selectedCourse === "design" &&
+                          variant === "design_design" &&
+                          selectedCategory === 15)
+                      }
                       onClick={() =>
                         setSelectedCategory((prev) =>
                           prev !== null ? prev + 1 : null,

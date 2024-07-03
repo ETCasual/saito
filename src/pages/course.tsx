@@ -2,31 +2,29 @@
 import { CourseLevel } from "@/components/CourseLevel";
 import { InnerLayout } from "@/components/InnerLayout";
 import { Layout } from "@/components/Layout";
+import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Technical = () => {
-  const [selectedCourse, setSelectedCourse] = useState(false);
+  const { selectedCourse } = useUser();
+  const [hasSelectedCourse, setHasSelectedCourse] = useState(false);
   const [level, setLevel] = useState("foundation");
   const t = useTranslations();
-  const [school, setSchool] = useState("");
   const [variant, setVariant] = useState("");
-  // console.log(school);
-
-  useEffect(() => setSchool(String(localStorage.getItem("saito-school"))), []);
 
   return (
     <Layout>
-      <InnerLayout sidelinkDisable={!!selectedCourse}>
+      <InnerLayout sidelinkDisable={!!hasSelectedCourse}>
         <div
           className={`-mt-5 flex w-full flex-col items-center justify-center`}
         >
-          {!selectedCourse && school === "logistics" ? (
+          {!hasSelectedCourse && selectedCourse === "logistics" ? (
             <div className="relative overflow-auto">
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("foundation");
                 }}
                 className="absolute top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
@@ -40,7 +38,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("diploma");
                 }}
                 className="absolute right-[23.5%] top-[14.5%] flex w-[36.5%] flex-col bg-primary px-3 py-2.5"
@@ -54,7 +52,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("ba_a");
                 }}
                 className="2lg:top-[32.5%] absolute top-[31.5%] flex h-[12%] w-[36.5%] flex-col bg-primary px-3 py-2.5"
@@ -68,7 +66,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("ba_b");
                 }}
                 className="2lg:top-[32.5%] absolute right-[23.5%] top-[31.5%] flex h-[12%] w-[36.5%] flex-col bg-primary px-2 py-2.5"
@@ -82,7 +80,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("halal");
                 }}
                 className="2lg:top-[32.5%] absolute right-[0%] top-[32%] flex h-[12%] w-[19.5%] flex-col justify-center overflow-hidden rounded-lg bg-[#009245] px-4 py-3"
@@ -102,11 +100,11 @@ const Technical = () => {
                 className="2lg:max-h-[600px] max-h-[530px] object-scale-down"
               />
             </div>
-          ) : !selectedCourse && school === "design" ? (
+          ) : !hasSelectedCourse && selectedCourse === "design" ? (
             <div className="relative overflow-auto">
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("f_business");
                   setVariant("business");
                 }}
@@ -121,7 +119,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("f_design");
                   setVariant("design");
                 }}
@@ -136,7 +134,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("dip_business");
                   setVariant("business");
                 }}
@@ -151,7 +149,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("dip_multimedia");
                   setVariant("design");
                 }}
@@ -166,7 +164,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("dip_graphic");
                   setVariant("design");
                 }}
@@ -181,7 +179,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("dip_interior");
                   setVariant("design");
                 }}
@@ -196,7 +194,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("dip_hr");
                   setVariant("hr");
                 }}
@@ -211,7 +209,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("degree_business_management");
                   setVariant("business");
                 }}
@@ -226,7 +224,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("degree_business_digital");
                   setVariant("business");
                 }}
@@ -241,7 +239,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("degree_graphic");
                   setVariant("design");
                 }}
@@ -256,7 +254,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("degree_digital_media");
                   setVariant("design");
                 }}
@@ -271,7 +269,7 @@ const Technical = () => {
               </button>
               <button
                 onClick={() => {
-                  setSelectedCourse(true);
+                  setHasSelectedCourse(true);
                   setLevel("degree_hr");
                   setVariant("hr");
                 }}
@@ -290,7 +288,7 @@ const Technical = () => {
                 className="2lg:max-h-[600px] max-h-[530px] object-scale-down"
               />
             </div>
-          ) : selectedCourse && school === "design" ? (
+          ) : hasSelectedCourse && selectedCourse === "design" ? (
             <div className="relative flex h-full flex-row justify-between gap-5 self-start lg:w-full lg:flex-row lg:gap-20">
               <div className="flex min-h-[70vh] flex-grow flex-col justify-between">
                 <div className="flex h-full flex-grow flex-col gap-3">
@@ -333,45 +331,45 @@ const Technical = () => {
                   {variant === "design" &&
                     [
                       {
-                        title: t(`course.${school}.second.type`),
+                        title: t(`course.${selectedCourse}.second.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.second.btn`),
+                            txt: t(`course.${selectedCourse}.second.btn`),
                             label: "",
                             onclick: () => setLevel("f_design"),
                           },
                         ],
                       },
                       {
-                        title: t(`course.${school}.forth.type`),
+                        title: t(`course.${selectedCourse}.forth.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.forth.btn`),
+                            txt: t(`course.${selectedCourse}.forth.btn`),
                             label: "dip_multimedia",
                             onClick: () => setLevel("dip_multimedia"),
                           },
                           {
-                            txt: t(`course.${school}.fifth.btn`),
+                            txt: t(`course.${selectedCourse}.fifth.btn`),
                             label: "dip_graphic",
                             onClick: () => setLevel("dip_graphic"),
                           },
                           {
-                            txt: t(`course.${school}.sixth.btn`),
+                            txt: t(`course.${selectedCourse}.sixth.btn`),
                             label: "dip_interior",
                             onClick: () => setLevel("dip_interior"),
                           },
                         ],
                       },
                       {
-                        title: t(`course.${school}.tenth.type`),
+                        title: t(`course.${selectedCourse}.tenth.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.tenth.btn`),
+                            txt: t(`course.${selectedCourse}.tenth.btn`),
                             label: "degree_graphic",
                             onClick: () => setLevel("degree_graphic"),
                           },
                           {
-                            txt: t(`course.${school}.tenth.btn`),
+                            txt: t(`course.${selectedCourse}.tenth.btn`),
                             onClick: () => setLevel("degree_digital_media"),
                             label: "degree_digital_media",
                           },
@@ -392,7 +390,7 @@ const Technical = () => {
                         }
                         title={s.title}
                         items={s.sub}
-                        school={school}
+                        school={selectedCourse}
                         variant={variant}
                         level={level}
                         active={
@@ -409,32 +407,35 @@ const Technical = () => {
                   {variant === "business" &&
                     [
                       {
-                        title: t(`course.${school}.first.type`),
+                        title: t(`course.${selectedCourse}.first.type`),
                         sub: [
-                          { txt: t(`course.${school}.first.btn`), label: "" },
+                          {
+                            txt: t(`course.${selectedCourse}.first.btn`),
+                            label: "",
+                          },
                         ],
                       },
                       {
-                        title: t(`course.${school}.third.type`),
+                        title: t(`course.${selectedCourse}.third.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.third.btn`),
+                            txt: t(`course.${selectedCourse}.third.btn`),
                             label: "dip_business",
                             onclick: () => setLevel("dip_business"),
                           },
                         ],
                       },
                       {
-                        title: t(`course.${school}.eighth.type`),
+                        title: t(`course.${selectedCourse}.eighth.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.eighth.btn`),
+                            txt: t(`course.${selectedCourse}.eighth.btn`),
                             label: "degree_business_management",
                             onClick: () =>
                               setLevel("degree_business_management"),
                           },
                           {
-                            txt: t(`course.${school}.ninth.btn`),
+                            txt: t(`course.${selectedCourse}.ninth.btn`),
                             onClick: () => setLevel("degree_business_digital"),
                             label: "degree_business_digital",
                           },
@@ -455,7 +456,7 @@ const Technical = () => {
                         }
                         title={s.title}
                         items={s.sub}
-                        school={school}
+                        school={selectedCourse}
                         variant={variant}
                         level={level}
                         active={
@@ -472,20 +473,20 @@ const Technical = () => {
                   {variant === "hr" &&
                     [
                       {
-                        title: t(`course.${school}.seventh.type`),
+                        title: t(`course.${selectedCourse}.seventh.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.seventh.btn`),
+                            txt: t(`course.${selectedCourse}.seventh.btn`),
                             label: "dip_hr",
                             onclick: () => setLevel("dip_hr"),
                           },
                         ],
                       },
                       {
-                        title: t(`course.${school}.twelfth.type`),
+                        title: t(`course.${selectedCourse}.twelfth.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.twelfth.btn`),
+                            txt: t(`course.${selectedCourse}.twelfth.btn`),
                             label: "degree_hr",
                             onclick: () => setLevel("degree_hr"),
                           },
@@ -504,7 +505,7 @@ const Technical = () => {
                         }
                         title={s.title}
                         items={s.sub}
-                        school={school}
+                        school={selectedCourse}
                         variant={variant}
                         level={level}
                         active={
@@ -521,7 +522,7 @@ const Technical = () => {
                   className="cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
                   onClick={() => {
                     setLevel("foundation");
-                    setSelectedCourse(false);
+                    setHasSelectedCourse(false);
                     setVariant("");
                   }}
                 >
@@ -537,37 +538,40 @@ const Technical = () => {
               </div>
             </div>
           ) : (
-            selectedCourse &&
-            school === "logistics" && (
+            hasSelectedCourse &&
+            selectedCourse === "logistics" && (
               <div className="relative flex h-full flex-row justify-between gap-5 self-start lg:w-full lg:flex-row lg:gap-20">
                 <div className="flex min-h-[70vh] flex-grow flex-col justify-between">
                   <div className="flex h-full flex-grow flex-col gap-3">
                     {[
                       {
-                        title: t(`course.${school}.first.type`),
-                        sub: [
-                          { txt: t(`course.${school}.first.btn`), label: "" },
-                        ],
-                      },
-                      {
-                        title: t(`course.${school}.second.type`),
+                        title: t(`course.${selectedCourse}.first.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.second.btn`),
+                            txt: t(`course.${selectedCourse}.first.btn`),
                             label: "",
                           },
                         ],
                       },
                       {
-                        title: t(`course.${school}.third.type`),
+                        title: t(`course.${selectedCourse}.second.type`),
                         sub: [
                           {
-                            txt: t(`course.${school}.third.btn`),
+                            txt: t(`course.${selectedCourse}.second.btn`),
+                            label: "",
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.third.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.third.btn`),
                             label: "ba_a",
                             onClick: () => setLevel("ba_a"),
                           },
                           {
-                            txt: t(`course.${school}.forth.btn`),
+                            txt: t(`course.${selectedCourse}.forth.btn`),
                             onClick: () => setLevel("ba_b"),
                             label: "ba_b",
                           },
@@ -584,7 +588,7 @@ const Technical = () => {
                         }
                         title={s.title}
                         items={s.sub}
-                        school={school}
+                        school={selectedCourse}
                         level={level}
                         active={
                           (level.startsWith("ba") && s.title === "Degree") ||
@@ -598,7 +602,7 @@ const Technical = () => {
                     className="cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
                     onClick={() => {
                       setLevel("foundation");
-                      setSelectedCourse(false);
+                      setHasSelectedCourse(false);
                       setVariant("");
                     }}
                   >
@@ -616,7 +620,7 @@ const Technical = () => {
                     level !== "halal" && (
                       <button
                         onClick={() => {
-                          setSelectedCourse(true);
+                          setHasSelectedCourse(true);
                           setLevel("halal");
                         }}
                         className="relative mt-2.5 flex w-[140px] max-w-[140px] flex-col overflow-hidden rounded-lg bg-[#009245] px-4 py-3"

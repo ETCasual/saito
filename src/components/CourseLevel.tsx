@@ -1,3 +1,4 @@
+import { type Courses } from "@/stores/useUser";
 import { type FunctionComponent } from "react";
 
 interface CourseLevelProps {
@@ -7,7 +8,7 @@ interface CourseLevelProps {
   level?: string;
   items: { txt: string; label?: string; onClick?: () => void }[];
   variant?: string;
-  school: string;
+  school?: Courses;
 }
 
 export const CourseLevel: FunctionComponent<CourseLevelProps> = ({
@@ -38,7 +39,7 @@ export const CourseLevel: FunctionComponent<CourseLevelProps> = ({
             <p
               onClick={item.onClick}
               key={i}
-              className={`${level && level.toLowerCase() === item.label ? "text-primary" : active && title !== "Degree" ? "text-primary" : "text-black"} -full text-left`}
+              className={`${level && level.toLowerCase() === item.label ? "text-primary" : active && title !== "Degree" ? "text-primary" : "text-black"} w-full text-left`}
             >
               {item.txt}
             </p>

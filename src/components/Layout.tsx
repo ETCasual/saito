@@ -42,8 +42,8 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
 
   return (
     <main className="flex min-h-screen flex-col bg-[#f3f3f3]">
-      {(router.pathname.includes("intro") ||
-        router.pathname.includes("course")) &&
+      {!router.pathname.includes("aptitude") &&
+        !router.pathname.includes("home") &&
         selectedCourse && (
           <img
             className="fixed -bottom-10 -right-32 w-[550px] object-contain opacity-75 mix-blend-darken lg:-right-20"
@@ -59,8 +59,8 @@ export const Layout = ({ children }: { children?: ReactNode }) => {
             className="h-[40px] cursor-pointer object-contain"
             onClick={() => router.push("/")}
           />
-          {(router.pathname.includes("intro") ||
-            router.pathname.includes("course")) &&
+          {!router.pathname.includes("aptitude") &&
+            !router.pathname.includes("home") &&
             selectedCourse && (
               <img
                 src={`/assets/${selectedCourse}_logo.png`}

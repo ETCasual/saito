@@ -96,7 +96,12 @@
   },
   "intro": {
     "title": "Introduction",
-    "recommended": "Recommended"
+    "recommended": "Recommended",
+    "video": "Video",
+    "prospectus": "Prospectus",
+    "design": "Design",
+    "business": "Business",
+    "hr": "Human Resource"
   },
   "course": {
     "base_articulation_image": "/assets/articulation.png",

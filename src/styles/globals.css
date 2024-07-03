@@ -11,9 +11,14 @@
 .splide__arrows {
   width: 100% !important;
   position: absolute;
-  bottom: 0px !important;
+  bottom: -20px !important;
   transform: translateY(200%);
 }
+
+.splide__pagination {
+  bottom: -28px !important;
+}
+
 .splide__arrow--next {
   right: 1em !important;
 }

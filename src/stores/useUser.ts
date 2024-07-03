@@ -2,6 +2,13 @@ import { type NextRouter } from "next/router";
 import { create, type StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
 
+export type Courses =
+  | "logistics"
+  | "design"
+  | "enforcement"
+  | "culinary"
+  | "graduate";
+
 type UserState = {
   name: string | null;
   clear: () => Promise<void>;
@@ -14,15 +21,15 @@ type UserState = {
   loading: "loading" | "success" | "error";
   _hasHydrated: boolean;
   setHasHydrated: (state: boolean) => void;
-  selectedCourse: string;
-  setSelectedCourse: (state: string) => void;
+  selectedCourse: Courses | null;
+  setSelectedCourse: (state: Courses | null) => void;
 };
 
 const createState: StateCreator<UserState> = (set) => ({
   loading: "loading",
   name: null,
   _hasHydrated: false,
-  selectedCourse: "",
+  selectedCourse: null,
   setSelectedCourse: (state) => {
     set({
       selectedCourse: state,
