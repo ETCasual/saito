@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useRouter } from "next/router";
 import {
   useEffect,
   useRef,
@@ -28,6 +29,10 @@ export const IntroSlides: FunctionComponent<IntroSlidesProps> = ({
   const left = useRef<HTMLButtonElement>(null);
   const right = useRef<HTMLButtonElement>(null);
   const close = useRef<HTMLButtonElement>(null);
+
+  const router = useRouter();
+  const locale = router.locale;
+  console.log(locale);
 
   useEffect(() => {
     const keyPressEvent = (e: KeyboardEvent) => {
@@ -68,7 +73,7 @@ export const IntroSlides: FunctionComponent<IntroSlidesProps> = ({
         onClick={() => setSlide((prev) => (prev !== max ? prev + 1 : prev))}
       />
       <img
-        src={`/assets/intro/k2/${variant}_${selection}_slides/${slide}-100.jpg`}
+        src={`/assets/intro/k2/${variant}_${selection}_slides/${locale}/${slide}-100.jpg`}
         alt={`Slide ${slide}`}
         className="aspect-video max-w-full"
       />

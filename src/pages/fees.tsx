@@ -5,13 +5,27 @@ import { Layout } from "@/components/Layout";
 import { useUser } from "@/stores/useUser";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
-import { type FunctionComponent, useState } from "react";
+import { type FunctionComponent, useEffect, useState } from "react";
 
 const Fees = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [level, setLevel] = useState("foundation");
   const [variant, setVariant] = useState("");
   const { selectedCourse } = useUser();
+
+  useEffect(() => {
+    const prefferedVariant = String(localStorage.getItem("preferred-variant"));
+
+    const v = prefferedVariant.includes("_")
+      ? prefferedVariant.split("_")[1]
+      : prefferedVariant;
+
+    if (prefferedVariant.split("_")[1] === "logistics") {
+      setLevel("fondation");
+    } else setLevel("f_design");
+
+    setVariant(String(v));
+  }, []);
 
   const t = useTranslations();
 
@@ -139,34 +153,289 @@ const Fees = () => {
                 ))}
               </div>
             </div>
-          ) : selectedCategory === "fees.course_fees" ? (
+          ) : selectedCategory === "fees.course_fees" &&
+            selectedCourse === "design" ? (
+            <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
+              <div className="z-20 flex max-h-[70vh] min-h-[70vh] flex-grow flex-col justify-between">
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => {
+                      setVariant("design");
+                      setLevel("f_design");
+                    }}
+                    className={`${variant === "design" ? "text-primary " : ""}font-montserrat relative w-full pl-4 text-left text-lg font-bold`}
+                  >
+                    {variant === "design" && (
+                      <span className="absolute left-0">•</span>
+                    )}{" "}
+                    Design
+                  </button>
+                  <button
+                    onClick={() => {
+                      setVariant("business");
+                      setLevel("f_business");
+                    }}
+                    className={`${variant === "business" ? "text-primary " : ""}font-montserrat relative w-full pl-4 text-left text-lg font-bold`}
+                  >
+                    {variant === "business" && (
+                      <span className="absolute left-0">•</span>
+                    )}{" "}
+                    Business
+                  </button>
+                  <button
+                    onClick={() => {
+                      setVariant("hr");
+                      setLevel("dip_hr");
+                    }}
+                    className={`${variant === "hr" ? "text-primary " : ""}font-montserrat relative w-full pl-4 text-left text-lg font-bold`}
+                  >
+                    {variant === "hr" && (
+                      <span className="absolute left-0">•</span>
+                    )}{" "}
+                    Human Resource
+                  </button>
+                  {variant === "design" &&
+                    [
+                      {
+                        title: t(`course.${selectedCourse}.second.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.second.btn`),
+                            label: "",
+                            onClick: () => setLevel("f_design"),
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.forth.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.forth.btn`),
+                            label: "dip_multimedia",
+                            onClick: () => setLevel("dip_multimedia"),
+                          },
+                          {
+                            txt: t(`course.${selectedCourse}.fifth.btn`),
+                            label: "dip_graphic",
+                            onClick: () => setLevel("dip_graphic"),
+                          },
+                          {
+                            txt: t(`course.${selectedCourse}.sixth.btn`),
+                            label: "dip_interior",
+                            onClick: () => setLevel("dip_interior"),
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.tenth.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.tenth.btn`),
+                            label: "degree_graphic",
+                            onClick: () => setLevel("degree_graphic"),
+                          },
+                          {
+                            txt: t(`course.${selectedCourse}.eleventh.btn`),
+                            onClick: () => setLevel("degree_digital_media"),
+                            label: "degree_digital_media",
+                          },
+                        ],
+                      },
+                    ].map((s, i) => (
+                      <CourseLevel
+                        onClick={() =>
+                          setLevel(
+                            s.title === "Foundation"
+                              ? "f_design"
+                              : s.title === "Diploma"
+                                ? "dip_multimedia"
+                                : s.title === "Degree"
+                                  ? "degree_graphic"
+                                  : s.title.toLowerCase(),
+                          )
+                        }
+                        title={s.title}
+                        items={s.sub}
+                        school={selectedCourse}
+                        variant={variant}
+                        level={level}
+                        active={
+                          (level.startsWith("f_") &&
+                            s.title === "Foundation") ||
+                          (level.startsWith("dip_") && s.title === "Diploma") ||
+                          (level.startsWith("degree_") &&
+                            s.title === "Degree") ||
+                          level.toLowerCase() === s.title.toLowerCase()
+                        }
+                        key={i}
+                      />
+                    ))}
+                  {variant === "business" &&
+                    [
+                      {
+                        title: t(`course.${selectedCourse}.first.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.first.btn`),
+                            label: "",
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.third.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.third.btn`),
+                            label: "dip_business",
+                            onClick: () => setLevel("dip_business"),
+                          },
+                          {
+                            txt: t(`course.${selectedCourse}.thirteenth.btn`),
+                            label: "dip_b40",
+                            onClick: () => setLevel("dip_b40"),
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.eighth.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.eighth.btn`),
+                            label: "degree_business_management",
+                            onClick: () =>
+                              setLevel("degree_business_management"),
+                          },
+                          {
+                            txt: t(`course.${selectedCourse}.ninth.btn`),
+                            onClick: () => setLevel("degree_business_digital"),
+                            label: "degree_business_digital",
+                          },
+                        ],
+                      },
+                    ].map((s, i) => (
+                      <CourseLevel
+                        onClick={() =>
+                          setLevel(
+                            s.title === "Foundation"
+                              ? "f_business"
+                              : s.title === "Diploma"
+                                ? "dip_business"
+                                : s.title === "Degree"
+                                  ? "degree_business_management"
+                                  : s.title.toLowerCase(),
+                          )
+                        }
+                        title={s.title}
+                        items={s.sub}
+                        school={selectedCourse}
+                        variant={variant}
+                        level={level}
+                        active={
+                          (level.startsWith("f_") &&
+                            s.title === "Foundation") ||
+                          (level.startsWith("dip_") && s.title === "Diploma") ||
+                          (level.startsWith("degree_") &&
+                            s.title === "Degree") ||
+                          level.toLowerCase() === s.title.toLowerCase()
+                        }
+                        key={i}
+                      />
+                    ))}
+                  {variant === "hr" &&
+                    [
+                      {
+                        title: t(`course.${selectedCourse}.seventh.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.seventh.btn`),
+                            label: "dip_hr",
+                            onClick: () => setLevel("dip_hr"),
+                          },
+                        ],
+                      },
+                      {
+                        title: t(`course.${selectedCourse}.twelfth.type`),
+                        sub: [
+                          {
+                            txt: t(`course.${selectedCourse}.twelfth.btn`),
+                            label: "degree_hr",
+                            onClick: () => setLevel("degree_hr"),
+                          },
+                        ],
+                      },
+                    ].map((s, i) => (
+                      <CourseLevel
+                        onClick={() =>
+                          setLevel(
+                            s.title === "Degree"
+                              ? "degree_hr"
+                              : s.title === "Diploma"
+                                ? "dip_hr"
+                                : s.title.toLowerCase(),
+                          )
+                        }
+                        title={s.title}
+                        items={s.sub}
+                        school={selectedCourse}
+                        variant={variant}
+                        level={level}
+                        active={
+                          (level.startsWith("dip_") && s.title === "Diploma") ||
+                          (level.startsWith("degree_") &&
+                            s.title === "Degree") ||
+                          level.toLowerCase() === s.title.toLowerCase()
+                        }
+                        key={i}
+                      />
+                    ))}
+                </div>
+                <p
+                  className="z-20 cursor-pointer font-montserrat text-lg font-bold hover:text-primary"
+                  onClick={() => {
+                    setLevel("f_design");
+                    setSelectedCategory("");
+                  }}
+                >
+                  {t("back_nav")}
+                </p>
+              </div>
+              <div className="z-10 flex w-full flex-row items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:min-h-screen lg:w-screen">
+                <img
+                  src={`/assets/fees/design/${level}.jpg`}
+                  className="max-h-[75vh] w-[600px] object-contain lg:max-h-screen"
+                  alt=""
+                />
+              </div>
+            </div>
+          ) : selectedCategory === "fees.course_fees" &&
+            selectedCourse === "logistics" ? (
             <div className="flex h-full flex-grow flex-row items-start justify-center gap-5 lg:w-full lg:flex-row lg:justify-around">
               <div className="flex max-h-[70vh] min-h-[70vh] flex-grow flex-col justify-between">
                 <div className="flex flex-col gap-3">
                   {[
                     {
-                      title: t("course.first.type"),
+                      title: t(`course.${selectedCourse}.first.type`),
                       sub: [{ txt: t("course.first.btn"), label: "" }],
                     },
                     {
-                      title: t("course.second.type"),
+                      title: t(`course.${selectedCourse}.second.type`),
                       sub: [
                         {
-                          txt: t("course.second.btn"),
+                          txt: t(`course.${selectedCourse}.second.btn`),
                           label: "",
                         },
                       ],
                     },
                     {
-                      title: t("course.third.type"),
+                      title: t(`course.${selectedCourse}.third.type`),
                       sub: [
                         {
-                          txt: t("course.third.btn"),
+                          txt: t(`course.${selectedCourse}.third.btn`),
                           label: "ba_a",
                           onClick: () => setLevel("ba_a"),
                         },
                         {
-                          txt: t("course.forth.btn"),
+                          txt: t(`course.${selectedCourse}.forth.btn`),
                           onClick: () => setLevel("ba_b"),
                           label: "ba_b",
                         },
@@ -174,7 +443,7 @@ const Fees = () => {
                     },
                   ].map((s, i) => (
                     <CourseLevel
-                      school={selectedCourse!}
+                      school={selectedCourse}
                       onClick={() =>
                         setLevel(
                           s.title === "Degree" ? "ba_a" : s.title.toLowerCase(),

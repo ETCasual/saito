@@ -190,6 +190,11 @@
         "type": "Degree",
         "btn": "Bachelor of Human Resource Management (Honours)",
         "course_id": "R/345/6/1005 (02/29) MQA/FA8544"
+      },
+      "thirteenth": {
+        "type": "Degree",
+        "btn": "Diploma in Business Management (B40)",
+        "course_id": "R/345/6/1005 (02/29) MQA/FA8544"
       }
     }
   },

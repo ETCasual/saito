@@ -336,7 +336,7 @@ const Technical = () => {
                           {
                             txt: t(`course.${selectedCourse}.second.btn`),
                             label: "",
-                            onclick: () => setLevel("f_design"),
+                            onClick: () => setLevel("f_design"),
                           },
                         ],
                       },
@@ -421,7 +421,7 @@ const Technical = () => {
                           {
                             txt: t(`course.${selectedCourse}.third.btn`),
                             label: "dip_business",
-                            onclick: () => setLevel("dip_business"),
+                            onClick: () => setLevel("dip_business"),
                           },
                         ],
                       },
@@ -478,7 +478,7 @@ const Technical = () => {
                           {
                             txt: t(`course.${selectedCourse}.seventh.btn`),
                             label: "dip_hr",
-                            onclick: () => setLevel("dip_hr"),
+                            onClick: () => setLevel("dip_hr"),
                           },
                         ],
                       },
@@ -488,7 +488,7 @@ const Technical = () => {
                           {
                             txt: t(`course.${selectedCourse}.twelfth.btn`),
                             label: "degree_hr",
-                            onclick: () => setLevel("degree_hr"),
+                            onClick: () => setLevel("degree_hr"),
                           },
                         ],
                       },

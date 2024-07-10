@@ -58,7 +58,7 @@ const Faculty = () => {
                     </h1>
                     <div className="flex w-full flex-row items-center justify-center gap-1 pt-3">
                       <img
-                        src="/assets/fees/design/industry_partners.png"
+                        src="/assets/faculty/design/industry_partners.png"
                         alt="Industry Partner"
                         className="max-h-[400px] w-full object-scale-down"
                       />
@@ -69,7 +69,7 @@ const Faculty = () => {
                       {t("faculty.second.title")}
                     </h1>
                     <img
-                      src="/assets/fees/design/industry_experts_1.png"
+                      src="/assets/faculty/design/industry_experts_1.png"
                       alt="Industry Experts"
                       className="max-h-[400px] w-full object-scale-down"
                     />
@@ -79,7 +79,7 @@ const Faculty = () => {
                       {t("faculty.second.title")}
                     </h1>
                     <img
-                      src="/assets/fees/design/industry_experts_2.png"
+                      src="/assets/faculty/design/industry_experts_2.png"
                       alt="Industry Experts"
                       className="max-h-[400px] w-full object-scale-down"
                     />
@@ -89,7 +89,7 @@ const Faculty = () => {
                       {t("faculty.third.title")}
                     </h1>
                     <img
-                      src="/assets/fees/design/academic_team_1.png"
+                      src="/assets/faculty/design/academic_team_1.png"
                       alt="Academic Team"
                       className="max-h-[400px] w-full object-scale-down"
                     />
@@ -99,7 +99,7 @@ const Faculty = () => {
                       {t("faculty.third.title")}
                     </h1>
                     <img
-                      src="/assets/fees/design/academic_team_2.png"
+                      src="/assets/faculty/design/academic_team_2.png"
                       alt="Academic Team"
                       className="max-h-[400px] w-full object-scale-down"
                     />

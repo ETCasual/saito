@@ -20,6 +20,7 @@ export const CourseLevel: FunctionComponent<CourseLevelProps> = ({
   variant,
   school,
 }) => {
+  console.log(items);
   return (
     <button className="z-20 flex w-[250px] flex-col lg:w-[275px]">
       <div
