@@ -7,6 +7,7 @@ import { type Courses, useUser } from "@/stores/useUser";
 import { getKeyWithLargestValue } from "@/utils/helper";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
 // import { useTranslations } from "next-intl";
 import {
   type Dispatch,
@@ -61,6 +62,7 @@ const Intro = () => {
   const [selection, setSelection] = useState<string>("");
   const [slide, setSlide] = useState(1);
   const t = useTranslations();
+  const router = useRouter();
 
   useEffect(() => {
     setHasRecommended(
@@ -89,7 +91,17 @@ const Intro = () => {
                   type="video/mp4"
                 />
               </video> */}
-              <YouTube className="aspect-video w-full" videoId="kTpxziymlj0" />
+              {router.locale === "en" ? (
+                <YouTube
+                  className="aspect-video w-full"
+                  videoId="jsTKYlrVX-Y"
+                />
+              ) : router.locale === "ms" ? (
+                <YouTube
+                  className="aspect-video w-full"
+                  videoId="2kABQlvyKAU"
+                />
+              ) : null}
             </div>
           ) : selectedCourseVideo === "design_intro" && variant === "" ? (
             <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
