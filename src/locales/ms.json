@@ -100,29 +100,95 @@
   },
   "course": {
     "logistics": {
-      "base_articulation_image": "/assets/articulation.png",
       "first": {
-        "type": "Asas",
-        "btn": "Asas dalam Pengajian Perniagaan",
+        "type": "Foundation",
+        "btn": "Foundation in Business Studies",
         "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
       },
       "second": {
         "type": "Diploma",
-        "btn": "Diploma dalam Pengurusan Logistik",
+        "btn": "Diploma in Logistics Management",
         "course_id": "JPT/BPP(U)1000-801/158 Jld 3 (9) (04/26) MQA/PA14545 (04/26)"
       },
       "third": {
-        "type": "Ijazah",
-        "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & E-Perniagaan (Kehormatan)",
+        "type": "Degree",
+        "btn": "Bachelor of Business in Logistics Management & E-Business (Honours)",
         "course_id": "JPT/BPP (U)1000-801/158 Jld2 (50) (03/25) MQA/PA13028 (03/25)"
       },
       "forth": {
-        "type": "Ijazah",
-        "btn": "Ijazah Perniagaan dalam Pengurusan Logistik & Rantai Bekalan (Kehormatan)",
+        "type": "Degree",
+        "btn": "Bachelor of Business in Logistics & Supply Chain Management (Honours)",
         "course_id": "(MQA/PA17205)"
       },
       "halal": {
-        "btn": "Sijil dalam Pengurusan Logistik Halal"
+        "btn": "Certificate in Halal Logistics Management"
+      }
+    },
+    "design": {
+      "first": {
+        "type": "Foundation",
+        "btn": "Foundation in Business",
+        "course_id": "R/340/3/0777 (12/27) MQA/FA8545"
+      },
+      "second": {
+        "type": "Foundation",
+        "btn": "Fondation in Design",
+        "course_id": "R/0212/3/0191 (10/28) MQA/FA10087"
+      },
+      "third": {
+        "type": "Diploma",
+        "btn": "Diploma in Business Management",
+        "course_id": "R/345/4/0811 MQA/FA5714"
+      },
+      "forth": {
+        "type": "Diploma",
+        "btn": "Diploma in Multimedia Design",
+        "course_id": "R3/0211/4/0126 (08/28) MQA/A9072"
+      },
+      "fifth": {
+        "type": "Diploma",
+        "btn": "Diploma in Graphic Design",
+        "course_id": "R2/213/4/0154 (05/24) MQA/A10339"
+      },
+      "sixth": {
+        "type": "Diploma",
+        "btn": "Diploma in Interior Design",
+        "course_id": "R3/0212/4/0078 (07/28) MQA/A8993"
+      },
+      "seventh": {
+        "type": "Diploma",
+        "btn": "Diploma in Human Resource Management",
+        "course_id": "R2/340/4/0729 (09/27) MQA/FA1785"
+      },
+      "eighth": {
+        "type": "Degree",
+        "btn": "Bachelor of Business Management (Honours)",
+        "course_id": "R4/0414/6/1090 (11/28) MQA/FA10536"
+      },
+      "ninth": {
+        "type": "Degree",
+        "btn": "Bachelor of Business (Digital Marketing) (Honours)",
+        "course_id": "N/342/6/0211 (07/24) MQA/FA11937"
+      },
+      "tenth": {
+        "type": "Degree",
+        "btn": "Bachelor of Design (Graphic Design) (Honours)",
+        "course_id": "R/0211/6/0209 (10/28) MQA/FA11123"
+      },
+      "eleventh": {
+        "type": "Degree",
+        "btn": "Bachelor of Design (Digital Media) (Honours)",
+        "course_id": "N/214/6/0211 (08/24) MQA/FA11129"
+      },
+      "twelfth": {
+        "type": "Degree",
+        "btn": "Bachelor of Human Resource Management (Honours)",
+        "course_id": "R/345/6/1005 (02/29) MQA/FA8544"
+      },
+      "thirteenth": {
+        "type": "Degree",
+        "btn": "Diploma in Business Management (B40)",
+        "course_id": "R/345/6/1005 (02/29) MQA/FA8544"
       }
     }
   },

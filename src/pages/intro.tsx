@@ -16,7 +16,247 @@ import {
   useEffect,
   useState,
 } from "react";
-import YouTube from "react-youtube";
+import YouTube, { type YouTubeEvent } from "react-youtube";
+
+type TimestampOpts = {
+  title: string;
+  toTime: number;
+};
+
+const timestamps: Record<
+  string,
+  Record<string, Record<"en" | "ms", TimestampOpts[]>>
+> = {
+  logistics_intro: {
+    default: {
+      en: [
+        {
+          title: "Introduction of Logistics in Malaysia",
+          toTime: 0,
+        },
+        {
+          title: "Students' Insights",
+          toTime: 37,
+        },
+        {
+          title: "Dato Amin's Insights",
+          toTime: 131,
+        },
+        {
+          title: "Latest News of Logistics in Malaysia",
+          toTime: 265,
+        },
+        {
+          title: "Saito's Leadership in Education",
+          toTime: 285,
+        },
+        {
+          title: "Charles Brewer as Industry Expert",
+          toTime: 314,
+        },
+        {
+          title: "Dato Amin as Industry Expert",
+          toTime: 366,
+        },
+      ],
+      ms: [
+        {
+          title: "Pengenalan Logistik di Malaysia",
+          toTime: 0,
+        },
+        {
+          title: "Pandangan Pelajar",
+          toTime: 37,
+        },
+        {
+          title: "Pandangan Dato Amin",
+          toTime: 131,
+        },
+        {
+          title: "Berita Terkini Logistik di Malaysia",
+          toTime: 265,
+        },
+        {
+          title: "Kepimpinan Saito dalam Pendidikan",
+          toTime: 285,
+        },
+        {
+          title: "Charles Brewer sebagai Pakar Industri",
+          toTime: 314,
+        },
+        {
+          title: "Dato Amin sebagai Pakar Industri",
+          toTime: 366,
+        },
+      ],
+    },
+  },
+  design_intro: {
+    design: {
+      en: [
+        {
+          title: "Dean's Introduction to Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "The Creative Industry in Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Alumni Reviews",
+          toTime: 180,
+        },
+        {
+          title: "Students' Reviews",
+          toTime: 628,
+        },
+        {
+          title: "Lecturers' Sharing",
+          toTime: 803,
+        },
+        {
+          title: "Dean's Closing Remarks",
+          toTime: 951,
+        },
+      ],
+      ms: [
+        {
+          title: "Pengenalan Dekan kepada Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "Industri Kreatif di Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Ulasan Alumni",
+          toTime: 180,
+        },
+        {
+          title: "Ulasan Pelajar",
+          toTime: 628,
+        },
+        {
+          title: "Perkongsian Pensyarah",
+          toTime: 803,
+        },
+        {
+          title: "Ucapan Penutup Dekan",
+          toTime: 951,
+        },
+      ],
+    },
+
+    business: {
+      en: [
+        {
+          title: "Dean's Introduction to Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "The Business Industry in Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Alumni Reviews",
+          toTime: 180,
+        },
+        {
+          title: "Students' Reviews",
+          toTime: 307,
+        },
+        {
+          title: "Lecturers' Sharing",
+          toTime: 410,
+        },
+        {
+          title: "Dean's Closing Remarks",
+          toTime: 465,
+        },
+      ],
+      ms: [
+        {
+          title: "Pengenalan Dekan kepada Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "Industri Perniagaan di Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Ulasan Alumni",
+          toTime: 180,
+        },
+        {
+          title: "Ulasan Pelajar",
+          toTime: 307,
+        },
+        {
+          title: "Perkongsian Pensyarah",
+          toTime: 410,
+        },
+        {
+          title: "Ucapan Penutup Dekan",
+          toTime: 465,
+        },
+      ],
+    },
+    hr: {
+      en: [
+        {
+          title: "Dean's Introduction to Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "The HR Industry in Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Alumni Reviews",
+          toTime: 185,
+        },
+        {
+          title: "Students' Reviews",
+          toTime: 323,
+        },
+        {
+          title: "Lecturers' Sharing",
+          toTime: 423,
+        },
+        {
+          title: "Dean's Closing Remarks",
+          toTime: 523,
+        },
+      ],
+      ms: [
+        {
+          title: "Pengenalan Dekan kepada Saito K² School",
+          toTime: 0,
+        },
+        {
+          title: "Industri Perniagaan di Malaysia",
+          toTime: 120,
+        },
+        {
+          title: "Ulasan Alumni",
+          toTime: 185,
+        },
+        {
+          title: "Ulasan Pelajar",
+          toTime: 323,
+        },
+        {
+          title: "Perkongsian Pensyarah",
+          toTime: 423,
+        },
+        {
+          title: "Ucapan Penutup Dekan",
+          toTime: 523,
+        },
+      ],
+    },
+  },
+};
 
 const courses: Omit<
   CourseSelectionProps,
@@ -63,6 +303,7 @@ const Intro = () => {
   const [slide, setSlide] = useState(1);
   const t = useTranslations();
   const router = useRouter();
+  const [videoRef, setVideoRef] = useState<YouTubeEvent>();
 
   useEffect(() => {
     setHasRecommended(
@@ -75,12 +316,12 @@ const Intro = () => {
   return (
     <Layout>
       <InnerLayout>
-        <div className="flex h-full w-full flex-col items-center justify-center">
+        <div className="mr-4 flex h-full w-full flex-col items-center justify-center">
           {/* <h1 className="pb-6 font-montserrat text-[1.75rem] font-bold text-primary">
             {t("title")}
           </h1> */}
           {selectedCourseVideo === "logistics_intro" ? (
-            <div className="relative flex w-full max-w-[650px] flex-row items-center gap-4 lg:ml-0 lg:mt-0">
+            <div className="relative flex w-full max-w-[620px] flex-row gap-1 lg:ml-0 lg:mt-0">
               {/* <video
                 className="aspect-video"
                 controls
@@ -93,15 +334,50 @@ const Intro = () => {
               </video> */}
               {router.locale === "en" ? (
                 <YouTube
-                  className="aspect-video w-full"
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
                   videoId="jsTKYlrVX-Y"
                 />
               ) : router.locale === "ms" ? (
                 <YouTube
-                  className="aspect-video w-full"
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
                   videoId="2kABQlvyKAU"
                 />
               ) : null}
+              <div className="flex max-h-[360px] w-full max-w-[135px] flex-col gap-2 overflow-y-auto">
+                {router.locale === "en"
+                  ? timestamps[selectedCourseVideo]?.default?.en.map((ts) => (
+                      <VideoTimestampButton
+                        key={ts.toTime}
+                        title={ts.title}
+                        toTime={ts.toTime}
+                        videoRef={videoRef}
+                      />
+                    ))
+                  : router.locale === "ms"
+                    ? timestamps[selectedCourseVideo]?.default?.ms.map((ts) => (
+                        <VideoTimestampButton
+                          key={ts.toTime}
+                          title={ts.title}
+                          toTime={ts.toTime}
+                          videoRef={videoRef}
+                        />
+                      ))
+                    : null}
+              </div>
             </div>
           ) : selectedCourseVideo === "design_intro" && variant === "" ? (
             <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
@@ -232,14 +508,69 @@ const Intro = () => {
           ) : selectedCourseVideo === "design_intro" &&
             variant === "design" &&
             selection === "video" ? (
-            <div className="relative flex h-[250px] w-full max-w-[650px] flex-row items-center justify-center gap-7 lg:ml-0 lg:mt-0">
-              Nothing Yet
+            <div className="relative flex w-full max-w-[620px] flex-row gap-1 lg:ml-0 lg:mt-0">
+              {/* <video
+              className="aspect-video"
+              controls
+              controlsList="nodownload"
+            >
+              <source
+                src={`https://work-temps.s3.ap-southeast-1.amazonaws.com/${selectedCourseVideo}.mp4`}
+                type="video/mp4"
+              />
+            </video> */}
+              {router.locale === "en" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="gbPTYulG9Hg"
+                />
+              ) : router.locale === "ms" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="8ykbJYv6q2Q"
+                />
+              ) : null}
+              <div className="flex max-h-[360px] w-full max-w-[135px] flex-col gap-2 overflow-y-auto">
+                {router.locale === "en"
+                  ? timestamps[selectedCourseVideo]?.design?.en.map((ts) => (
+                      <VideoTimestampButton
+                        key={ts.toTime}
+                        title={ts.title}
+                        toTime={ts.toTime}
+                        videoRef={videoRef}
+                      />
+                    ))
+                  : router.locale === "ms"
+                    ? timestamps[selectedCourseVideo]?.design?.ms.map((ts) => (
+                        <VideoTimestampButton
+                          key={ts.toTime}
+                          title={ts.title}
+                          toTime={ts.toTime}
+                          videoRef={videoRef}
+                        />
+                      ))
+                    : null}
+              </div>
             </div>
           ) : selectedCourseVideo === "design_intro" &&
             variant === "design" &&
             selection === "prospectus" ? (
             <IntroSlides
-              max={variant === "design" && selection === "prospectus" ? 26 : 1}
+              max={selection === "prospectus" ? 26 : 1}
               onClose={() => {
                 setSelection("");
                 setSlide(1);
@@ -247,8 +578,146 @@ const Intro = () => {
               selection={selection}
               setSlide={setSlide}
               slide={slide}
-              variant={variant}
+              variant={"design"}
             />
+          ) : selectedCourseVideo === "design_intro" &&
+            variant === "hr" &&
+            selection === "prospectus" ? (
+            <IntroSlides
+              max={selection === "prospectus" ? 26 : 1}
+              onClose={() => {
+                setSelection("");
+                setSlide(1);
+              }}
+              selection={selection}
+              setSlide={setSlide}
+              slide={slide}
+              variant={"design"}
+            />
+          ) : selectedCourseVideo === "design_intro" &&
+            variant === "business" &&
+            selection === "video" ? (
+            <div className="relative flex w-full max-w-[620px] flex-row gap-1 lg:ml-0 lg:mt-0">
+              {/* <video
+            className="aspect-video"
+            controls
+            controlsList="nodownload"
+          >
+            <source
+              src={`https://work-temps.s3.ap-southeast-1.amazonaws.com/${selectedCourseVideo}.mp4`}
+              type="video/mp4"
+            />
+          </video> */}
+              {router.locale === "en" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="p37fqrsr1eE"
+                />
+              ) : router.locale === "ms" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="7kLlfyAY7xQ"
+                />
+              ) : null}
+              <div className="flex max-h-[360px] w-full max-w-[135px] flex-col gap-2 overflow-y-auto">
+                {router.locale === "en"
+                  ? timestamps[selectedCourseVideo]?.business?.en.map((ts) => (
+                      <VideoTimestampButton
+                        key={ts.toTime}
+                        title={ts.title}
+                        toTime={ts.toTime}
+                        videoRef={videoRef}
+                      />
+                    ))
+                  : router.locale === "ms"
+                    ? timestamps[selectedCourseVideo]?.business?.ms.map(
+                        (ts) => (
+                          <VideoTimestampButton
+                            key={ts.toTime}
+                            title={ts.title}
+                            toTime={ts.toTime}
+                            videoRef={videoRef}
+                          />
+                        ),
+                      )
+                    : null}
+              </div>
+            </div>
+          ) : selectedCourseVideo === "design_intro" &&
+            variant === "hr" &&
+            selection === "video" ? (
+            <div className="relative flex w-full max-w-[620px] flex-row gap-1 lg:ml-0 lg:mt-0">
+              {/* <video
+          className="aspect-video"
+          controls
+          controlsList="nodownload"
+        >
+          <source
+            src={`https://work-temps.s3.ap-southeast-1.amazonaws.com/${selectedCourseVideo}.mp4`}
+            type="video/mp4"
+          />
+        </video> */}
+              {router.locale === "en" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="KObGUi_3d2M"
+                />
+              ) : router.locale === "ms" ? (
+                <YouTube
+                  opts={{
+                    width: "485px",
+                  }}
+                  onReady={(e: YouTubeEvent) => {
+                    // console.log(e.target);
+                    setVideoRef(e);
+                  }}
+                  className="aspect-video w-[485px]"
+                  videoId="WiLxLXtTUiE"
+                />
+              ) : null}
+              <div className="flex max-h-[360px] w-full max-w-[135px] flex-col gap-2 overflow-y-auto">
+                {router.locale === "en"
+                  ? timestamps[selectedCourseVideo]?.hr?.en.map((ts) => (
+                      <VideoTimestampButton
+                        key={ts.toTime}
+                        title={ts.title}
+                        toTime={ts.toTime}
+                        videoRef={videoRef}
+                      />
+                    ))
+                  : router.locale === "ms"
+                    ? timestamps[selectedCourseVideo]?.hr?.ms.map((ts) => (
+                        <VideoTimestampButton
+                          key={ts.toTime}
+                          title={ts.title}
+                          toTime={ts.toTime}
+                          videoRef={videoRef}
+                        />
+                      ))
+                    : null}
+              </div>
+            </div>
           ) : (
             <div className="relative flex h-[55dvh] w-full max-w-[700px] flex-row items-center gap-4 lg:ml-0 lg:max-w-[900px]">
               {courses.map((c, i) => (
@@ -338,6 +807,32 @@ const CourseSelection: FunctionComponent<CourseSelectionProps> = ({
         </p>
       ) : null}
     </div>
+  );
+};
+
+interface VideoTimestampButtonProps {
+  title: string;
+  toTime: number;
+  videoRef?: YouTubeEvent;
+}
+
+const VideoTimestampButton: FunctionComponent<VideoTimestampButtonProps> = ({
+  title,
+  videoRef,
+  toTime,
+}) => {
+  return (
+    <button
+      onClick={() => {
+        if (!videoRef) return;
+        console.log(videoRef?.target);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        videoRef?.target.seekTo?.(toTime);
+      }}
+      className="bg-primary px-2 py-1 font-montserrat text-sm text-white"
+    >
+      {title}
+    </button>
   );
 };
 

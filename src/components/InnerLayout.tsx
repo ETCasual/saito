@@ -55,7 +55,7 @@ export const InnerLayout = ({
   return (
     <div className="relative flex h-full min-h-screen flex-row justify-center gap-5">
       {!sidelinkDisable ? (
-        <div className="sticky left-7 top-1/2 z-[100] flex h-full min-w-[125px] -translate-y-1/2 flex-col gap-3 lg:min-w-[175px]">
+        <div className="sticky left-7 top-1/2 z-[100] flex h-full min-w-[125px] -translate-y-[40%] flex-col gap-3 lg:min-w-[175px]">
           {links.map((l) => (
             <CategoryIcon
               onClick={async () => {
